@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+    <title><%= title %></title>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <!-- Agrega los estilos de Select2 -->
+
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/lineicons.css" />
+    <link rel="stylesheet" href="../assets/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="../assets/css/fullcalendar.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css"/>
+    <link rel="stylesheet" href="../assets/fonts/fontawesome-free-6.5.2-web/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  </head>
+  <body>
+    <!-- ======== Preloader =========== 
+    <div id="preloader">
+    <div class="spinner"></div>
+    </div>
+======== Preloader =========== -->
+
+  <main>
+  <%- include('./partials/navbar.html') %>
+  <article>
+
+  <%- include('./partials/sidebar.html') %>
+  <div>
+  <section>
+  <%- include(body) %>
+
+</div>
+</section>
+</article>
+
+<%- include('./partials/footer.html') %>
+
+</main>
+
+  <!-- ========= All Javascript files linkup ======== -->
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>    
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script> 
+   
+    <script src="../assets/js/moment.min.js"></script>
+    <script src="../assets/js/fullcalendar.js"></script>
+    <script src="../assets/js/polyfill.js"></script>
+    <script src="../assets/js/templates.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+    <script src="../assets/js/plugins/select2.min.js"></script>
+    <script src="../assets/js/system.js"></script>
+
+
+  
+
+  </body>
+</html>

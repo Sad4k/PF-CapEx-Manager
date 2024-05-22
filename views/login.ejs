@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión</title>
+
+<script src="../assets/js/login.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
+<link rel="stylesheet" href="../assets/css/login-style.css">
+</head>
+<body>
+  <div class="notification-container">
+  <div class="notification" id="notification">
+                 <% if (msg && msg.trim() !== '') { %>
+             <script>
+               showNotification('<%=msg%>');
+              </script>
+                 
+             <% } %> 
+             
+  </div>
+</div>
+
+<div class="login-container">
+<div class="login-card ">
+<form action="/login" method="POST">
+            <div class="login-card-header">
+              <div class=""><a class="fa fa-circle ready"></a>
+                Inicio de Sesion </div>
+              <div class="section-actions">
+                <a class="fa fa-maximize action-btn"></a>
+                <a class="fa fa-caret-down action-btn"></a>
+              </div>
+            </div>
+            <div class="login-card-inside-title">Ingresa tus Credenciales</div>
+            <div class="login-card-body">
+               <div class="col">
+              <div class="row">
+                  <div class="form-group" tabindex="0">
+                    <label class="form-label" tabindex="-1" for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="" required>
+                    <a tabindex="-1" ></a><span tabindex="-1" class="fa fa-user icon"></span>
+                  </div> 
+                </div>
+                  <div class="row">
+                  <div class="form-group" tabindex="0">
+                    <label class="form-label" tabindex="-1" for="password">Contraseña</label>
+                    <input type="password" class="form-control " id="password" name="password" placeholder="" required><span tabindex="-1" class="fa fa-key icon"></span>
+                  </div>
+            </div> 
+            <div class="section-spacer"></div>
+            <div class="row">
+            <button type="success" class="login-btn">Iniciar sesion</button>          
+            </div> 
+            </div> 
+
+          </div>
+        </form>
+           
+
+
+
+          </div>
+</div>
+</body>
+</html>

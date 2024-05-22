@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
+    <title>Dashboard</title>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/lineicons.css" />
+    <link rel="stylesheet" href="/assets/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="/assets/css/fullcalendar.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
+  </head>
+  <body>
+    <!-- ======== Preloader =========== --->
+    <div id="preloader">
+      <div class="spinner"></div>
+    </div>
+     <!-- ======== Preloader =========== -->
+
+  <main>
+  <%- include('./partials/navbar.html') %>
+  <article>
+
+  <%- include('./partials/sidebar.html') %>
+  <section>
+  <div>
+  <%- include(body) %>
+
+</div>
+</section>
+</article>
+
+<%- include('./partials/footer.html') %>
+
+</main>
+
+  <!-- ========= All Javascript files linkup ======== -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/Chart.min.js"></script>
+    <script src="/assets/js/dynamic-pie-chart.js"></script>
+    <script src="/assets/js/moment.min.js"></script>
+    <script src="/assets/js/fullcalendar.js"></script>
+    <script src="/assets/js/polyfill.js"></script>
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

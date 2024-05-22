@@ -1,0 +1,54 @@
+<!-- ======== sidebar-nav start =========== -->
+<aside class="sidebar closed">
+    <div class="sidebar-container closed">
+        <div class="module-container" id="moduleContainer">
+            <div class="module manager-module module-selected" id="module1">
+                <div class="module-text-group"> <span class="module-name">Project Manager</span>
+                    <span class="module-description">Administrador de usuarios y proyectos</span>
+                </div>
+                <li class="fa fa-caret-down change-icon"></li>
+            </div>
+            <!-- Agrega más módulos según sea necesario -->
+            <div class="automate-module module " id="module">
+                <div class="module-text-group"> <span class="module-name">Project Automate</span>
+                    <span class="module-description">Automatizador de tareas y acciones</span>
+                </div>
+                <li class="fa fa-caret-down change-icon"></li>
+            </div>
+
+        </div>
+        <nav class="nav-items">
+
+            <a class="fa fa-crosshairs" onclick="openObjetivesModal(5);"><span>Objetivos</span></a>
+            <a href="#" class="fa fa-list-check"><span>Tareas</span></a>
+            <a href="#">
+
+                <div class="dropdown fa fa-ruler">
+                    <span>Hover me</span>
+                    <div class="dropdown-content">
+                        <h1>Theme Switcher</h1>
+                        <label for="theme-selector">Select Theme:</label>
+                        <select id="theme-selector">
+                            <optgroup label="Basic Themes">
+                                <option value="dark">Dark Theme</option>
+                                <option value="light">Light Theme</option>
+                                <option value="light-blue">Light Blue Theme</option>
+                                <option value="light-pink">Light Pink Theme</option>
+                                <option value="dark-ocean">Dark Ocean Theme</option>
+                                <option value="hight-contrast">Hight Contrast Theme</option>
+                            </optgroup>
+                            <optgroup label="Color Themes">
+                                <option value="tech-theme">Technology</option>
+                                <option value="full-colored-theme">Full Color</option>
+                                <option value="Animated">Animated</option>
+                            </optgroup>
+
+                        </select>
+                    </div>
+                </div>
+            </a>
+        </nav>
+        <button class="sidebar-trigger fa fa-caret-left" id="sidebar-trigger"></button>
+    </div>
+</aside>
+<!-- ======== sidebar-nav end =========== -->

@@ -19,8 +19,6 @@ const config = require('./config/config.js');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Cargar el contenido de demo.js
-//const demoJsContent = fs.readFileSync('./assets/demo/scripts.js', 'utf8');
 
 // Evaluar el contenido de demo.js para que la función esté disponible
 //eval(demoJsContent);
@@ -60,6 +58,11 @@ app.use((req, res, next) => {
 //login
 app.get('/login', (req, res) => {
   res.render('login', { msg });
+});
+
+//login
+app.get('/config-server', (req, res) => {
+  res.render('config-server', { msg });
 });
 
 // Ruta para manejar la autenticación

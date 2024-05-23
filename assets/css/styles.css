@@ -2671,7 +2671,20 @@ button , .btn {
   border-color: #007bff; /* Cambia el color del borde cuando se enfoca */
   outline: none; /* Quita el contorno alrededor del select */
 }
+select {
+  width: 200px;
+  padding: 2px;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+/* Estilizar las opciones (puede no funcionar en todos los navegadores) */
+select option {
+  background-color: #fff; /* Fondo por defecto */
+  color: #000; /* Color de texto por defecto */
+}
 
 /* -------------forms -----------------*/
 
@@ -2712,6 +2725,17 @@ th, td {
 
 th {
   background-color: var(--form-background-color-alternative);
+}
+
+table .form-control{
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  color: var(--card-title-color);
+  background-color: #0000;
+}
+table .form-control:hover{
+  background-color: #0002;
 }
 /* -------------reports -----------------*/
 

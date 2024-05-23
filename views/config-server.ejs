@@ -37,49 +37,21 @@
         <div class="general-container">
           <div class="options">
             <div id="contenedor-proyectos" class="options-container">
-              <div class="section-spacer">Configuracion de Host</div>
+              <div class="section-spacer">Configuracion de Sistema</div>
 
               <div class="option" onclick="changePage(`System-config`)">Sistema</div>
-              <div class="option" onclick="changePage(`Device-config`)">Dispositivo</div>
+              <div class="option" onclick="changePage(`Host-config`)">Dispositivo</div>
               <div class="option" onclick="alert(`Device-config`)">Cuentas</div>
 
-              <div class="section-spacer">Configuracion de Server</div>
+              <div class="section-spacer">Configuracion Adicional</div>
 
+              <div class="option" id="db-config-pannel" style="display: none;" onclick="changePage(`db-config`)">Base de Datos</div>
               <div class="option">Sistema</div>
-              <div class="option">Base de Datos</div>
-              <div class="option no-avaliable">Rutas</div>
+              <div class="option">Rutas</div>
 
             </div>
           </div>
           <div class="config-container" id="configTabPanel">
-            <div class="page" name="System-config">
-              <div class="modal-inside-title">Informacion del Sistema</div>
-
-              <table class="report-control" class="overflow-horizontal" id="relatdProjectsFromMacroProjectsTable">
-                <tbody>
-                  <tr>
-                    <td>Zona</td>
-                    <td>Republica Dominicana</td>
-                  </tr>
-                  <tr>
-                    <td>Idioma</td>
-                    <td>Español</td>
-                  </tr>
-                  <tr>
-                    <td>Actualizacion</td>
-                    <td>Actualizaciones Disponibles</td>
-                  </tr>
-                  <tr>
-                    <td>Sistema</td>
-                    <td>PF365 Ver.Pre-Alpha by Sad4k</td>
-                  </tr>
-                  <tr>
-                    <td>Licencia</td>
-                    <td>NO REGISTRADO (Funciones Limitadas)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
 
         </div>

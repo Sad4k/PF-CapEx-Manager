@@ -5,7 +5,8 @@ const systemConfig = {
     update: 'Actualizaciones Disponibles',
     systemVersion: 'PF365 Ver.Pre-Alpha by Sad4k',
     licence: 'NO REGISTRADO (Funciones Limitadas)',
-    sysMode: 'demo-local'
+    sysMode: 'demo-local',
+    db_path: './demo_db_path'
 };
 // Objeto de host
 const hostConfig = {
@@ -133,35 +134,39 @@ function generateDbConfigHTML(systemConfig) {
         case 'demo-local':
             return `
         <div class="page" name="System-config">
-            <div class="card-inside-title">Base de Datos (Demostracion) sqlite</div>
-            <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+            <div class="card-inside-title">Base de Datos local</div>
+            <table class="report-control" class="overflow-horizontal" id="">
                 <tbody>
                     <tr>
-                        <td>Ruta</td>
-                        <td><input type="text" class="form-control" value="../database"></td>
+                        <td >Ruta</td>
+                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_path}"></td>
                     </tr>
                     <tr>
-                        <td>SQL Script</td>
-                        <td><input type="file" class="form-control" accept=".pfconfig"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><button type="success" class="login-btn">Iniciar sesion</button></td>
+                        <td colspan="2"><button class="btn success">Conectar</button><span>Conexion exitosa</span></td>
+                        <td colspan="2"><button class="btn danger">Borrar</button><span>Conexion exitosa</span></td>
                     </tr>
                     </tbody>
             </table>
-            <div class="modal-inside-title">Crear Nueva Base de Datos sqlite</div>
+            <div class="card-inside-title">Respaldo Base de Datos</div>
             <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
                 <tbody>
                     <tr>
                         <td>Ruta guardado</td>
-                        <td><input type="text" class="form-control" value="../database"></td>
+                        <td colspan="2" ><input type="text" class="form-control" value="../database/backup"></td>
                     </tr>
                     <tr>
-                        <td>SQL Script</td>
-                        <td><input type="file" class="form-control" accept=".pfconfig"></td>
+                        <td>Frecuencia</td>
+                        <td colspan="2" ><select class="form-control" id="sysMode" name="sysMode">
+                        <option value="no_backup">No respaldar</option>
+                        <option value="at_close">Al cerrar</option>
+                        <option value="daily">Cada Dia</option>
+                        <option value="weekely">Cada Semana</option>
+                        <option value="monthly">Cada Mes</option>
+                        </select></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button type="success" class="login-btn">Iniciar sesion</button></td>
+                        <td colspan="2"><button type="success" class="login-btn">Respladar</button></td>
+                        <td colspan="2"><button type="success" class="login-btn">Restablecer</button></td>
                     </tr>
                     </tbody>
             </table>

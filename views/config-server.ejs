@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar sesión</title>
-  <script src="../assets/js/login.js"></script>
+  <title>Configuracion</title>
+  <script src="../assets/js/config-server.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
@@ -22,90 +22,63 @@
         <% } %>
     </div>
   </div>
-  <div class="config-container">
-    <!-- ======== newMacroProjectModal-content =========== -->
-
-      <div class="modal-content">
-        <div class="modal-header">
-          <div class="modal-title"><a class="fa fa-circle ready"></a>
-            Project Objetives</div>
-          <div class="section-actions">
-            <a href="/login" class="btn">Return</a>
-          </div>
+  <div class="config-macrocontainer">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title"><a class="fa fa-circle ready"></a>
+          ProjectFlow System by Sad4k</div>
+        <div class="section-actions">
+          <a href="/login" class="config-a-btn">Return</a>
         </div>
-        <div class="modal-inside-title">Objetivos</div>
-        <div class="modal-body">
+      </div>
+      <div class="modal-inside-title">Menu de Configuracion</div>
+      <div class="modal-body">
 
-          <div class="objetives-container">
-            <div class="projects">
-              <div id="contenedor-proyectos" class="projects-container">
+        <div class="general-container">
+          <div class="options">
+            <div id="contenedor-proyectos" class="options-container">
+              <div class="section-spacer">Configuracion de Host</div>
 
-              </div>
+              <div class="option" onclick="changePage(`System-config`)">Sistema</div>
+              <div class="option" onclick="changePage(`Device-config`)">Dispositivo</div>
+              <div class="option" onclick="alert(`Device-config`)">Cuentas</div>
+
+              <div class="section-spacer">Configuracion de Server</div>
+
+              <div class="option">Sistema</div>
+              <div class="option">Base de Datos</div>
+              <div class="option no-avaliable">Rutas</div>
+
             </div>
-            <div class="objectives">
-              <div class="modal-inside-title">Editar Objetivos</div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" tabindex="0">
-                    <label class="form-label" for="project">Projecto</label>
-                    <input type="text" class="form-control" id="project" name="project" readonly><span
-                      class="fa fa-user icon"></span>
-                  </div>
-                </div>
-                <div class="col">
+          </div>
+          <div class="config-container" id="configTabPanel">
+            <div class="page" name="System-config">
+              <div class="modal-inside-title">Informacion del Sistema</div>
 
-                  <div class="form-group">
-                    <label for="macroprojectId">Estatus</label>
-                    <select class="form-control" id="macroprojectId" name="mpid">
-                      <option value="pending">Pendiente(default)</option>
-                      <option value="in_progress">En Progreso</option>
-                      <option value="completed">Completado</option>
-                    </select>
-
-
-                    <span class="fa fa-ruler icon"></span>
-                  </div>
-
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" tabindex="0">
-                    <label class="form-label" for="project">Objetivo</label>
-                    <input type="text" class="form-control" id="project" name="project"><span
-                      class="fa fa-user icon"></span>
-                  </div>
-                </div>
-                <div class="col">
-
-                  <div class="form-group">
-                    <label for="macroprojectId">Tipo de Objetivo</label>
-                    <select class="form-control" id="macroprojectId" name="mpid">
-                      <option value="">Temporal</option>
-                      <option value="">Cuantitativo</option>
-                      <option value="">Cualitativo</option>
-                      <option value="">Financiero</option>
-                      <option value="">Eficiencia</option>
-                    </select>
-
-
-                    <span class="fa fa-ruler icon"></span>
-                  </div>
-
-                </div>
-              </div>
-              <div class="row">
-                <div class="col col-6">
-                  <div class="form-group">
-                    <label for="description">Descripcion</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"
-                      required>Descripcion</textarea><span class="fa fa-paragraph icon"></span>
-                  </div>
-
-                </div>
-              </div>
-
-
+              <table class="report-control" class="overflow-horizontal" id="relatdProjectsFromMacroProjectsTable">
+                <tbody>
+                  <tr>
+                    <td>Zona</td>
+                    <td>Republica Dominicana</td>
+                  </tr>
+                  <tr>
+                    <td>Idioma</td>
+                    <td>Español</td>
+                  </tr>
+                  <tr>
+                    <td>Actualizacion</td>
+                    <td>Actualizaciones Disponibles</td>
+                  </tr>
+                  <tr>
+                    <td>Sistema</td>
+                    <td>PF365 Ver.Pre-Alpha by Sad4k</td>
+                  </tr>
+                  <tr>
+                    <td>Licencia</td>
+                    <td>NO REGISTRADO (Funciones Limitadas)</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
 
@@ -119,8 +92,8 @@
 
 
       </div>
-    <!-- ======== newMacroProjectModal-content =========== -->
-  </div>
+      <!-- ======== newMacroProjectModal-content =========== -->
+    </div>
 </body>
 
 </html>

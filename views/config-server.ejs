@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,9 @@
   <script src="../assets/js/login.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
-  <link rel="stylesheet" href="../assets/css/login-style.css">
+  <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
+
 <body>
   <div class="notification-container">
     <div class="notification" id="notification">
@@ -17,45 +19,108 @@
         <script>
           showNotification('<%=msg%>');
         </script>
-      <% } %>
+        <% } %>
     </div>
   </div>
-  <div class="login-container">
-    <div class="login-card ">
-      <form action="/login" method="POST">
-        <div class="login-card-header">
-          <div class=""><a class="fa fa-circle ready"></a>
-            Configuracion del Server </div>
+  <div class="config-container">
+    <!-- ======== newMacroProjectModal-content =========== -->
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title"><a class="fa fa-circle ready"></a>
+            Project Objetives</div>
           <div class="section-actions">
-            <a class="fa fa-info action-btn"></a>
-            <a class="fa fa-gear action-btn"></a>
+            <a href="/login" class="btn">Return</a>
           </div>
         </div>
-        <div class="login-card-inside-title">Ingresa tus Credenciales</div>
-        <div class="login-card-body">
-          <div class="col">
-            <div class="row">
-              <div class="form-group" tabindex="0">
-                <label class="form-label" tabindex="-1" for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="" required>
-                <a tabindex="-1"></a><span tabindex="-1" class="fa fa-user icon"></span>
+        <div class="modal-inside-title">Objetivos</div>
+        <div class="modal-body">
+
+          <div class="objetives-container">
+            <div class="projects">
+              <div id="contenedor-proyectos" class="projects-container">
+
               </div>
             </div>
-            <div class="row">
-              <div class="form-group" tabindex="0">
-                <label class="form-label" tabindex="-1" for="password">Contraseña</label>
-                <input type="password" class="form-control " id="password" name="password" placeholder="" required><span
-                  tabindex="-1" class="fa fa-key icon"></span>
+            <div class="objectives">
+              <div class="modal-inside-title">Editar Objetivos</div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group" tabindex="0">
+                    <label class="form-label" for="project">Projecto</label>
+                    <input type="text" class="form-control" id="project" name="project" readonly><span
+                      class="fa fa-user icon"></span>
+                  </div>
+                </div>
+                <div class="col">
+
+                  <div class="form-group">
+                    <label for="macroprojectId">Estatus</label>
+                    <select class="form-control" id="macroprojectId" name="mpid">
+                      <option value="pending">Pendiente(default)</option>
+                      <option value="in_progress">En Progreso</option>
+                      <option value="completed">Completado</option>
+                    </select>
+
+
+                    <span class="fa fa-ruler icon"></span>
+                  </div>
+
+                </div>
               </div>
-            </div>
-            <div class="section-spacer"></div>
-            <div class="row">
-              <button type="success" class="login-btn">Iniciar sesion</button>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group" tabindex="0">
+                    <label class="form-label" for="project">Objetivo</label>
+                    <input type="text" class="form-control" id="project" name="project"><span
+                      class="fa fa-user icon"></span>
+                  </div>
+                </div>
+                <div class="col">
+
+                  <div class="form-group">
+                    <label for="macroprojectId">Tipo de Objetivo</label>
+                    <select class="form-control" id="macroprojectId" name="mpid">
+                      <option value="">Temporal</option>
+                      <option value="">Cuantitativo</option>
+                      <option value="">Cualitativo</option>
+                      <option value="">Financiero</option>
+                      <option value="">Eficiencia</option>
+                    </select>
+
+
+                    <span class="fa fa-ruler icon"></span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-6">
+                  <div class="form-group">
+                    <label for="description">Descripcion</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"
+                      required>Descripcion</textarea><span class="fa fa-paragraph icon"></span>
+                  </div>
+
+                </div>
+              </div>
+
+
             </div>
           </div>
+
         </div>
-      </form>
-    </div>
+        <div class="modal-footer">
+          <button class="btn primary close">Cancel</button>
+          <button type="submit" class="btn success">Success</button>
+        </div>
+
+        </form>
+
+
+      </div>
+    <!-- ======== newMacroProjectModal-content =========== -->
   </div>
 </body>
+
 </html>

@@ -134,7 +134,38 @@ function generateDbConfigHTML(systemConfig) {
             return `
         <div class="page" name="System-config">
             <div class="card-inside-title">Base de Datos (Demostracion) sqlite</div>
+            <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+                <tbody>
+                    <tr>
+                        <td>Ruta</td>
+                        <td><input type="text" class="form-control" value="../database"></td>
+                    </tr>
+                    <tr>
+                        <td>SQL Script</td>
+                        <td><input type="file" class="form-control" accept=".pfconfig"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="success" class="login-btn">Iniciar sesion</button></td>
+                    </tr>
+                    </tbody>
+            </table>
             <div class="modal-inside-title">Crear Nueva Base de Datos sqlite</div>
+            <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+                <tbody>
+                    <tr>
+                        <td>Ruta guardado</td>
+                        <td><input type="text" class="form-control" value="../database"></td>
+                    </tr>
+                    <tr>
+                        <td>SQL Script</td>
+                        <td><input type="file" class="form-control" accept=".pfconfig"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="success" class="login-btn">Iniciar sesion</button></td>
+                    </tr>
+                    </tbody>
+            </table>
+            <div class="card-inside-title">Base de Datos (Demostracion) sqlite</div>
             <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
                 <tbody>
                     <tr>

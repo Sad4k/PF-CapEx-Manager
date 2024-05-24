@@ -6,7 +6,13 @@ const systemConfig = {
     systemVersion: 'PF365 Ver.Pre-Alpha by Sad4k',
     licence: 'NO REGISTRADO (Funciones Limitadas)',
     sysMode: 'demo-local',
-    db_path: './demo_db_path'
+    db_local_path: './demo_db_path',
+    db_local_backup_path: './demo-local-bacup',
+    db_local_script: 'sqlite_script',
+    db_backup_frec: './demo-local-bacup',
+    db_mysql_server: '172.0.0.1',
+    db_mysql_port: '3306',
+    db_mysql_script: 'Mysql script'
 };
 // Objeto de host
 const hostConfig = {
@@ -132,14 +138,84 @@ function generateHostConfigHTML(hostConfig) {
 function generateDbConfigHTML(systemConfig) {
     switch (systemConfig.sysMode) {
         case 'demo-local':
-            return `
+           
+            break;
+        case 'demo-online':
+            handleDemoOnline();
+            break;
+        case 'master-local-sqlite':
+             return `
         <div class="page" name="System-config">
             <div class="card-inside-title">Base de Datos local</div>
             <table class="report-control" class="overflow-horizontal" id="">
                 <tbody>
                     <tr>
                         <td >Ruta</td>
-                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_path}"></td>
+                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_local_path}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="btn success">Conectar</button><span>Conexion exitosa</span></td>
+                        <td colspan="2"><button class="btn danger">Borrar</button><span>Conexion exitosa</span></td>
+                    </tr>
+                    </tbody>
+            </table>
+            <div class="card-inside-title">Respaldo Base de Datos</div>
+            <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+                <tbody>
+                    <tr>
+                        <td>Ruta guardado</td>
+                        <td colspan="2" ><input type="text" class="form-control" value="${systemConfig.db_local_backup_path}"></td>
+                    </tr>
+                    <tr>
+                        <td>Frecuencia</td>
+                        <td colspan="2" ><select class="form-control" id="sysMode" name="sysMode" value="${systemConfig.db_backup_frec}">
+                        <option value="no_backup">No respaldar</option>
+                        <option value="at_close">Al cerrar</option>
+                        <option value="daily">Cada Dia</option>
+                        <option value="weekely">Cada Semana</option>
+                        <option value="monthly">Cada Mes</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="" class="success">Respladar</button></td>
+                        <td colspan="2"><button type="" class="danger">Restablecer</button></td>
+                    </tr>
+                    </tbody>
+            </table>
+            <div class="card-inside-title">Crear Nueva Base de Datos</div>
+            <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+                <tbody>
+                    <tr>
+                        <td>Ruta de guardado</td>
+                        <td><input type="text" class="form-control" value="${systemConfig.db_local_path}"></td>
+                    </tr>
+                    <tr>
+                        <td>SQL Script</td>
+                        <td><textarea class="form-control" style="resize: none; height: 200px; " value="${systemConfig.db_local_script}"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="login-btn">Crear</button></td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>`;
+            break;
+        case 'slave-local-sqlite':
+            handleSlaveLocal();
+            break;
+        case 'online-Mysql':
+            return `
+        <div class="page" name="System-config">
+            <div class="card-inside-title">Base de Datos Mysql</div>
+            <table class="report-control" class="overflow-horizontal" id="">
+                <tbody>
+                    <tr>
+                        <td>Servidor</td>
+                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_mysql_ip}"></td>
+                    </tr>
+                    <tr>
+                        <td>Puerto</td>
+                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_mysql_port}"></td>
                     </tr>
                     <tr>
                         <td colspan="2"><button class="btn success">Conectar</button><span>Conexion exitosa</span></td>
@@ -165,40 +241,24 @@ function generateDbConfigHTML(systemConfig) {
                         </select></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button type="success" class="login-btn">Respladar</button></td>
-                        <td colspan="2"><button type="success" class="login-btn">Restablecer</button></td>
+                        <td colspan="2"><button type="" class="success">Respladar</button></td>
+                        <td colspan="2"><button type="" class="danger">Restablecer</button></td>
                     </tr>
                     </tbody>
             </table>
-            <div class="card-inside-title">Base de Datos (Demostracion) sqlite</div>
+            <div class="card-inside-title">Crear Nueva Base de Datos</div>
             <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
                 <tbody>
                     <tr>
-                        <td>Ruta guardado</td>
-                        <td><input type="text" class="form-control" value="../database"></td>
-                    </tr>
-                    <tr>
                         <td>SQL Script</td>
-                        <td><input type="file" class="form-control" accept=".pfconfig"></td>
+                        <td><textarea class="form-control" style="resize: none; height: 200px; "></textarea></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button type="success" class="login-btn">Iniciar sesion</button></td>
+                        <td colspan="2"><button class="login-btn">Crear</button></td>
                     </tr>
                     </tbody>
             </table>
         </div>`;
-            break;
-        case 'demo-online':
-            handleDemoOnline();
-            break;
-        case 'master-local-sqlite':
-            handleMasterLocal();
-            break;
-        case 'slave-local-sqlite':
-            handleSlaveLocal();
-            break;
-        case 'online-Mysql':
-            handleOnlineMysql();
             break;
         default:
             console.warn('Modo no reconocido:', sysMode);
@@ -221,6 +281,7 @@ function changePage(pageName) {
 }
  function databaseMode() {
             const sysMode = document.getElementById('sysMode').value;
+            systemConfig.sysMode = sysMode;
 
             switch (sysMode) {
                 case 'demo-local':
@@ -267,8 +328,6 @@ function changePage(pageName) {
         }
 
         function handleOnlineMysql() {
-            document.getElementById('sysMode').value = "demo-local"; 
             document.getElementById('db-config-pannel').style.display = 'block';
-            alert('Actualmente No disponible');
 
         }

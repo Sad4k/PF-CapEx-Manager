@@ -3,8 +3,46 @@ const fs = require('fs');
 //const fs = require('fs').promises;
 const path = require('path');
 const multer = require('multer');
+const configFilePath = path.join(__dirname, 'config/Config.json');
 //const config = require('../../config/config.js');
 //const db = require('../../config/database'); // Ajusta la ruta según la ubicación de tu archivo de configuración de la base de datos
+
+// ###################################### Gestion de Configuracion ################################################//
+const configure = {
+  saveConfig: (config, callback) => {
+    let configs = {};
+
+    // Leer el archivo existente, si existe
+    if (fs.existsSync(configFilePath)) {
+      const rawData = fs.readFileSync(configFilePath);
+      configs = JSON.parse(rawData);
+    }
+
+    // Actualizar la configuración
+    Object.assign(configs, config);
+
+    // Escribir las configuraciones actualizadas en el archivo
+    fs.writeFile(configFilePath, JSON.stringify(configs, null, 2), (err) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, `Configuración guardada correctamente.`);
+      }
+    });
+  },
+
+  readConfig: (callback) => {
+    if (!fs.existsSync(configFilePath)) {
+      return callback(new Error('El archivo de configuración no existe.'));
+    }
+
+    const rawData = fs.readFileSync(configFilePath);
+    const configs = JSON.parse(rawData);
+
+    callback(null, configs);
+  }
+};
+// ###################################### Gestion de Configuracion ################################################//
 
 const rootProjectsPath = '/media/sad4k/PROYECTOS';
 // ###################################### Subida de Archivos Con Multer ################################################//
@@ -286,9 +324,12 @@ const localfiles = {
   },
 };
 
+
+
 module.exports = {
   localfiles,
   upload,
   projectFilemanager,
   projectsImageStorage,
+  configure,
 };

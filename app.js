@@ -6,6 +6,9 @@ const fs = require('fs');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+//Configuracion
+const systemConfig = Fileman_controller.readConfig();
+const config = require('./config/config.js');
 //Controladores de la app
 const PjAutomate_controller = require('./src/controllers/project-automate-controller.js');
 const Fileman_controller = require('./src/controllers/filemanager.js');
@@ -13,12 +16,59 @@ const pm_controller = require('./src/controllers/project-manager-controller.js')
 //Modelos de funciones
 const pj_manager = require('./src/models/project-manager-model.js');
 const session_db = require('./src/models/session_controller_model.js');
-//Configuracion
-const config = require('./config/config.js');
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// ###################################### Gestion de Configuracion ################################################//
+
+// Ruta para recibir y guardar la configuración del cliente
+app.post('/saveConfig', (req, res) => {
+  const { clientName, config } = req.body;
+
+  if (!clientName || !config) {
+    return res.status(400).send('Faltan datos del cliente o configuración.');
+  }
+
+  Fileman_controller.configure.saveConfig(clientName, config, (err, message) => {
+    if (err) {
+      console.error('Error al guardar la configuración:', err);
+      res.status(500).send('Error al guardar la configuración.');
+    } else {
+      res.send(message);
+    }
+  });
+});
+
+// Ruta para leer la configuración del cliente
+app.get('/getConfig/:clientName', (req, res) => {
+  const { clientName } = req.params;
+
+  Fileman_controller.configure.readConfig(clientName, (err, config) => {
+    if (err) {
+      console.error('Error al leer la configuración:', err);
+      res.status(500).send(err.message);
+    } else {
+      res.json(config);
+    }
+  });
+});
+
+// Nueva ruta para aplicar la configuración del cliente
+app.post('/applyConfig/:clientName', (req, res) => {
+  const { clientName } = req.params;
+
+  configure.applyConfig(clientName, (err, message) => {
+    if (err) {
+      console.error('Error al aplicar la configuración:', err);
+      res.status(500).send(err.message);
+    } else {
+      res.send(message);
+    }
+  });
+});
+// ###################################### Gestion de Configuracion ################################################//
 
 // Evaluar el contenido de demo.js para que la función esté disponible
 //eval(demoJsContent);

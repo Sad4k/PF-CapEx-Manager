@@ -323,7 +323,7 @@ function changePage(pageName) {
         }
 
         function handleSlaveLocal() {
-            document.getElementById('sysMode').value = "demo-local"; 
+            document.getElementById('sysMode').value = "master-local-sqlite"; 
             alert('Actualmente No disponible');
         }
 

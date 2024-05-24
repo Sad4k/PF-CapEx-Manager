@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configuracion</title>
-  <script src="../assets/js/config-server.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
@@ -33,39 +32,42 @@
       </div>
       <div class="modal-inside-title">Menu de Configuracion</div>
       <div class="modal-body">
+        <form id="configForm" method="POST">
+          <div class="general-container">
+            <div class="options">
+              <div id="contenedor-proyectos" class="options-container">
+                <div class="section-spacer">Configuracion de Sistema</div>
 
-        <div class="general-container">
-          <div class="options">
-            <div id="contenedor-proyectos" class="options-container">
-              <div class="section-spacer">Configuracion de Sistema</div>
+                <div class="option" onclick="changePage(`System-config`)">Sistema</div>
+                <div class="option" onclick="changePage(`Host-config`)">Dispositivo</div>
+                <div class="option" onclick="alert(`Device-config`)">Cuentas</div>
 
-              <div class="option" onclick="changePage(`System-config`)">Sistema</div>
-              <div class="option" onclick="changePage(`Host-config`)">Dispositivo</div>
-              <div class="option" onclick="alert(`Device-config`)">Cuentas</div>
+                <div class="section-spacer">Configuracion Adicional</div>
 
-              <div class="section-spacer">Configuracion Adicional</div>
+                <div class="option" id="db-config-pannel" style="display: none;" onclick="changePage(`db-config`)">Base
+                  de Datos</div>
+                <div class="option">Sistema</div>
+                <div class="option">Rutas</div>
 
-              <div class="option" id="db-config-pannel" style="display: none;" onclick="changePage(`db-config`)">Base de Datos</div>
-              <div class="option">Sistema</div>
-              <div class="option">Rutas</div>
-
+              </div>
             </div>
-          </div>
-          <div class="config-container" id="configTabPanel">
-          </div>
+            <div class="config-container" id="configTabPanel">
+            </div>
 
-        </div>
-        <div class="modal-footer">
-          <button class="btn primary close">Cancel</button>
-          <button type="submit" class="btn success">Success</button>
-        </div>
+          </div>
 
         </form>
+
+        <div class="modal-footer">
+          <button class="btn primary close">Cancel</button>
+          <button id="configSubmit" class="btn success">Success</button>
+        </div>
 
 
       </div>
       <!-- ======== newMacroProjectModal-content =========== -->
     </div>
 </body>
+<script src="../assets/js/config-server.js"></script>
 
 </html>

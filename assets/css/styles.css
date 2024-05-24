@@ -2728,7 +2728,9 @@ th {
 }
 
 table .form-control{
-  width: 100%;
+  width: calc(100% - 5px);
+  padding: 2px;
+  border-radius: 4px;
   border-collapse: collapse;
   border: none;
   color: var(--card-title-color);

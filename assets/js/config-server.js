@@ -191,7 +191,7 @@ function generateDbConfigHTML(systemConfig) {
                     </tr>
                     <tr>
                         <td>SQL Script</td>
-                        <td><textarea class="form-control" style="resize: none; height: 200px; " value="${systemConfig.db_local_script}"></textarea></td>
+                        <td><textarea class="form-control" style="resize: none; height: 200px;">${systemConfig.db_local_script}</textarea></td>
                     </tr>
                     <tr>
                         <td colspan="2"><button class="login-btn">Crear</button></td>
@@ -211,7 +211,7 @@ function generateDbConfigHTML(systemConfig) {
                 <tbody>
                     <tr>
                         <td>Servidor</td>
-                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_mysql_ip}"></td>
+                        <td colspan="2"><input type="text" class="form-control" value="${systemConfig.db_mysql_server}"></td>
                     </tr>
                     <tr>
                         <td>Puerto</td>

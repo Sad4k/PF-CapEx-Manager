@@ -26,6 +26,7 @@ app.use(express.json());
 // Ruta para recibir y guardar la configuración del cliente
 app.post('/saveConfig', (req, res) => {
   const { config } = req.body;
+  alert("req.body");
 
   if (!config) {
     return res.status(400).send('Faltan datos del cliente o configuración.');
@@ -67,6 +68,10 @@ app.post('/applyConfig', (req, res) => {
   });
 });
 // ###################################### Gestion de Configuracion ################################################//
+// ###################################### Gestion de db SQLITE LOCAL ################################################//
+
+
+// ###################################### Gestion de db SQLITE LOCAL ################################################//
 
 // Evaluar el contenido de demo.js para que la función esté disponible
 //eval(demoJsContent);

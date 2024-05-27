@@ -36,26 +36,26 @@ const systemConfig = {
 const newSystemConfig = systemConfig;
 
 //page sistema act
-function updateSystemPartial(){
+function updateSystemPartial() {
     newSystemConfig.zone = document.getElementsByName("zone").value;
     newSystemConfig.language = document.getElementsByName("language").value;
     newSystemConfig.autoCalc = document.getElementsByName("autocalc").value;
     newSystemConfig.sysMode = document.getElementsByName("sysMode").value;
-    newSystemConfig.projectPath = document.getElementsByName("projectPath").value;    
+    newSystemConfig.projectPath = document.getElementsByName("projectPath").value;
     console.log("updated");
 }
 
 //page Mysql act
-function updateMySqlPartial(){
+function updateMySqlPartial() {
     newSystemConfig.db_mysql_server = document.getElementsByName("server").value;
     newSystemConfig.db_mysql_port = document.getElementsByName("port").value;
     newSystemConfig.db_mysql_backup = document.getElementsByName("mysqlbackup").value;
     newSystemConfig.db_backup_frec = document.getElementsByName("mysqlbackupfrec").value;
-    newSystemConfig.db_mysql_script = document.getElementsByName("mysqlscript").value;    
+    newSystemConfig.db_mysql_script = document.getElementsByName("mysqlscript").value;
     console.log("updated");
 }
 //page sistema act
-function updateSqlitePartial(){
+function updateSqlitePartial() {
     newSystemConfig.db_local_path = document.getElementsByName("dblocalpath").value;
     newSystemConfig.db_local_backup_path = document.getElementsByName("dbsqlitebackuppath").value;
     newSystemConfig.db_backup_frec = document.getElementsByName("sqlitebackupfrec").value;
@@ -394,6 +394,29 @@ function handleOnlineMysql() {
 
 };
 
-function conectSqlite(){
+function conectSqlite() {
     alert("conectando");
+};
+
+async function sendConfig() {
+    try {
+        const response = await fetch('/saveConfig', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ newSystemConfig })
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(`Error al guardar la configuración: ${errorMessage}`);
+        }
+
+        const message = await response.text();
+        console.log('Configuración guardada con éxito:', message);
+    } catch (error) {
+        console.error('Error al enviar la configuración:', error);
+        alert('Hubo un error al guardar la configuración. Por favor, inténtalo de nuevo.');
+    }
 }

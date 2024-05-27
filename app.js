@@ -25,14 +25,14 @@ app.use(express.json());
 
 // Ruta para recibir y guardar la configuración del cliente
 app.post('/saveConfig', (req, res) => {
-  const { config } = req.body;
-  alert("req.body");
+  const { newSystemConfig } = req.body;
 
-  if (!config) {
+
+  if (!newSystemConfig) {
     return res.status(400).send('Faltan datos del cliente o configuración.');
   }
 
-  Fileman_controller.configure.saveConfig(config, (err, message) => {
+  Fileman_controller.configure.saveConfig(newSystemConfig, (err, message) => {
     if (err) {
       console.error('Error al guardar la configuración:', err);
       res.status(500).send('Error al guardar la configuración.');

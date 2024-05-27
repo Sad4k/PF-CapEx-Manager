@@ -1,4 +1,10 @@
 
+// Variables para almacenar las páginas creadas
+let systemConfigPage = null;
+let hostConfigPage = null;
+let dbConfigPage = null;
+let dbConfigOutdated = false;
+
 // Objeto de configuración
 const systemConfig = {
     zone: 'República Dominicana',
@@ -176,8 +182,8 @@ function generateDbConfigHTML(systemConfig) {
                         <td colspan="2"><input type="text" onkeyup="updateSqlitePartial()" name="dblocalpath" class="form-control" value="${systemConfig.db_local_path}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button class="btn success">Conectar</button><span>Conexion exitosa</span></td>
-                        <td colspan="2"><button class="btn danger">Borrar</button><span>Conexion exitosa</span></td>
+                        <td colspan="2"><a onclick="conectSqlite()" class="btn success">Conectar</a><span></span></td>
+                        <td colspan="2"><a class="btn danger">Borrar</a><span></span></td>
                     </tr>
                     </tbody>
             </table>
@@ -288,21 +294,53 @@ function generateDbConfigHTML(systemConfig) {
 
 };
 
+// Función para manejar el cambio del select de funcionamiento
+function handleSelectChange() {
+    dbConfigOutdated = true; // Marcar db-config como desactualizada
+}
+
 function changePage(pageName) {
     const pagePanel = document.getElementById("configTabPanel");
 
+    // Ocultar todas las páginas primero
+    if (systemConfigPage) systemConfigPage.style.display = 'none';
+    if (hostConfigPage) hostConfigPage.style.display = 'none';
+    if (dbConfigPage) dbConfigPage.style.display = 'none';
+
+    // Mostrar la página solicitada
     if (pageName === 'System-config') {
-        pagePanel.innerHTML = generateSystemConfigHTML(systemConfig);
+        if (!systemConfigPage) {
+            systemConfigPage = document.createElement('div');
+            systemConfigPage.innerHTML = generateSystemConfigHTML(systemConfig);
+            pagePanel.appendChild(systemConfigPage);
+        }
+        systemConfigPage.style.display = 'block';
     } else if (pageName === 'Host-config') {
-        pagePanel.innerHTML = generateHostConfigHTML(systemConfig);
+        if (!hostConfigPage) {
+            hostConfigPage = document.createElement('div');
+            hostConfigPage.innerHTML = generateHostConfigHTML(systemConfig);
+            pagePanel.appendChild(hostConfigPage);
+        }
+        hostConfigPage.style.display = 'block';
     } else if (pageName === 'db-config') {
-        pagePanel.innerHTML = generateDbConfigHTML(systemConfig);
+        if (!dbConfigPage || dbConfigOutdated) {
+            if (dbConfigPage) {
+                pagePanel.removeChild(dbConfigPage); // Eliminar la página actual si existe
+            }
+            dbConfigPage = document.createElement('div');
+            dbConfigPage.innerHTML = generateDbConfigHTML(systemConfig);
+            pagePanel.appendChild(dbConfigPage);
+            dbConfigOutdated = false; // Resetear el estado de desactualizado
+        }
+        dbConfigPage.style.display = 'block';
     } else {
         alert("No existe esa configuración");
     }
-};
+}
+
 function databaseMode() {
-    updateSystemPartial()
+    updateSystemPartial();
+    handleSelectChange();
     const sysMode = document.getElementById('sysMode').value;
     systemConfig.sysMode = sysMode;
 
@@ -352,5 +390,10 @@ function handleSlaveLocal() {
 
 function handleOnlineMysql() {
     document.getElementById('db-config-pannel').style.display = 'block';
+    console.log('Modo Mysql seleccionado');
 
 };
+
+function conectSqlite(){
+    alert("conectando");
+}

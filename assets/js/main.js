@@ -718,25 +718,7 @@ const body = document.body;
 // Evento para cambiar el tema al seleccionar una opción del cuadro de lista
 themeSelector.addEventListener('change', function() {
   const selectedTheme = themeSelector.value;
-  if (selectedTheme === 'dark') {
-    applyTheme('dark-theme');
-  } else if (selectedTheme === 'light') {
-    applyTheme('light-theme');
-  } else if (selectedTheme === 'light-blue') {
-    applyTheme('light-theme-blue');
-  } else if (selectedTheme === 'light-pink') {
-    applyTheme('light-theme-pink');
-  } else if (selectedTheme === 'dark-ocean') {
-    applyTheme('dark-theme-ocean');
-  } else if (selectedTheme === 'hight-contrast') {
-    applyTheme('hight-contrast-theme');
-  } else if (selectedTheme === 'tech-theme') {
-    applyTheme('tech-theme');
-  } else if (selectedTheme === 'full-colored-theme') {
-    applyTheme('full-colored-theme');
-  } else if (selectedTheme === 'Animated') {
-    applyTheme('animated-theme');
-  }
+    applyTheme(selectedTheme);  
 });
 
 // Función para aplicar el tema seleccionado cambiando la clase del body

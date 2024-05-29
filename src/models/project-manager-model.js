@@ -1,10 +1,14 @@
-const { sequelize, connectdb, disconnectdb } = require('../../config/database'); // Asegúrate de que la ruta sea correcta
+
+console.log("Utilizando Mysql");
+const { sequelize, connectdb, disconnectdb } = require('../../config/db_sqlite.js'); // Asegúrate de que la ruta sea correcta
 const { Op } = require('sequelize');
 const entities = require('../entity/data-entity.js'); // Importa el modelo de usuario
 // Importa la biblioteca 'util' para poder convertir una función de callback en una promesa
 const util = require('util');
 // Convierte la función de callback en una promesa
 const queryAsync = util.promisify(sequelize.query).bind(sequelize);
+
+
 /*################################################################################################           SISTEM #########################################################*/
 const system = {
   //Funcion para listar los roles del sistema

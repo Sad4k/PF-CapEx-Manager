@@ -6,15 +6,27 @@ const fs = require('fs');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+
+//Controladores de archivos
+const Fileman_controller = require('./src/controllers/filemanager.js');
+
+//Configuracion
+let serverConfig;
+try {
+  serverConfig = Fileman_controller.configure.getConfigServer();
+  console.log('Configuración del servidor cargada:', serverConfig);
+} catch (error) {
+  console.error('Error al cargar la configuración del servidor:', error.message);
+  process.exit(1); // Termina el proceso si no se puede cargar la configuración
+}
 //Controladores de la app
 const PjAutomate_controller = require('./src/controllers/project-automate-controller.js');
-const Fileman_controller = require('./src/controllers/filemanager.js');
 const pm_controller = require('./src/controllers/project-manager-controller.js');
 //Modelos de funciones
 const pj_manager = require('./src/models/project-manager-model.js');
 const session_db = require('./src/models/session_controller_model.js');
+
 //Configuracion
-//const systemConfig = Fileman_controller.configure.readConfig();
 const config = require('./config/config.js');
 
 
@@ -353,3 +365,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
+

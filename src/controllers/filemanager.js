@@ -44,7 +44,18 @@ const configure = {
     const configs = JSON.parse(rawData);
 
     callback(null, configs);
+  },
+  getConfigServer: () => {
+    if (!fs.existsSync(configFilePath)) {
+      throw new Error('El archivo de configuración no existe.');
+    }
+
+    const rawData = fs.readFileSync(configFilePath, 'utf8');
+    const configs = JSON.parse(rawData);
+
+    return configs;
   }
+
 };
 // ###################################### Gestion de Configuracion ################################################//
 

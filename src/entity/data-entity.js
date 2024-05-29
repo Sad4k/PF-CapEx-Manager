@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize, connectdb, disconnectdb } = require('../../config/database'); // Asegúrate de que la ruta sea correcta
+const { sequelize, connectdb, disconnectdb } = require('../../config/db_mysql'); // Asegúrate de que la ruta sea correcta
 
 const Log = sequelize.define('Log', {
   msg: {

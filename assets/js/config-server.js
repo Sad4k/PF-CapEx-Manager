@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(config => {
             systemConfig = config;
             newSystemConfig = systemConfig;
+
+            //aplicando el tema guardado
+            applyTheme(systemConfig.theme);
+            console.log(systemConfig.theme);
         })
         .catch(error => console.error('Error al obtener la configuración:', error));
 });
@@ -100,12 +104,12 @@ function generateSystemConfigHTML(config) {
                         <td>Tema del Sistema <span class="fa fa-info"></span></td>
                         <td><select class="form-control" id="theme" name="theme" onchange="themeSelector()" value="${config.theme}">
                         <optgroup label="Basic Themes">
-                        <option value="dark">Dark Theme</option>
-                        <option value="light">Light Theme</option>
-                        <option value="light-blue">Light Blue Theme</option>
-                        <option value="light-pink">Light Pink Theme</option>
-                        <option value="dark-ocean">Dark Ocean Theme</option>
-                        <option value="hight-contrast">Hight Contrast Theme</option>
+                        <option value="dark-theme">Dark Theme</option>
+                        <option value="light-theme">Light Theme</option>
+                        <option value="light-blue-theme">Light Blue Theme</option>
+                        <option value="light-pink-theme">Light Pink Theme</option>
+                        <option value="dark-ocean-theme">Dark Ocean Theme</option>
+                        <option value="hight-contrast-theme">Hight Contrast Theme</option>
                       </optgroup>
                       <optgroup label="Color Themes">
                         <option value="tech-theme">Technology</option>
@@ -401,7 +405,8 @@ function handleOnlineMysql() {
 };
 
 function conectSqlite() {
-    alert("conectando");
+    
+
 };
 
 async function sendConfig() {
@@ -436,25 +441,7 @@ const body = document.body;
 function themeSelector() {
   updateSystemPartial();
   const selectedTheme = document.getElementById("theme").value;
-  if (selectedTheme === 'dark') {
-    applyTheme('dark-theme');
-  } else if (selectedTheme === 'light') {
-    applyTheme('light-theme');
-  } else if (selectedTheme === 'light-blue') {
-    applyTheme('light-theme-blue');
-  } else if (selectedTheme === 'light-pink') {
-    applyTheme('light-theme-pink');
-  } else if (selectedTheme === 'dark-ocean') {
-    applyTheme('dark-theme-ocean');
-  } else if (selectedTheme === 'hight-contrast') {
-    applyTheme('hight-contrast-theme');
-  } else if (selectedTheme === 'tech-theme') {
-    applyTheme('tech-theme');
-  } else if (selectedTheme === 'full-colored-theme') {
-    applyTheme('full-colored-theme');
-  } else if (selectedTheme === 'Animated') {
-    applyTheme('animated-theme');
-  }
+    applyTheme(selectedTheme);
 }
 
 // Función para aplicar el tema seleccionado cambiando la clase del body

@@ -11,23 +11,14 @@ const session = require('express-session');
 const Fileman_controller = require('./src/controllers/filemanager.js');
 
 //Configuracion
-let serverConfig;
-try {
-  serverConfig = Fileman_controller.configure.getConfigServer();
-  console.log('Configuración del servidor cargada:', serverConfig);
-} catch (error) {
-  console.error('Error al cargar la configuración del servidor:', error.message);
-  process.exit(1); // Termina el proceso si no se puede cargar la configuración
-}
+const config = require('./config/config.js');
+
 //Controladores de la app
 const PjAutomate_controller = require('./src/controllers/project-automate-controller.js');
 const pm_controller = require('./src/controllers/project-manager-controller.js');
 //Modelos de funciones
 const pj_manager = require('./src/models/project-manager-model.js');
 const session_db = require('./src/models/session_controller_model.js');
-
-//Configuracion
-const config = require('./config/config.js');
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -116,7 +107,7 @@ app.use((req, res, next) => {
       next();
     } else {
       next();
-      //res.redirect('/login'); // Corregir aquí
+      res.redirect('/login'); // Corregir aquí
     }
   }
 });
@@ -365,4 +356,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
-

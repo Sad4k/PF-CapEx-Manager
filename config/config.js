@@ -1,16 +1,6 @@
 // config.js
-const serverConfig = {
-getConfigServer: () => {
-  if (!fs.existsSync(configFilePath)) {
-    throw new Error('El archivo de configuración no existe.');
-  }
-
-  const rawData = fs.readFileSync(configFilePath, 'utf8');
-  const configs = JSON.parse(rawData);
-
-  return configs;
-}
-}
+const Fileman_controller = require('../src/controllers/filemanager.js');
+const serverConfig = Fileman_controller.configure.getConfigServer();
 module.exports = {
   //ssh config
   ssh: {

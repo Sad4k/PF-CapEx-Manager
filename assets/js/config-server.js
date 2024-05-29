@@ -433,9 +433,9 @@ async function sendConfig() {
 const body = document.body;
 
 // Evento para cambiar el tema al seleccionar una opción del cuadro de lista
-const function themeSelector() {
+function themeSelector() {
   updateSystemPartial();
-  const selectedTheme = themeSelector.value;
+  const selectedTheme = document.getElementById("theme").value;
   if (selectedTheme === 'dark') {
     applyTheme('dark-theme');
   } else if (selectedTheme === 'light') {
@@ -455,7 +455,7 @@ const function themeSelector() {
   } else if (selectedTheme === 'Animated') {
     applyTheme('animated-theme');
   }
-});
+}
 
 // Función para aplicar el tema seleccionado cambiando la clase del body
 function applyTheme(themeName) {
@@ -475,4 +475,10 @@ function applyTheme(themeName) {
   fade(body);
   body.classList.add(themeName);
   
+}
+
+function fade(element) {
+    element.style.animation = 'fade 0.5s forwards';
+    element.addEventListener('animationend', function() {
+    });
 }

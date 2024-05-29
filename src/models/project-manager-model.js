@@ -1,4 +1,4 @@
-const serverConfig = require('./config/config.js');
+const serverConfig = require('../../config/config.js');
 let db_controller_path;
 
 if (!serverConfig) {
@@ -8,7 +8,7 @@ if (!serverConfig) {
     db_controller_path = '../../config/db_sqlite.js'; // Asegúrate de que la ruta sea correcta
     
     console.log('Modo: master-local-sqlite');
-  } else if (serverConfig.sysMode === "online-mysql") {
+  } else if (serverConfig.sysMode === "online-Mysql") {
     db_controller_path = '../../config/db_mysql.js'; // Asegúrate de que la ruta sea correcta
 
   }

@@ -4,31 +4,29 @@ let systemConfigPage = null;
 let hostConfigPage = null;
 let dbConfigPage = null;
 let dbConfigOutdated = false;
-let systemConfig;
+let systemConfig = {};
+let newSystemConfig = {};
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/getConfig')
         .then(response => response.json())
         .then(config => {
             systemConfig = config;
-
-            console.log(systemConfig);
-            // Aquí puedes usar el objeto systemConfig como desees
+            newSystemConfig = systemConfig;
         })
         .catch(error => console.error('Error al obtener la configuración:', error));
 });
 
 
-const newSystemConfig = systemConfig;
 
 //page sistema act
 function updateSystemPartial() {
-    newSystemConfig.zone = document.getElementById("zone").value;
-    newSystemConfig.language = document.getElementById("language").value;
+    newSystemConfig.zone = /* "República Dominicana";*/ document.getElementById("zone").value;
+    newSystemConfig.language = /* "ES-US";*/ document.getElementById("language").value;
     newSystemConfig.autoCalc = document.getElementById("autocalc").value;
     newSystemConfig.sysMode = document.getElementById("sysMode").value;
     newSystemConfig.projectPath = document.getElementById("projectPath").value;
-    console.log("updated", newSystemConfig );
+    newSystemConfig.theme = document.getElementById("theme").value;
 }
 
 //page Mysql act
@@ -38,18 +36,20 @@ function updateMySqlPartial() {
     newSystemConfig.db_mysql_backup = document.getElementById("mysqlbackup").value;
     newSystemConfig.db_backup_frec = document.getElementById("mysqlbackupfrec").value;
     newSystemConfig.db_mysql_script = document.getElementById("mysqlscript").value;
-    console.log("updated", newSystemConfig );
-
 }
 //page sistema act
 function updateSqlitePartial() {
     newSystemConfig.db_local_path = document.getElementById("dblocalpath").value;
     newSystemConfig.db_local_backup_path = document.getElementById("dbsqlitebackuppath").value;
     newSystemConfig.db_backup_frec = document.getElementById("sqlitebackupfrec").value;
-    newSystemConfig.db_local_script = document.getElementById("sqlitescript").value;
-    console.log("updated", newSystemConfig );
-
+    newSystemConfig.db_local_script =  document.getElementById("sqlitescript").value;
 }
+function removeNewlines(text) {
+    const newtext = text.replace(/(\r\n|\n|\r)/gm, ' ');
+    return newtext
+}
+
+
 // Función para generar el HTML dinámicamente
 function generateSystemConfigHTML(config) {
     return `
@@ -59,14 +59,14 @@ function generateSystemConfigHTML(config) {
                 <tbody>
                     <tr>
                         <td>Zona</td>
-                        <td><select class="form-control" id="zone" name="zone" onchange="updateSystemPartial()" value="${config.zone}">
-                        <option value="República Dominicana">República Dominicana</option>
+                        <td><select class="form-control" id="zone" name="zone" onchange="updateSystemPartial()" >
+                        <option selected value="República Dominicana">República Dominicana</option>
                         </select></td>
                     </tr>
                     <tr>
                         <td>Idioma</td>
-                        <td><select class="form-control" id="language" name="language" onchange="updateSystemPartial()" value="${config.language}">
-                        <option value="ES-US">Español US</option>
+                        <td><select class="form-control" id="language" name="language" onchange="updateSystemPartial()" >
+                        <option selected value="ES-US">Español US</option>
                         </select>
                     </tr>
                 </tbody>
@@ -96,6 +96,24 @@ function generateSystemConfigHTML(config) {
             <div class="modal-inside-title">Configuracion del Sistema</div>
             <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
                 <tbody>
+                    <tr>
+                        <td>Tema del Sistema <span class="fa fa-info"></span></td>
+                        <td><select class="form-control" id="theme" name="theme" onchange="themeSelector()" value="${config.theme}">
+                        <optgroup label="Basic Themes">
+                        <option value="dark">Dark Theme</option>
+                        <option value="light">Light Theme</option>
+                        <option value="light-blue">Light Blue Theme</option>
+                        <option value="light-pink">Light Pink Theme</option>
+                        <option value="dark-ocean">Dark Ocean Theme</option>
+                        <option value="hight-contrast">Hight Contrast Theme</option>
+                      </optgroup>
+                      <optgroup label="Color Themes">
+                        <option value="tech-theme">Technology</option>
+                        <option value="full-colored-theme">Full Color</option>
+                        <option value="Animated">Animated</option>
+                      </optgroup>
+                        </select></td>
+                    </tr>
                     <tr>
                         <td>Ruta de Proyectos</td>
                         <td><input type="text" class="form-control" id="projectPath" onkeyup="updateSystemPartial()" name="proyectPath" value="${config.projectPath}"></td>
@@ -388,6 +406,9 @@ function conectSqlite() {
 
 async function sendConfig() {
     try {
+        newSystemConfig.db_mysql_script =  removeNewlines(newSystemConfig.db_mysql_script);
+        newSystemConfig.db_local_script =  removeNewlines(newSystemConfig.db_local_script);
+
         const response = await fetch('/saveConfig', {
             method: 'POST',
             headers: {
@@ -407,4 +428,51 @@ async function sendConfig() {
         console.error('Error al enviar la configuración:', error);
         alert('Hubo un error al guardar la configuración. Por favor, inténtalo de nuevo.');
     }
+}
+
+const body = document.body;
+
+// Evento para cambiar el tema al seleccionar una opción del cuadro de lista
+const function themeSelector() {
+  updateSystemPartial();
+  const selectedTheme = themeSelector.value;
+  if (selectedTheme === 'dark') {
+    applyTheme('dark-theme');
+  } else if (selectedTheme === 'light') {
+    applyTheme('light-theme');
+  } else if (selectedTheme === 'light-blue') {
+    applyTheme('light-theme-blue');
+  } else if (selectedTheme === 'light-pink') {
+    applyTheme('light-theme-pink');
+  } else if (selectedTheme === 'dark-ocean') {
+    applyTheme('dark-theme-ocean');
+  } else if (selectedTheme === 'hight-contrast') {
+    applyTheme('hight-contrast-theme');
+  } else if (selectedTheme === 'tech-theme') {
+    applyTheme('tech-theme');
+  } else if (selectedTheme === 'full-colored-theme') {
+    applyTheme('full-colored-theme');
+  } else if (selectedTheme === 'Animated') {
+    applyTheme('animated-theme');
+  }
+});
+
+// Función para aplicar el tema seleccionado cambiando la clase del body
+function applyTheme(themeName) {
+  // Eliminar clases de tema anteriores
+  body.classList.remove(
+    'light-theme',
+    'dark-theme',
+    'light-theme-blue',
+    'light-theme-pink',
+    'dark-theme-ocean',
+    'hight-contrast-theme',
+    'tech-theme',
+    'full-colored-theme',
+    'animated-theme'
+  );
+  // Aplicar clase del tema seleccionado
+  fade(body);
+  body.classList.add(themeName);
+  
 }

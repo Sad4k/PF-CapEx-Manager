@@ -44,14 +44,7 @@ app.post('/saveConfig', (req, res) => {
 
 // Ruta para leer la configuración del cliente
 app.get('/getConfig', (req, res) => {
-  const configPath = path.join(__dirname, 'controllers', 'config', 'Config.json');
-
-  fs.access(configPath, fs.constants.F_OK, (err) => {
-    if (err) {
-      console.error('El archivo de configuración no existe:', err);
-      return res.status(404).send('El archivo de configuración no se encuentra');
-    }
-
+  
     Fileman_controller.configure.readConfig((err, config) => {
       if (err) {
         console.error('Error al leer la configuración:', err);
@@ -61,7 +54,6 @@ app.get('/getConfig', (req, res) => {
       }
     });
   });
-});
 
 // Nueva ruta para aplicar la configuración del cliente
 app.post('/applyConfig', (req, res) => {

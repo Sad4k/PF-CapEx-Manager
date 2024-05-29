@@ -26,7 +26,7 @@ app.use(express.json());
 // Ruta para recibir y guardar la configuración del cliente
 app.post('/saveConfig', (req, res) => {
   const { newSystemConfig } = req.body;
-
+  console.log("recibido del cliente" , newSystemConfig);
 
   if (!newSystemConfig) {
     return res.status(400).send('Faltan datos del cliente o configuración.');
@@ -44,14 +44,22 @@ app.post('/saveConfig', (req, res) => {
 
 // Ruta para leer la configuración del cliente
 app.get('/getConfig', (req, res) => {
+  const configPath = path.join(__dirname, 'controllers', 'config', 'Config.json');
 
-  Fileman_controller.configure.readConfig((err, config) => {
+  fs.access(configPath, fs.constants.F_OK, (err) => {
     if (err) {
-      console.error('Error al leer la configuración:', err);
-      res.status(500).send(err.message);
-    } else {
-      res.json(config);
+      console.error('El archivo de configuración no existe:', err);
+      return res.status(404).send('El archivo de configuración no se encuentra');
     }
+
+    Fileman_controller.configure.readConfig((err, config) => {
+      if (err) {
+        console.error('Error al leer la configuración:', err);
+        res.status(500).send(err.message);
+      } else {
+        res.json(config);
+      }
+    });
   });
 });
 

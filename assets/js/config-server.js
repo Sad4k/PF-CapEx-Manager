@@ -232,7 +232,7 @@ function generateDbConfigHTML(systemConfig) {
                         <td><textarea class="form-control" style="resize: none; height: 200px;" onkeyup="updateSqlitePartial()" id="sqlitescript" name="sqlitescript">${systemConfig.db_local_script}</textarea></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button class="login-btn">Crear</button></td>
+                        <td colspan="2"><button onclick="syncDatabase()" class="login-btn">Crear(sincronizar)</button></td>
                     </tr>
                     </tbody>
             </table>
@@ -409,6 +409,32 @@ function conectSqlite() {
 
 };
 
+async function syncDatabase() {
+    // Confirmación antes de proceder
+    const confirmation = confirm("¿Estás seguro de que deseas sincronizar la base de datos? Esto eliminará y recreará todas las tablas.");
+  
+    if (!confirmation) {
+      alert("Sincronización cancelada.");
+      return;
+    }
+  
+    try {
+      const response = await fetch('/sync-database');
+      if (response.ok) {
+        const result = await response.text();
+        console.log('Sincronización exitosa:', result);
+        alert('Base de datos y tablas creadas con éxito.');
+      } else {
+        console.error('Error al sincronizar las tablas:', response.statusText);
+        alert('Error al sincronizar las tablas.');
+      }
+    } catch (error) {
+      console.error('Error de red:', error);
+      alert('Error de red al intentar sincronizar las tablas.');
+    }
+  }
+  
+
 async function sendConfig() {
     try {
         newSystemConfig.db_mysql_script =  removeNewlines(newSystemConfig.db_mysql_script);
@@ -428,6 +454,7 @@ async function sendConfig() {
         }
 
         const message = await response.text();
+        alert(message);
         console.log('Configuración guardada con éxito:', message);
     } catch (error) {
         console.error('Error al enviar la configuración:', error);

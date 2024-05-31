@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 //Configuracion
 const config = require('./config/config.js');
+const syncDb = require('./assets/scripts/sync.js');
 
 //Controladores de archivos
 const Fileman_controller = require('./src/controllers/filemanager.js');
@@ -71,6 +72,15 @@ app.post('/applyConfig', (req, res) => {
 });
 // ###################################### Gestion de Configuracion ################################################//
 // ###################################### Gestion de db SQLITE LOCAL ################################################//
+app.get('/sync-database', async (req, res) => {
+  try {
+    syncDb.syncModels();
+    res.status(200).send('Base de datos y tablas creadas con éxito.');
+  } catch (error) {
+    console.error('Error al sincronizar las tablas:', error);
+    res.status(500).send('Error al sincronizar las tablas.');
+  }
+});
 
 
 // ###################################### Gestion de db SQLITE LOCAL ################################################//
@@ -105,7 +115,6 @@ app.use((req, res, next) => {
     if (req.url === '/' || req.url === '/login'|| req.url === '/config-server') {
       next();
     } else {
-      next();
       res.redirect('/login'); // Corregir aquí
     }
   }

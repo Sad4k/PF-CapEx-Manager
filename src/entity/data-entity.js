@@ -8,7 +8,7 @@ if (!serverConfig) {
 } else {
   if (serverConfig.sysMode === "master-local-sqlite") {
     db_controller_path = '../../config/db_sqlite.js'; // Asegúrate de que la ruta sea correcta
-    
+
     console.log('Modo: master-local-sqlite');
   } else if (serverConfig.sysMode === "online-Mysql") {
     db_controller_path = '../../config/db_mysql.js'; // Asegúrate de que la ruta sea correcta
@@ -298,17 +298,14 @@ const Categories = sequelize.define('Categories', {
 // Función para crear la vista
 const userView = async () => {
   await sequelize.query(`
-    CREATE VIEW UserRoles AS
-    SELECT Users.username, Users.email, Sys_roles.role_name
-    FROM Users
-    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+    CREATE VIEW IF NOT EXISTS UserRoles AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
   `);
 
   await sequelize.query(`
-    CREATE VIEW MacroProjects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+    CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
   `);
   await sequelize.query(`
-  CREATE VIEW Projects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
 `);
 };
 

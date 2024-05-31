@@ -25,7 +25,7 @@ const queryAsync = util.promisify(sequelize.query).bind(sequelize);
 const system = {
   validarUsuario: async function (username, password) {
     try {
-      const query = `SELECT id, username, name, lastname, def_dashboard_id, email, state, profilePic FROM Users WHERE username = "${username}" AND BINARY password = "${password}"`;
+      const query = `SELECT id, username, name, lastname, def_dashboard_id, email, state, profilePic FROM Users WHERE username = "${username}" AND password = "${password}"`;
       const resultados = await sequelize.query(query, {
         replacements: [username, password],
         type: sequelize.QueryTypes.SELECT,

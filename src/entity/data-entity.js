@@ -66,7 +66,7 @@ const Users = sequelize.define('Users', {
     allowNull: false,
   },
   lastname: DataTypes.STRING(45),
-  state: DataTypes.BLOB,
+  state: DataTypes.BOOLEAN,
   sys_role_id: DataTypes.INTEGER,
   def_dashboard_id: DataTypes.INTEGER,
   email: {

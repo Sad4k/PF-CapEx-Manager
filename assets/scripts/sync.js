@@ -24,6 +24,25 @@ const syncModels = async () => {
     console.log('Todas las tablas fueron creadas.');
 
     // Insertar datos de ejemplo aquí si es necesario
+      // Insertar datos de ejemplo en la tabla Users
+      await Users.create({
+        username: 'sad4k',
+        profilePic: '',
+        userBgPic: '',
+        name: 'Samuel',
+        lastname: 'Duran',
+        state: 1,
+        sys_role_id: 1,
+        def_dashboard_id: 1,
+        email: 'john.doe@example.com',
+        password: '12345',
+        createdAt: new Date(),
+      });
+      await Dashboards.create({
+        name: 'app-selector',
+        path: './views/app-selector',
+      });
+  
 
   } catch (error) {
     console.error('Error al sincronizar las tablas:', error);

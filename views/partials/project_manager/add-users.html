@@ -1,0 +1,211 @@
+ 
+
+
+
+  <style>
+    #autocomplete-container {
+      position: relative;
+      display: inline-block;
+    }
+
+
+    #suggestions-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    #suggestions-list li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #suggestions-list li:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+
+
+ <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper">
+            <div class="row align-content-center">
+              <div class="col-md-6">
+                <div class="title" style="padding: 25px;">
+                  <h2> Agregar usuarios a Proyecto:<%= data.project.name %></h2>
+                </div>
+              </div>
+
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <!-- Columna de información editable -->
+    <div class="col-md-6" style="margin: auto; width: 50%;">
+      <div class="card card-user">
+<form action="/pmanager/add-user-to-project" method="POST" id="add-user-to-projectform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Información Basica</h5>
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos del Proyecto</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="projectname">Nombre de Proyecto</label>
+          <input type="text" class="form-control" id="projectname" name="name" readonly value="<%= data.project.name %>">
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="projectname">ID Proyecto</label>
+          <input type="text" class="form-control" id="projectid" name="pid" readonly value="<%= data.project.id %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <input type="text" class="form-control" id="description" name="description" readonly value="<%= data.project.description %>">
+        </div>
+      </div>
+    </div>
+
+        <!----- Cuerpo de mi modal ----->
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos del Usuario</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <!--- agregar selector de usuarios con sujerencias --->
+          <label for="usernamename">Usuario a Agregar</label>
+          <br>
+          <div id="autocomplete-container" class="col-sm-10">
+          <input class="form-control" type="text" id="autocomplete-input" placeholder="Selecciona una opción">
+          <input class="form-control" type="hidden" id="selected-id" readonly name="uid"> <!-- Campo oculto para almacenar el id seleccionado -->
+          <ul id="suggestions-list"></ul>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="projectrole">Rol</label>
+          <br>
+          <select name="projectrole" class="form-control">
+            <% data.roles.forEach(function(role) { %>
+              <option value="<%= role.id %>">
+                <%= role.id %> - <%= role.role %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+        </div>
+      </div>
+    </div>
+        <!----- Cuerpo de mi modal ----->
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserrole" class="btn btn-primary">Guardar</button>
+        <a href="/pmanager/project?id=<%= data.project.id %>" id="submituserrole" class="btn btn-secondary">Atras</a>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+const inputElement = document.getElementById('autocomplete-input');
+const suggestionsList = document.getElementById('suggestions-list');
+const selectedIdElement = document.getElementById('selected-id');
+
+fetch('/pmanager/users-data-id-name')
+  .then(response => response.json())
+  .then(data => {
+    const options = data.map(option => `(${option.id})-${option.username}`); // Convierte los datos a un array de strings
+    console.log("las opciones son:", options);
+
+    inputElement.addEventListener('input', function () {
+      const inputValue = inputElement.value.toLowerCase();
+
+      // Filtra las opciones basadas en la entrada del usuario
+      const filteredOptions = options.filter(option =>
+        option.toLowerCase().includes(inputValue)
+      );
+
+      // Muestra las sugerencias
+      displaySuggestions(filteredOptions);
+    });
+  })
+  .catch(error => console.error('Error al obtener datos:', error));
+
+function displaySuggestions(suggestions) {
+  // Limpia la lista de sugerencias
+  suggestionsList.innerHTML = '';
+
+  // Muestra la lista de sugerencias
+  if (suggestions.length > 0) {
+    suggestions.forEach(suggestion => {
+      const liElement = document.createElement('li');
+      liElement.textContent = suggestion;
+
+      liElement.addEventListener('click', function () {
+        // Extraer el ID utilizando una expresión regular
+        const match = suggestion.match(/\((\d+)\)-/);
+        if (match) {
+          const selectedId = match[1];
+          // Almacenar el ID en el campo oculto
+          selectedIdElement.value = selectedId;
+        }
+
+        // Cuando se hace clic en una sugerencia, completa el campo de entrada
+        inputElement.value = suggestion;
+
+        // Oculta la lista de sugerencias
+        suggestionsList.style.display = 'none';
+      });
+
+      suggestionsList.appendChild(liElement);
+    });
+
+    suggestionsList.style.display = 'block';
+  } else {
+    // Si no hay sugerencias, oculta la lista
+    suggestionsList.style.display = 'none';
+  }
+}
+
+// Cierra la lista de sugerencias si se hace clic fuera del contenedor
+document.addEventListener('click', function (event) {
+  if (!event.target.closest('#autocomplete-container')) {
+    suggestionsList.style.display = 'none';
+  }
+});
+
+
+</script>

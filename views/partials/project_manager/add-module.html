@@ -1,0 +1,225 @@
+ 
+
+
+
+  <style>
+    #autocomplete-container {
+      position: relative;
+      display: inline-block;
+    }
+
+
+    #suggestions-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    #suggestions-list li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #suggestions-list li:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+
+
+ <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper">
+            <div class="row align-content-center">
+              <div class="col-md-10">
+                <div class="title" style="padding: 25px;">
+                  <h2> Agregar Activo a Proyecto:<%= data.project.name %></h2>
+                </div>
+              </div>
+
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <!-- Columna de información editable -->
+    <div class="col-md-12" style="margin: auto; width: 50%;">
+      <div class="card card-user">
+<form action="/pmanager/add-module-to-project" method="POST" id="add-module-to-projectform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Información Basica</h5>
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos del Proyecto</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="projectname">Nombre de Proyecto</label>
+          <input type="text" class="form-control" id="projectname" name="name" readonly value="<%= data.project.name %>">
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="projectname">ID Proyecto</label>
+          <input type="text" class="form-control" id="projectid" name="pid" readonly value="<%= data.project.id %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <input type="text" class="form-control" id="description" name="description" readonly value="<%= data.project.description %>">
+        </div>
+      </div>
+    </div>
+
+        <!----- Cuerpo de mi modal ----->
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="title"><strong>Datos de Modulo</strong></h6>
+         <div class="row">
+      <div class="col-md-2 pr-1">
+        <div class="form-group">
+          <label for="modulerwid" >Id</label>
+          <input type="text" class="form-control" id="modulerwid" name="modulerwid" disabled value="*Automatico*" >
+        </div>
+      </div>
+                  <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="modulename">Nombre del Modulo</label>
+          <input type="text" class="form-control" id="modulename" name="modulename" placeholder="Nombre del Modulo" >
+        </div>
+      </div>
+            <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="moduledescription">Descripcion</label>
+          <input type="text" class="form-control" id="moduledescription" name="moduledescription">
+        </div>
+      </div>
+
+        </div>
+      <div class="row">
+<div class="col-md-8 pr-5">
+    <div class="form-group">
+        <label for="modulegenre">Género</label>
+        <div class="select-position" id="modulegenre">
+            <select name="modulegenre" class="form-control">
+                <% var groupedGenres = {}; %>
+                <% data.genres.forEach(function(genre) { %>
+                    <% if (!groupedGenres[genre.ambito]) { %>
+                        <% groupedGenres[genre.ambito] = []; %>
+                    <% } %>
+                    <% groupedGenres[genre.ambito].push(genre); %>
+                <% }); %>
+                <% for (var ambito in groupedGenres) { %>
+                    <optgroup label="<%= ambito %>">
+                        <% groupedGenres[ambito].forEach(function(genre) { %>
+                            <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }); %>
+                    </optgroup>
+                <% } %>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+         <h6 class="title"><strong>Datos Creativos</strong></h6>
+         <div class="row">
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="title">Titulo</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="titulo" >
+        </div>
+      </div>
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="short_description">Descripcion Corta</label>
+          <input type="text" class="form-control" id="short_description" name="short_description" placeholder="Descripcion corta" >
+        </div>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-12 pr-1">
+        <div class="form-group">
+          <label for="long_description">Descripcion Larga</label>
+          <textarea class="textarea form-control" rows="4" cols="15" id="long_description" name="long_description" placeholder="Descripcion Larga" ></textarea>
+        </div>
+      </div>      
+    </div>     
+         <h6 class="title"><strong>Creditos</strong></h6>
+         <div class="row">
+
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="performer">Interprete</label>
+          <input type="
+          text" class="form-control" id="performer" name="performer" >
+        </div>
+      </div>
+       <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="author">Autor</label>
+          <input type="text" class="form-control" id="author" name="author" >
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="launch_date">Fecha de Lanzamiento</label>
+          <input type="date" class="form-control" id="launch_date" name="launch_date" >
+        </div>
+      </div>
+            <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="status">Estado</label>
+          <div class="select-position" id="status">
+            <select name="status" class="form-control">
+              <option value="Detenido">Detenido</option>
+              <option value="En Proceso">En Proceso</option>
+              <option value="Concluido">Concluido</option>
+              <option value="Abandonado">Abandonado</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+        <!----- Cuerpo de mi modal ----->
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserrole" class="btn btn-primary">Guardar</button>
+        <a href="/pmanager/project?id=<%= data.project.id %>" id="submituserrole" class="btn btn-secondary">Atras</a>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+    </div>
+  </div>
+</div>
+
+
+

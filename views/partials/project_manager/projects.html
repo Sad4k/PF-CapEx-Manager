@@ -1,0 +1,1450 @@
+<!-- ======== Body-content =========== -->
+     <div class="main-content">
+        <main class="container">
+
+          <div class="section" id="mySection">
+            <div class="section-top">
+              <div><a class="fa fa-circle ready"></a>
+                Macro-Projects </div>
+              <div class="section-actions">
+                <a class="fa fa-filter action-btn"></a>               
+                <div id="dropdownBtn" class="dropdown fa fa-caret-down action-btn">
+   <div class="dropdown-content">
+    <div class="dropdown-title">Macro-Projects</div>
+    <!-- Aquí irán los elementos del dropdown -->
+    <button class="openModal" data-modal="#newMacroProjectModal"><il class="fa fa-plus"></il><span>MacroProyecto</span></button>
+    <button href="#"><il class="fa fa-search"></il><span>Buscar</span></button>
+    <button href="#"><il class="fa fa-info"></il><span>Ayuda</span></button>
+  </div></div>
+              </div>
+            </div>
+            <div class="section-spacer">Selected</div>
+            <div id="macroProjectSelected"></div>
+            
+            
+            <div class="section-spacer">All(1)</div>
+            <div class="section-list-overflow" id="macroProjectList">
+
+
+            </div>
+
+          </div>
+          <div class="section" id="mySection">
+            <div class="section-top">
+              <div><a class="fa fa-circle ready"></a>
+                Projects </div>
+              <div class="section-actions">
+                <a class="fa fa-filter action-btn"></a>
+                <div id="dropdownBtn" class="dropdown fa fa-caret-down action-btn">
+   <div class="dropdown-content">
+    <div class="dropdown-title">Projects</div>
+    <!-- Aquí irán los elementos del dropdown -->
+    <button id="newProjectModalBtn" class="openModal" onclick="modalUp()" data-modal="#newProjectModal"><il class="fa fa-plus"></il><span>Proyecto</span></button>
+    <button class="openModal" data-modal="#newWizzardModal"><il class="fa fa-wizzard"></il><span>Wizard</span></button>
+    <button href="#"><il class="fa fa-info"></il><span>Ayuda</span></button>
+  </div></div>
+              </div>
+            </div>
+
+            <div class="section-spacer">Selected</div>
+            <div id="projectSelected"></div>
+            
+            
+            <div class="section-spacer">All(1)</div>
+            <div class="section-list-overflow" id="projectList">
+              
+
+            </div>
+          </div>
+          <div class="section" id="mySection">
+            <div class="section-top">
+              <div><a class="fa fa-circle ready"></a>
+                Modules </div>
+              <div class="section-actions">
+                <a class="fa fa-filter action-btn"></a>
+                 <div id="dropdownBtn" class="dropdown fa fa-caret-down action-btn">
+   <div class="dropdown-content">
+    <div class="dropdown-title">Modules</div>
+    <!-- Aquí irán los elementos del dropdown -->
+    <button id="newModuleModalBtn" class="openModal" onclick="modalUp()" data-modal="#newProjectModuleModal"><il class="fa fa-plus"></il><span>Modulo</span></button>
+    <button href="#"><il class="fa fa-info"></il><span>Ayuda</span></button>
+  </div></div>
+              </div>
+            </div>
+            <div class="section-spacer">Selected</div>
+            <div id="projectModuleSelected"></div>
+            <div class="section-spacer">All(1)</div>
+            <div class="section-list-overflow"  id="projectModuleList">
+              
+
+            </div>
+          </div>
+
+          <div class="section" id="mySection">
+            <div class="section-top">
+              <div><a class="fa fa-circle not-ready"></a>
+                Module Details </div>
+            </div>
+
+            <div class="project-module-detail-container">
+              <h2 id="projectModuleDetailName">Module-Name</h2>
+              <p class="project-module-detail-description" id="projectModuleDetailDescription">Module-Description
+              </p>
+              <p class="project-module-detail-genre" id="projectModuleDetailGenre">Module-Genre</p>
+            </div>
+
+            <div class="tab-container">
+
+              <div class="tab-buttons">
+                <button class="tab" onclick="openTab('tab1')">Documents</button>
+                <button class="tab" onclick="openTab('tab2')">Arrangements</button>
+                <button class="tab" onclick="openTab('tab3')">Recordings</button>
+                <button class="tab" onclick="openTab('tab4')">Distributions</button>
+                <button class="tab" onclick="openTab('tab5')">Launches</button>
+                <button class="tab openModal" data-modal="myModal1">Open Modal 1</button>
+
+              </div>
+              <div class="tab-toolbar">
+                <button class="fa fa-filter"></button>
+                <button id="list-view" class="fa fa-list"></button>
+                <button id="grid-view" class="fa fa-th"></button>
+              </div>
+
+              <div id="tab1" class="tab-content">
+                <div class="module-detail-content grid-view">
+
+                  <div class="item">
+                    <span class="module-detail-item-name">Sobrenatural(Ft. Jesdy)</span>
+                    <span class="module-detail-item-description">Nueva cancion autoria propia moderna y constantemente amada por siempre</span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Letras</span>
+                    <span class="module-detail-item-bottom-l">Pop</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                                    <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                  <div class="item">
+                    <span class="module-detail-item-name">Registro Marca Studio S.R.L</span>
+                    <span class="module-detail-item-description">Registro de Marca y comercio para </span>
+                    <span class="module-detail-item-top-r"></span>
+                    <span class="module-detail-item-top-l">Contrato</span>
+                    <span class="module-detail-item-bottom-l">N/A</span>
+                    <span class="module-detail-item-center"><img src="https://via.placeholder.com/150" alt="Imagen de prueba"></span>
+                  </div>
+
+                </div>
+              </div>
+              <div id="tab2" class="tab-content">Tab 2 content</div>
+              <div id="tab3" class="tab-content">Tab 3 content</div>
+              <div id="tab4" class="tab-content">Tab 4 content</div>
+              <div id="tab5" class="tab-content">Tab 5 content</div>
+              <div id="tab99" class="tab-content" style="display: block;">
+                <div class="initial-tab-screen">
+                  <h1>Selecciona una pestaña por favor</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+
+</body>
+
+
+<!-- ======== newMacroProjectModal-content =========== -->
+
+<div id="newMacroProjectModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a>
+                New Macro-Project</div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+            <div class="modal-inside-title">Crear Macro-Projecto</div>
+              <form action="/project-manager/newmacroproject" method="POST" id="newmacroprojectform">     
+            <div class="modal-body">
+              <div class="row">
+                <div class="col">
+      <!-- ======== newMacroProjectModal-forms =========== -->
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="image">Icono</label>
+      <div class="image-editor">
+        <img src="https://via.placeholder.com/150" class="img-md" alt="Imagen" id="image">
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+        <label for="file-input" class="btn btn-primary">Agregar Imagen</label><span class="fa fa-image icon"></span>
+      </div>
+    </div>
+     </div>
+     <div class="col col-6">
+       <div class="form-group" tabindex="0">
+         <label class="form-label" for="name">Nombre*</label>
+         <input type="text" class="form-control" id="name" name="name" placeholder="Nombre del Macro-Proyecto" required><span class="fa fa-user icon"></span>
+       </div>
+       <div class="form-group">
+         <label for="description">Descripcion</label>
+         <textarea class="form-control" id="description" name="description" rows="3" placeholder="Describe tu Macroproyeto" required></textarea><span class="fa fa-paragraph icon"></span>
+       </div>
+       
+        </div> 
+                
+          </div>
+
+            </div>
+            <div class="modal-footer">
+              <a class="btn primary close">Cancel</a>
+              <button type="submit" class="btn success">Success</button>
+            </div>
+              </form>
+
+
+         
+   </div>
+</div>
+<!-- ======== newMacroProjectModal-content =========== -->
+
+<!-- ======== viewMacroProjectModal-content =========== -->
+
+<div id="editMacroProjectModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a>
+                <span id="editMPModalTitle"> Macro-Project - #???</span></div>
+              <div class="section-actions">  
+                <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+            <form action="/project-manager/macro-project-update" method="POST" id="editmacroprojectform">  
+            <div class="modal-body">
+            <div class="modal-inside-title">Datos de Macro-Projecto</div>
+              <div class="row">
+                <div class="col-sm">
+    <!-- ======== viewMacroProjectModal-forms =========== -->
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="image">Icono</label>
+      <div class="image-editor">
+        <img src="https://via.placeholder.com/150" class="img-md" alt="Imagen" id="image">
+        <input type="file" id="macroProjectPicFile" accept="image/*" style="display: none;">
+        <label for="file-input" class="btn btn-primary">Cambiar Imagen</label><span class="fa fa-image icon"></span>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+  <div class="row">
+      <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="name">Nombre*</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre Macro projecto" required><span class="fa fa-user icon"></span>
+    </div>
+    </div>
+      <div class="col-sm">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="name">ID</label>
+      <input type="text" class="form-control" id="mpId" name="mpid" readonly><span class="fa fa-user icon"></span>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+
+  <div class="col">
+    <div class="form-group">
+      <label for="textarea">Descripcion</label>
+      <textarea class="form-control" id="description" name="description" placeholder="Describe tu Macroproyeto" rows="3" required></textarea><span class="fa fa-paragraph icon"></span>
+    </div>
+    
+     </div> 
+     </div> 
+     </div> 
+                
+    </div>
+            <div class="modal-inside-title">Projectos Relacionados</div>
+              <div class="row">
+                <div class="col">
+
+
+         <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Avance</th>
+            <th>Miembros</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      
+      </table>
+      
+
+                </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <a class="btn primary close">Cancel</a>
+              <button class="btn success">Success</button>
+            </div>
+         </form>
+  </div>
+</div>
+<!-- ======== viewMacroProjectModal-content =========== -->
+
+
+       <!-- ======== newProjectModal-content =========== -->
+
+<div id="newWizzardModal" class="modal">
+  <div class="modal-content">
+     <div class="wizard">
+
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a>
+                New Wizard</div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+            <div class="modal-body">
+    <!-- ======== newWizardModal-forms =========== -->
+      
+      <div class="wizard-content">
+        <div class="step">
+        <div class="wizard-first-screen">
+         <a class="fa fa-info"></a>
+         <p>Bienvenido al Wizard de Comenzar</p>
+      </div>
+       </div>
+      <div class="step">
+
+      <div class="modal-inside-title">Datos Iniciales</div>
+
+              <div class="row">
+                <div class="col">
+
+        <div class="form-group">
+          <label for="macroprojectId">Macro Projecto</label>
+          <select class="form-control" name="category">
+                        <option value="">---Selecciona una categoria---</option>
+                        <% data.categories.forEach(function(category) { %>
+                        <option value="<%= category.id %>"><%=  category.id %> - <%= category.category_name %></option>
+                        <% }); %>
+                      </select>
+         <span class="fa fa-ruler icon"></span>
+      </div>  
+      </div>  
+                <div class="col">
+         <div class="row">         
+        <div class="form-group">
+          <label for="email">ID de Projecto</label>
+          <input type="text" class="form-control" id="projectId"  disabled value="*Asignacion Automatica*">
+      </div>    
+        <div class="form-group">
+          <label for="email">Fundador</label>
+          <input type="text" class="form-control" id="owner" readonly tabindex="0" value="@<%= session.username %>">
+          <input type="text" class="form-control" id="founder" name="created_by" hidden value="<%= session.user_id %>">
+        </div>
+      </div>            
+      </div>            
+      </div> 
+
+
+    </div>
+    <div class="step">
+      Step 3 Content
+    </div>
+    <div class="step">
+      Step 3 Content
+    </div>
+  </div>
+
+   <!-- ======== newProjectModal-forms =========== -->
+      
+  </div>
+                <div class="modal-footer wizard-footer">
+              <button class="btn prev primary ">Prev</button>
+              <button class="btn next primary ">Next</button>
+              <button class="btn finish success">Finish</button>
+            </div>
+   
+  </div>
+  </div>
+</div>
+   <!-- ======== newProjectModal-content =========== -->
+
+    <!-- ======== newMacroProjectModal-content =========== -->
+
+<div id="objetivesModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a>
+                Project Objetives</div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+            <div class="modal-inside-title">Objetivos</div>
+ <div class="modal-body">
+
+   <div class="objetives-container">
+    <div class="projects">
+      <div id="contenedor-proyectos" class="projects-container">
+        
+      </div>
+    </div>
+    <div class="objectives">
+      </div>
+  
+  <div class="objetives-content" id="objetivesContent1">
+
+  <form id="editObjective">
+ <div class="modal-inside-title">Editar Objetivos</div>
+ <div class="row">
+
+
+      <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="content1Name">Nombre</label>
+      <input type="text" class="form-control" id="content1Name" name="name">
+      <input type="text" class="form-control" id="content1Id" name="id" hidden><span class="fa fa-user icon"></span>
+    </div>
+    </div>
+
+  <div class="col">
+
+        <div class="form-group">
+          <label for="content1Status">Estatus</label>
+          <select class="form-control" id="content1Status" name="status">
+                        <option value="pending">Pendiente(default)</option>
+                        <option value="in_progress">En Progreso</option>
+                        <option value="completed">Completado</option>
+                      </select>
+
+
+         <span class="fa fa-ruler icon"></span>
+      </div>
+
+  </div>
+
+   <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="content1ProjectName">Projecto</label>
+      <input type="text" class="form-control" id="content1ProjectName" name="project_name" readonly>
+      <input type="text" class="form-control" id="content1ProjectId" name="project_id" hidden><span class="fa fa-user icon"></span>
+    </div>
+    </div>
+
+ </div>  
+ <div class="row">
+
+      <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="content1Objective">Objetivo</label>
+      <input type="text" class="form-control" id="content1Objective" name="target"><span class="fa fa-user icon"></span>
+    </div>
+    </div>
+
+   <div class="col">
+
+        <div class="form-group">
+          <label for="content1ObjectiveType">Tipo de Objetivo</label>
+          <select class="form-control" id="content1ObjectiveType" name="target_type">
+                        <option value="Temporal">Temporal</option>
+                        <option value="Cuantitativo">Cuantitativo</option>
+                        <option value="Cualitativo">Cualitativo</option>
+                        <option value="Financiero">Financiero</option>
+                        <option value="Eficiencia">Eficiencia</option>
+                      </select>
+
+
+         <span class="fa fa-ruler icon"></span>
+      </div>
+
+ </div>  
+
+
+
+  
+ </div>  
+ <div class="row">
+  <div class="col col-6">
+    <div class="form-group">
+      <label for="Description">Descripcion</label>
+      <textarea class="form-control" id="content1Description" name="description" placeholder="Descripcion " rows="3" required></textarea><span class="fa fa-paragraph icon"></span>
+    </div>
+    
+     </div>             
+  </div>
+
+  </form>
+  <div id="response"></div>
+  <div class="modal-footer">
+              <button class="btn success" onclick="sendEditObjectiveForm();" id="SendBtn">Enviar</button>
+          </div>
+  <script>
+        
+      
+    </script>
+  </div>
+  <div class="objetives-content" id="objetivesContent2">
+
+  <form id="newObjective">
+ <div class="modal-inside-title">Nuevo Objetivo</div>
+ <div class="row">
+ <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="content2Name">Nombre</label>
+      <input type="text" class="form-control" id="content2Name" name="name"><span class="fa fa-user icon"></span>
+    </div>
+    </div>
+
+  <div class="col">
+
+        <div class="form-group">
+          <label for="content2Status">Estatus</label>
+          <select class="form-control" id="content2Status" name="status">
+                        <option value="pending">Pendiente(default)</option>
+                        <option value="in_progress">En Progreso</option>
+                        <option value="completed">Completado</option>
+                      </select>
+
+
+         <span class="fa fa-ruler icon"></span>
+      </div>
+
+ </div>
+
+  <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="content2ProjectName">Projecto</label>
+      <input type="text" class="form-control" id="content2ProjectName" name="project_name" readonly>
+      <input type="text" class="form-control" id="content2ProjectId" name="pid" hidden><span class="fa fa-user icon"></span>
+    </div>
+  </div>
+
+ </div>  
+ <div class="row">
+
+      <div class="col">
+    <div class="form-group" tabindex="0">
+      <label class="form-label" for="content2Objective">Objetivo</label>
+      <input type="text" class="form-control" id="content2Objective" name="target"><span class="fa fa-user icon"></span>
+    </div>
+    </div>
+
+   <div class="col">
+
+        <div class="form-group">
+          <label for="content2ObjectiveType">Tipo de Objetivo</label>
+          <select class="form-control" id="content2ObjectiveType" name="target_type">
+                        <option value="Temporal">Temporal</option>
+                        <option value="Cuantitativo">Cuantitativo</option>
+                        <option value="Cualitativo">Cualitativo</option>
+                        <option value="Financiero">Financiero</option>
+                        <option value="Eficiencia">Eficiencia</option>
+                      </select>
+
+
+         <span class="fa fa-ruler icon"></span>
+      </div>
+
+    </div>  
+ </div>  
+ <div class="row">
+  <div class="col col-6">
+    <div class="form-group">
+      <label for="description">Descripcion</label>
+      <textarea class="form-control" id="content2description" name="description" placeholder="Descripcion" rows="3" required></textarea><span class="fa fa-paragraph icon"></span>
+    </div>
+    
+     </div>             
+  </div>
+  </form>
+  <div id="response"></div>
+  <div class="modal-footer">
+              <button class="btn success" onclick="sendNewObjectiveForm()">Enviar</button>
+  </div>
+  </div>
+  <div class="objetives-content" id="objetivesContent3">
+   <div class="modal-inside-title">Detalle de Projecto</div>
+   <div class="row">
+  <div class="col col-sm">
+    <div class="form-group">
+      <img id="content3ProjectImage" class="img-md" src="">
+    </div>
+    </div>
+  <div class="col">
+
+    <div class="form-group">
+      <label id="content3ProjectName"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content3ProjectCategory"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content3ProjectStart"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content3ProjectEnd"></label>
+    </div>
+
+ </div>  
+ </div>  
+ <div class="row">
+  <div class="col">
+
+    <div class="form-group">
+      <label id="content3ProjectDescription"></label>
+    </div>
+
+
+    </div>
+  <div class="col">
+
+
+ </div>  
+ </div>  
+   <div class="row">
+
+
+             
+    </div>
+    <div class="modal-footer">
+              <button class="btn success" id="newObjectiveBtn">Añadir Objetivo</button>
+          </div>
+  </div>
+  <div class="objetives-content" id="objetivesContent4">
+
+  <h1>Administrador de Objetivos - Vista de Macro-Projecto</h1>
+  <div class="modal-inside-title">Detalle de Macro-Projecto</div>
+   <div class="row">
+  <div class="col col-sm">
+    <div class="form-group">
+      <img id="content4Image" class="img-md" src="">
+    </div>
+    </div>
+  <div class="col">
+
+    <div class="form-group">
+      <label id="content4Name"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content4Description"></label>
+    </div>
+
+
+ </div>  
+ </div>  
+ <div class="row">
+  <div class="col">
+
+
+
+    </div>
+  <div class="col">
+
+
+ </div>  
+ </div>  
+   <div class="row">
+
+
+             
+    </div>
+
+
+
+  </div>
+  <div class="objetives-content" id="objetivesContent5">
+
+  <div class="modal-first-screen">
+    <h1>Bienvenido al Administrador de Objetivos</h1>
+    <p class="modal-first-screen-description">Este módulo te permite establecer, gestionar y hacer un seguimiento de los objetivos que deseas lograr. Puedes crear nuevos objetivos, establecer fechas límite, asignar responsables y realizar un seguimiento del progreso.</p>
+    <h2>Principales Funcionalidades:</h2>
+    <ul>
+        <li>Crear nuevos objetivos y asignarles una descripción y una fecha límite.</li>
+        <li>Asignar responsables a cada objetivo para garantizar que se cumplan.</li>
+        <li>Hacer un seguimiento del progreso de cada objetivo y realizar ajustes si es necesario.</li>
+        <li>Visualizar de forma clara y concisa todos los objetivos y su estado actual.</li>
+    </ul>
+  </div>
+  </div>
+  <div class="objetives-content" id="objetivesContent6">
+   <div class="modal-inside-title">Detalle del Objetivo<label id="content6Status"></label></div>
+   <div class="row">
+  <div class="col col-sm">
+    <div class="form-group">
+      <img id="content6Image" class="img-md" src="../assets/images/modals/Objective.png">
+    </div>
+    </div>
+  <div class="col">
+
+    <div class="form-group">
+      <label id="content6Name"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content6ObjectiveType"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content6Objective"></label>
+    </div>
+
+    <div class="form-group">
+      <label id="content6Project"></label>
+    </div>
+
+ </div>  
+ </div>  
+ <div class="row">
+  <div class="col">
+
+    <div class="form-group">
+      <label id="content6Description"></label>
+    </div>
+
+
+    </div>
+  <div class="col">
+
+
+ </div>  
+ </div>  
+   <div class="row">
+
+
+             
+    </div>
+    <div class="modal-footer">
+              <button class="btn danger" id="content6DeleteObjectiveBtn">Eliminar</button>
+              <button class="btn " id="editObjectiveBtn">Editar</button>
+              <button class="btn success" id="content6SetObjectiveOkBtn">Listo</button>
+          </div>
+  </div>
+
+  
+  
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn success close">Ok</button>
+            </div>
+
+         
+  </div>
+</div>
+    <!-- ======== newMacroProjectModal-content =========== -->
+
+    <!-- ======== newProjectModal-content =========== -->
+
+<div id="newProjectModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a>
+                New Project</div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+    <form action="/project-manager/newproject" method="POST" enctype="multipart/form-data" id="newprojectform">  
+       <div class="modal-body">
+     <!-- ======== newProjectModal-forms =========== -->
+            <div class="modal-inside-title">Datos Iniciales</div>
+
+              <div class="row">
+                <div class="col">
+
+          <div class="form-group">
+           <label for="macroprojectId">Macro Projecto</label>
+           <select class="form-control" id="macroprojectId" name="mpid">
+                        <option value="">---Selecciona una categoria---</option>
+                         <% data.macroproject.forEach(function(mproject) { %>
+                        <option value="<%= mproject.id %>"><%= mproject.id %> - <%= mproject.name %></option>
+                      <%  }); %>
+                      </select>
+
+
+              <span class="fa fa-ruler icon"></span>
+           </div>  
+           </div>  
+                     <div class="col">         
+             <div class="form-group">
+               <label for="projectId">ID de Projecto</label>
+               <input type="text" class="form-control" id="projectId"  disabled value="*Asignacion Automatica*">
+           </div>    
+           </div>
+           <div class="col">             
+             <div class="form-group">
+               <label for="email">Fundador</label>
+               <input type="text" class="form-control" id="owner" readonly tabindex="0" value="@<%= session.username %>">
+               <input type="text" class="form-control" id="founder" name="created_by" hidden value="<%= session.user_id %>">
+             </div>
+           </div>            
+           </div>      
+                 <div class="modal-inside-title">Datos Del Projecto</div>
+                 <div class="row">
+                     <div class="col col-sm">
+            <!-- ======== newProjectModal-forms =========== -->
+                <div class="form-group" tabindex="0">
+                  <label class="form-label" for="image">Icono</label>
+                  <div class="image-editor">
+                    <img src="https://via.placeholder.com/150" class="img-md" alt="Imagen" id="newProjectImage">
+                    <input type="file" id="newProjectImageInput" name="project_image" accept="image/*" style="display: none;">
+                    <label for="newProjectImageInput" class="btn btn-primary">Agregar Imagen</label><span class="fa fa-image icon"></span>
+                  </div>
+                </div>
+              </div>
+
+
+              <script>
+                document.getElementById('newProjectImageInput').addEventListener('change', function() {
+  console.log('Change event triggered');
+  const file = this.files[0];
+  if (file) {
+    console.log('File selected:', file.name);
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      console.log('FileReader onload triggered');
+      document.getElementById('newProjectImage').src = e.target.result;
+      console.log('Image src set to:', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+              </script>
+
+
+                <div class="col">
+                <div class="row">
+                <div class="col">
+
+                    <div class="form-group">
+                    <label for="projectname">Nombre de Projecto</label>
+                    <input type="text" class="form-control" id="projectName" name="name" placeholder="Nombre del proyecto" value="">
+                  </div>
+                  </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="projectCategory">Categoria</label>
+                                <select class="form-control" name="category">
+                                  <option value="">---Selecciona una categoria---</option>
+                                   <% data.categories.forEach(function(category) { %>
+                                  <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
+                                 <% }); %>
+                                </select>
+                  </div>
+                  </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" id="description" name="description" placeholder="Describe tu proyecto" value="" rows="5"></textarea>
+                   </div>
+        
+                    </div>
+                        </div>
+        
+                    <div class="modal-inside-title">Tiempos</div>
+
+                    <div class="form-group ">
+       
+                    <label >Tiempo Indefinido
+                   <input class="form-control" id="indefinidoCheck" name="undefined_time" type="checkbox">
+                   </label>
+
+
+                      <div class="row">
+                      <div class="col">
+                
+                        <div class="form-group date-input">
+                                    <label>Fecha de Apertura</label>
+                                    <input class="form-control" name="start_date" type="date"/>
+                                  </div>
+                      </div>
+                      <div class="col">
+                        
+                        <div class="form-group date-input">
+                                    <label>Hora de Apertura</label>
+                                    <input class="form-control" name="start_time" type="time" />
+                                  </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group date-input">
+                                    <label>Fecha de Entrega</label>
+                                    <input  class="form-control" name="end_date" type="date" />
+                                  </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group date-input">
+                                    <label>Fecha de Entrega</label>
+                                    <input class="form-control" name="end_time" type="time" />
+                                  </div>
+                      </div>
+                              </div>
+                              </div>
+                    <!-- ======== newProjectModal-forms =========== -->
+
+                        </div>
+                      <div class="modal-footer">
+                        <a class="btn primary close">Cancel</a>
+                        <button class="btn success">Success</button>
+                    </div>
+    </form>
+          
+         
+  </div>
+</div>
+<!-- ======== newProjectModal-content =========== -->
+
+       <!-- ======== EditProjectModal-content =========== -->
+
+<div id="editProjectModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a><span id="editPModalTitle"> Macro-Project - #???</span></div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+    <form action="/project-manager/project-update" method="POST" enctype="multipart/form-data" id="editprojectform">  
+       <div class="modal-body">
+     <!-- ======== newProjectModal-forms =========== -->
+
+           <input type="text" class="form-control" name="mpid"  id="editpModalmacroprojectId" hidden>
+
+               <input type="text" class="form-control" name="pid" id="editpModalprojectId" hidden>
+     
+                 <div class="modal-inside-title">Datos Del Projecto</div>
+                 <div class="row">
+                     <div class="col col-sm">
+            <!-- ======== newProjectModal-forms =========== -->
+                <div class="form-group" tabindex="0">
+                  <label class="form-label" for="image">Icono</label>
+                  <div class="image-editor">
+                    <img src="https://via.placeholder.com/150" class="img-md" alt="Imagen" id="editProjectImage">
+                    <input type="file" id="editProjectImageInput" name="project_image" accept="image/*" style="display: none;">
+                    <label for="editProjectImageInput" class="btn btn-primary">Agregar Imagen</label><span class="fa fa-image icon"></span>
+                  </div>
+                </div>
+              </div>
+
+
+              <script>
+                document.getElementById('editProjectImageInput').addEventListener('change', function() {
+  console.log('Change event triggered');
+  const file = this.files[0];
+  if (file) {
+    console.log('File selected:', file.name);
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      console.log('FileReader onload triggered');
+      document.getElementById('editProjectImage').src = e.target.result;
+      console.log('Image src set to:', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+              </script>
+
+
+                <div class="col">
+                <div class="row">
+                <div class="col">
+
+                    <div class="form-group">
+                    <label for="projectname">Nombre de Projecto</label>
+                    <input type="text" class="form-control" id="projectName" name="name" placeholder="Nombre del proyecto" value="">
+                  </div>
+                  </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="projectCategory">Categoria</label>
+                                <select class="form-control" id="projectCategory" name="category">
+                                  <option value="">---Selecciona una categoria---</option>
+                                   <% data.categories.forEach(function(category) { %>
+                                  <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
+                                 <% }); %>
+                                </select>
+                  </div>
+                  </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" id="description" name="description" placeholder="Descripcion" value="" rows="5"></textarea>
+                   </div>
+        
+                    </div>
+                        </div>
+        
+                    <div class="modal-inside-title">Tiempos</div>
+
+                    <div class="form-group ">
+       
+                    <label >Tiempo Indefinido
+                   <input class="form-control" id="indefinidoCheck" name="undefined_time" type="checkbox">
+                   </label>
+
+
+                      <div class="row">
+                      <div class="col">
+                
+                        <div class="form-group date-input">
+                                    <label>Fecha de Apertura</label>
+                                    <input class="form-control" id="start_date" name="start_date" type="date"/>
+                                  </div>
+                      </div>
+                      <div class="col">
+                        
+                        <div class="form-group date-input">
+                                    <label>Hora de Apertura</label>
+                                    <input class="form-control" id="start_time" name="start_time" type="time" />
+                                  </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group date-input">
+                                    <label>Fecha de Entrega</label>
+                                    <input  class="form-control" id="end_date" name="end_date" type="date" />
+                                  </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group date-input">
+                                    <label>Fecha de Entrega</label>
+                                    <input class="form-control" id="end_time" name="end_time" type="time" />
+                                  </div>
+                      </div>
+                              </div>
+                              </div>
+                    <!-- ======== newProjectModal-forms =========== -->
+                    <div class="modal-inside-title">Projectos Relacionados</div>
+              <div class="row">
+                <div class="col">
+
+
+         <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoria</th>
+            <th>Avance</th>
+            <th>Miembros</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      
+      </table>
+      
+
+                </div>
+                </div>
+
+
+                        </div>
+                      <div class="modal-footer">
+                        <a class="btn primary close">Cancel</a>
+                        <button class="btn success">Success</button>
+                    </div>
+    </form>
+          
+         
+  </div>
+</div>
+<!-- ======== EditProjectModal-content =========== -->
+
+
+<!-- ======== newProjectModuleModal-content =========== -->
+
+<div id="newProjectModuleModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a>
+                New Project-Module</div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+    <form action="/project-manager/add-module-to-project" method="POST" id="newprojectmoduleform">  
+       <div class="modal-body">
+     <!-- ======== newProjectModal-forms =========== -->
+            <div class="modal-inside-title">Datos Iniciales</div>
+
+              <div class="row">
+                <div class="col">
+
+          <div class="form-group">
+           <label for="macroprojectId">Projecto</label>
+           <select class="form-control" id="moduleprojectId" name="pid">
+                        <option value="">---Selecciona un Projecto---</option>
+                         <% data.projects.forEach(function(project) { %>
+                        <option value="<%= project.id %>"><%= project.id %> - <%= project.name %></option>
+                      <%  }); %>
+                      </select>
+
+
+              <span class="fa fa-ruler icon"></span>
+           </div>  
+           </div>  
+                     <div class="col">         
+             <div class="form-group">
+               <label for="projectId">ID de Modulo</label>
+               <input type="text" class="form-control" id="projectModuleId"  disabled value="*Asignacion Automatica*">
+           </div>    
+           </div>            
+           </div>      
+                 <div class="modal-inside-title">Datos Del Modulo</div>
+                 <div class="row">
+                     <div class="col col-sm">
+            <!-- ======== newProjectModal-forms =========== -->
+                <div class="form-group" tabindex="0">
+                  <label class="form-label" for="image">Icono</label>
+                  <div class="image-editor">
+                    <img src="https://via.placeholder.com/150" class="img-md" alt="Imagen" id="image1">
+                    <input type="file" id="file-input" name="image" accept="image/*" style="display: none;">
+                    <label for="file-input" class="btn btn-primary">Agregar Imagen</label><span class="fa fa-image icon"></span>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="col">
+                <div class="row">
+                <div class="col">
+
+                    <div class="form-group">
+                    <label for="projectname">Nombre del Modulo</label>
+                    <input type="text" class="form-control" id="projectModuleName" name="modulename" placeholder="Nombre del Modulo" >
+                  </div>
+                  </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="genre">Genero</label>
+                                <select name="modulegenre" class="form-control">
+                <% var groupedGenres = {}; %>
+                <% data.genres.forEach(function(genre) { %>
+                    <% if (!groupedGenres[genre.ambito]) { %>
+                        <% groupedGenres[genre.ambito] = []; %>
+                    <% } %>
+                    <% groupedGenres[genre.ambito].push(genre); %>
+                <% }); %>
+                <% for (var ambito in groupedGenres) { %>
+                    <optgroup label="<%= ambito %>">
+                        <% groupedGenres[ambito].forEach(function(genre) { %>
+                            <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }); %>
+                    </optgroup>
+                <% } %>
+            </select>
+                  </div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                <div class="col">
+
+                    <div class="form-group">
+                    <label for="author">Autor</label>
+                    <input type="text" class="form-control" id="projectModuleName" name="author" placeholder="Nombre del Autor" >
+                  </div>
+                  </div>
+
+                <div class="col">
+
+                                      <div class="form-group">
+                    <label for="performer">Interprete</label>
+                    <input type="text" class="form-control" id="projectModuleName" name="performer" placeholder="Nombre del Interprete" >
+                  </div>
+
+                  </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" id="moduledescription" name="description" placeholder="Describe tu proyecto" value="" rows="5"></textarea>
+                   </div>
+        
+                    </div>
+                        </div>
+        
+                    <div class="modal-inside-title">Tiempos</div>
+
+                   
+                      <div class="row">
+                      <div class="col">
+                
+                        <div class="form-group date-input">
+                                    <label>Fecha de Lanzamiento</label>
+                                    <input class="form-control" name="launch_date" type="date"/>
+                                  </div>
+                      </div>
+                      
+                              </div>
+                    <!-- ======== newProjectModal-forms =========== -->
+
+                        </div>
+                      <div class="modal-footer">
+                        <a class="btn primary close">Cancel</a>
+                        <button class="btn success">Success</button>
+                    </div>
+    </form>
+          
+         
+  </div>
+</div>
+<!-- ======== newProjectModuleModal-content =========== -->
+
+       <!-- ======== EditProjectModuleModal-content =========== -->
+
+<div id="editProjectModuleModal" class="modal">
+  <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title"><a class="fa fa-circle ready"></a><span id="editModuleModalTitle"> Project - #???</span></div>
+              <div class="section-actions">  
+                 <span class="close-btn close">&times;</span>
+              </div>
+            </div>
+    <form action="/project-manager/edit-module-to-project" method="POST" id="editprojectmoduleform">  
+       <div class="modal-body">
+     <!-- ======== newProjectModal-forms =========== -->
+            <div class="modal-inside-title">Datos Iniciales</div>
+
+              <div class="row">
+                <div class="col">
+
+          <div class="form-group">
+           <label for="macroprojectId">Projecto</label>
+           <input class="form-control" id="editModuleprojectId" name="pid">
+
+              <span class="fa fa-ruler icon"></span>
+           </div>  
+           </div>  
+                     <div class="col">         
+             <div class="form-group">
+               <label for="projectId">ID de Modulo</label>
+               <input type="text" class="form-control" id="editMModalId" name="id">
+           </div>    
+           </div>            
+           </div>      
+                 <div class="modal-inside-title">Datos Del Modulo</div>
+                 <div class="row">
+                     <div class="col col-sm">
+            <!-- ======== newProjectModal-forms =========== -->
+                <div class="form-group" tabindex="0">
+                  <label class="form-label" for="image">Icono</label>
+                  <div class="image-editor">
+                    <img src="https://via.placeholder.com/150" class="img-md" alt="Imagen" id="image">
+                    <input type="file" id="file-input" name="image" accept="image/*" style="display: none;">
+                    <label for="file-input" class="btn btn-primary">Agregar Imagen</label><span class="fa fa-image icon"></span>
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="col">
+                <div class="row">
+                <div class="col">
+
+                    <div class="form-group">
+                    <label for="projectname">Nombre del Modulo</label>
+                    <input type="text" class="form-control" id="editMModalname" name="modulename" placeholder="Nombre del Modulo" >
+                  </div>
+                  </div>
+
+                <div class="col">
+                  <div class="form-group">
+                    <label for="genre">Genero</label>
+                                <select name="modulegenre" id="editmoduleGenre" class="form-control">
+                <% var groupedGenres = {}; %>
+                <% data.genres.forEach(function(genre) { %>
+                    <% if (!groupedGenres[genre.ambito]) { %>
+                        <% groupedGenres[genre.ambito] = []; %>
+                    <% } %>
+                    <% groupedGenres[genre.ambito].push(genre); %>
+                <% }); %>
+                <% for (var ambito in groupedGenres) { %>
+                    <optgroup label="<%= ambito %>">
+                        <% groupedGenres[ambito].forEach(function(genre) { %>
+                            <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }); %>
+                    </optgroup>
+                <% } %>
+            </select>
+                  </div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                <div class="col">
+
+                    <div class="form-group">
+                    <label for="author">Autor</label>
+                    <input type="text" class="form-control" id="editMModalAuthor" name="author" placeholder="Nombre del Autor" >
+                  </div>
+                  </div>
+
+                <div class="col">
+
+                                      <div class="form-group">
+                    <label for="performer">Interprete</label>
+                    <input type="text" class="form-control" id="editMModalPerformer" name="performer" placeholder="Nombre del Interprete" >
+                  </div>
+
+                  </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                  <label for="description">Descripcion</label>
+                  <textarea class="form-control" id="editmoduledescription" name="description" placeholder="Describe tu proyecto" value="" rows="5"></textarea>
+                   </div>
+        
+                    </div>
+                        </div>
+        
+                    <div class="modal-inside-title">Tiempos</div>
+
+                   
+                      <div class="row">
+                      <div class="col">
+                
+                        <div class="form-group date-input">
+                                    <label>Fecha de Lanzamiento</label>
+                                    <input class="form-control" id="editmodulelaunchDate" name="launch_date" type="date"/>
+                                  </div>
+                      </div>
+                      
+                              </div>
+                    <!-- ======== newProjectModal-forms =========== -->
+
+                        </div>
+                      <div class="modal-footer">
+                        <a class="btn primary close">Cancel</a>
+                        <button class="btn success">Success</button>
+                    </div>
+    </form>
+          
+         
+  </div>
+</div>
+<!-- ======== EditProjectModuleModal-content =========== -->

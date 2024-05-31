@@ -1,0 +1,527 @@
+ <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title">
+                  <h2>Detalle de Usuario @<%= data.user.username %> </h2>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="/">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager">Administracion</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager/usersgrid">Usuarios</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Detalle de @<%= data.user.username %>
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+<div class="content">
+  <div class="row">
+    <!-- Columna de información del usuario -->
+<!-- Columna de información del usuario -->
+<div class="col-md-3">
+  <div class="card card-user">
+    <div class="center">
+      <!-- Contenedor del perfil con fondo -->
+      <div class="profile-background">
+        <!-- Imagen de perfil redonda -->
+        <div class="profile-image">
+          <img src="<%= data.user.profilePic %>" alt="Foto de Perfil">
+        </div>
+  <!-- profile start -->
+                  <button class="change-pic lni lni-more-alt border-0" type="button" id="profilepic"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profilepic">
+                    <li>
+                      <a href="#">
+                        <button class="lni lni-image border-0" type="button"  data-toggle="modal"  data-target="#profileImageModal">Cambiar foto de Perfil</button> 
+                      </a>  
+                    </li>
+                    <li>
+                      <a href="#">
+                        <button class="lni lni-image border-0"  type="button" data-toggle="modal" data-target="#backgroundImageModal">Cambiar foto de Fondo</button> 
+                      </a>
+                    </li>
+                  </ul>
+                <!-- profile end -->
+         <img src="<%= data.user.userBgPic %>" alt="Foto de Fondo">
+      </div>
+     
+    </div>
+    <div class="card-body">
+      <div class="author">
+        <a href="/">
+          <h5 class="title"><%= data.user.username %></h5>
+        </a>
+        <p class="description"><%= data.user.role_name %></p>
+        <p class="description"><%= data.user.email %></p>
+      </div>
+      <p class="description text-center"></p>
+    </div>
+    <div class="card-footer">
+      <hr>
+      <table class="data-table">
+        <thead>
+          <b>Datos del usuario</b>
+        </thead>
+        <tbody>
+          <tr>
+            <td>User_id:</td>
+            <td class="text-right"><%= data.user.id %></td>
+          </tr>
+          <tr>
+            <td>Estado:</td>
+            <td class="text-right"><%= data.user.estado %></td>
+          </tr>
+          <tr>
+            <td>Creado:</td>
+            <td class="text-right"><%= data.user.createdAt %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Columna de información editable -->
+    <div class="col-md-8">
+      <div class="card card-user">
+<form action="./user-update/<%= data.user.id %>" method="POST" id="updateuserform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Información de Usuario</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="username">Nombre de Usuario</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Nombre" value="<%= data.user.username %>">
+        </div>
+      </div>
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="<%= data.user.email %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" value="<%= data.user.name %>">
+        </div>
+      </div>
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="userlastname">Apellido</label>
+          <input type="text" class="form-control" id="userlastname" name="lastname" placeholder="Apellido" value="<%= data.user.lastname %>">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuración de Sistema -->
+  <div class="card-header">
+    <h5 class="card-title">Configuración de Sistema</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+<label for="dashboard_def">Dashboard Predeterminado</label>
+<select class="form-control" id="dashboard_def" name="dashboard_def">
+  <% data.dashboards.forEach(function(dashboard) { %>
+    <option value="<%= dashboard.id %>" <%= data.user.def_dashboard_id === dashboard.id ? 'selected' : '' %> >
+      <img src="<%= dashboard.screenshot %>" alt="Screenshot" class="dashboard-screenshot">
+      <%= dashboard.id %> - <%= dashboard.name %> <%= data.user.def_dashboard_id === dashboard.id ? '(Actual)' : '' %>
+    </option>
+  <% }); %>
+</select>
+
+        </div>
+      </div>
+      <div class="col-md-6 pl-1">
+
+          <label>Seguridad y Sys-Rol</label>
+        <div class="form-group"> 
+          <button type="button" class="btn btn-secondary" id="changepassbtn" data-toggle="modal" data-target="#editPasswordModal">
+            <i class="lni lni-key"></i>
+          </button>
+          <button type="button" class="btn btn-success" id="changerolebtn" data-toggle="modal" data-target="#editroleModal">
+            <i class="lni lni-consulting"></i>
+          </button>         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón de Actualización -->
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserupdate" class="btn btn-primary">Actualizar</button>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+</form>
+
+
+
+<!-- Modal para la imagen de fondo -->
+<div class="modal" id="backgroundImageModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cambiar Imagen de Fondo</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Subir Nueva Imagen de Fondo:</label>
+            <input type="file" class="form-control-file" id="backgroundImageUpload">
+          </div>
+          <button type="button" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para la imagen de perfil -->
+<div class="modal" id="profileImageModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+<div class="image-container">
+  <img src="<%= data.user.profilePic %>" alt="Foto de Perfil" id="profileImage">
+</div>
+        <!-- Agrega un formulario y un campo para cargar la imagen de perfil -->
+       <form>
+  <div class="form-group">
+    <label>Subir Nueva Imagen de Perfil:</label>
+    <input type="file" class="form-control-file" id="profileImageUpload">
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-primary" id="cropImage">Recortar y Guardar</button>
+</form>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal para editar la contraseña -->
+<div class="modal fade" id="editPasswordModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+  <form action="./update-user-password/<%= data.user.id %>" method="POST">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editPasswordModalLabel">Editar Contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para editar la contraseña -->
+         <div class="form-group">
+          <label for="username">Usuario Actual: <%= data.user.username %></label>
+          
+        <input type="input" class="form-control" id="username" readonly hidden name="username" value="<%= data.user.username %>">
+      </div>
+          <div class="form-group">
+            <label for="currentPassword">Contraseña Actual</label>
+            <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Contraseña Actual">
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Nueva Contraseña</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Nueva Contraseña">
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirmar Nueva Contraseña</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Nueva Contraseña">
+          </div>
+         <div class="form-group">
+         <a href="#" onclick="showsuccess('top', 'center','Se ha solicitado al administrador')" >Olvide mi contraseña</a>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" disabled id="savePasswordChanges">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+</div>
+
+  
+<!-- Modal para editar el rol del usuario -->
+<div class="modal fade" id="editroleModal" tabindex="-1" role="dialog" aria-labelledby="editPasswordModalLabel" aria-hidden="true">
+        <form action="/pmanager/update-user-role/<%= data.user.id %>" method="POST">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editPasswordModalLabel">Editar Rol de Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>El rol actual es: <%= data.user.role_name %></label>
+          <div class="form-group">
+            <label for="user">Usuario</label>
+            <input type="text" class="form-control" id="user" readonly placeholder="User"  value="<%= data.user.username %>">
+          </div>
+          <div class="form-group">
+             <div class="form-group">
+                        <label>Rol</label>
+                        <select type="text" class="form-control" id="roleinput" name="newrole">
+                           <% data.roles.forEach(function(role) { %>
+    <option value="<%= role.id %>" <%= data.user.sys_role_id === role.id ? 'selected' : '' %> ><%= role.id %> - <%= role.role_name %> <%= data.user.sys_role_id === role.id ? '(Actual)' : '' %> </option>
+  <% }); %>
+
+                          </select>
+                      </div>
+          </div>
+          
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" id="saverole" disabled >Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+   </form>
+</div>
+
+<script type="text/javascript">
+   // Obtén referencias a los elementos del formulario
+        const userupdateform = document.getElementById('updateuserform');
+        const lastname = document.getElementById('userlastname');
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const username = document.getElementById('username');
+        const dashboard_def = document.getElementById('dashboard_def');
+        const botonSubmit = document.getElementById('submituserupdate');
+
+        // Obtén el valor original de los campos de entrada cuando se carga la página
+        const originalNameValue = name.value;
+        const originalLastnameValue = lastname.value;
+        const originalEmailValue = email.value;
+        const originalUsernameValue = username.value;
+        const originalDashboardValue = dashboard_def.value;
+
+        // Variable para rastrear si se han realizado cambios
+        let cambiosRealizados = false;
+
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        name.addEventListener('input', () => {
+            cambiosRealizados = name.value !== originalNameValue;
+            actualizarEstadoBoton();
+        });
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        lastname.addEventListener('input', () => {
+            cambiosRealizados = lastname.value !== originalLastnameValue;
+            actualizarEstadoBoton();
+        });
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        email.addEventListener('input', () => {
+            cambiosRealizados = email.value !== originalEmailValue;
+            actualizarEstadoBoton();
+        });
+                // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        username.addEventListener('input', () => {
+            cambiosRealizados = username.value !== originalUsernameValue;
+            actualizarEstadoBoton();
+        });
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        dashboard_def.addEventListener('input', () => {
+            cambiosRealizados = dashboard_def !== originalDashboardValue;
+            actualizarEstadoBoton();
+
+        });
+
+        // Función para actualizar el estado del botón de envío
+        function actualizarEstadoBoton() {
+            if (cambiosRealizados) {
+                botonSubmit.removeAttribute('disabled');
+            } else {
+                botonSubmit.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        // Agrega un controlador de eventos al formulario para prevenir el envío si no se han realizado cambios
+        userupdateform.addEventListener('submit', (event) => {
+            if (!cambiosRealizados) {
+                event.preventDefault(); // Evita el envío del formulario
+                alert('No se han realizado cambios.');
+            }
+        });
+
+   // Obtener referencias a los campos del formulario
+var currentPassword = $('#currentPassword');
+var newPassword = $('#newPassword');
+var confirmPassword = $('#confirmPassword');
+var saveButton = $('#savePasswordChanges');
+
+// Función para validar los campos y habilitar/deshabilitar el botón "Guardar Cambios"
+function validarYActualizarBoton() {
+  var currentPasswordValue = currentPassword.val();
+  var newPasswordValue = newPassword.val();
+  var confirmPasswordValue = confirmPassword.val();
+
+  // Verificar que todos los campos estén llenos y que las contraseñas coincidan
+  if (
+    currentPasswordValue !== '' &&
+    newPasswordValue !== '' &&
+    confirmPasswordValue !== '' &&
+    newPasswordValue === confirmPasswordValue
+  ) {
+    // Habilitar el botón "Guardar Cambios"
+    saveButton.prop('disabled', false);
+  } else {
+    // Deshabilitar el botón "Guardar Cambios"
+    saveButton.prop('disabled', true);
+  }
+}
+
+// Agregar controladores de eventos "input" para rastrear cambios en los campos
+currentPassword.on('input', validarYActualizarBoton);
+newPassword.on('input', validarYActualizarBoton);
+confirmPassword.on('input', validarYActualizarBoton);
+
+// Llamar a la función de validación inicial
+validarYActualizarBoton();
+
+// Asociar la función de actualización al botón "Guardar Cambios" en el modal
+saveButton.click(function () {
+  // Aquí puedes llamar a la función updatePassword() si todas las validaciones son exitosas
+  //updatePassword();
+});
+
+const saverolebtn = document.getElementById('saverole');
+const roleinput = document.getElementById('roleinput');
+const originalrole = roleinput.value;
+
+  roleinput.addEventListener('input', () => {
+            cambios = roleinput.value !== originalrole;
+            rolebutton();
+        });
+
+// Función para actualizar el estado del botón de envío
+        function rolebutton() {
+            if (cambios) {
+                saverolebtn.removeAttribute('disabled');
+            } else {
+                saverolebtn.setAttribute('disabled', 'disabled');
+            }
+        }
+   
+</script>
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+  const profileImageInput = document.getElementById('profileImageUpload');
+  const profileImage = document.getElementById('profileImage');
+  const croppedImageCanvas = document.getElementById('croppedImage');
+  const cropButton = document.getElementById('cropImage');
+
+  let cropper; // Variable para almacenar la instancia de cropper
+
+  // Manejador de evento cuando se selecciona una imagen
+  profileImageInput.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        profileImage.src = e.target.result;
+        // Inicializar cropper
+        cropper = new Cropper(profileImage, {
+          aspectRatio: 1, // Relación de aspecto 1:1
+          viewMode: 3, // Vista recortada en la ventana sin restricciones
+        });
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Manejador de evento para recortar y guardar la imagen
+  cropButton.addEventListener('click', function () {
+    if (cropper) {
+      // Obtener la imagen recortada como una URL base64
+      const croppedDataURL = cropper.getCroppedCanvas().toDataURL();
+
+      // Guardar la URL base64 en el servidor y actualizar el usuario
+      // Aquí debes implementar la lógica para guardar la imagen y actualizar el usuario en tu backend
+
+      // Ejemplo de cómo actualizar la imagen de perfil del usuario
+      // Supongamos que tienes una función updateUserProfilePicture(url) en tu backend
+      updateUserProfilePicture(croppedDataURL);
+    }
+  });
+
+  // Función para actualizar la imagen de perfil del usuario en el backend
+  function updateUserProfilePicture(url) {
+    // Aquí debes implementar la lógica para enviar la URL de la imagen al servidor y actualizar el usuario
+    // Puedes usar una solicitud AJAX o una llamada a tu API backend para esto
+    // Por ejemplo:
+    // fetch('/api/update-profile-picture', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ profilePic: url }),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // Actualizar la imagen de perfil en la vista si es necesario
+    //   if (data.success) {
+    //     profileImage.src = url;
+    //   }
+    // });
+  }
+});
+
+
+
+</script>

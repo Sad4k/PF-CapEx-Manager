@@ -1,0 +1,649 @@
+
+<style>
+/* CSS generado a partir de SCSS */
+
+html {
+    box-sizing: border-box;
+    font-size: 67.5%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: 1.6rem;
+    color: #002b5d;
+    font-family: 'Karla', arial, sans-serif;
+}
+
+.container {
+    max-width: 830px;
+    margin: 2rem auto 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.row {
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.list-item {
+    width: 100%;
+    max-width: 390px;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #e1e4ea;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: #002b5d;
+    text-decoration: none;
+}
+
+.list-item:hover {
+    border: 1px solid #cacfd9;
+    color: #3384f3;
+    background: #f6f7f9;
+}
+
+.list-item__avatar {
+    margin-right: 1rem;
+}
+
+.list-item__avatar img {
+    border: 1px solid #cacfd9;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #e1e4ea;
+}
+
+.list-item__name {
+    display: block;
+}
+
+.list-item__info {
+    font-size: 0.85em;
+    color: #91a1bb;
+}
+
+.list-item__button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    font-family: inherit;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 18px;
+    height: 18px;
+    font-weight: 700;
+    background: #3384f3;
+    color: #ffffff;
+    line-height: 18px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    opacity: 0.6;
+    outline: none;
+}
+
+.list-item__button svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search {
+    margin-bottom: 4rem;
+    font-size: 2.4rem;
+    position: relative;
+}
+
+.search label, .search input {
+    display: block;
+}
+
+.search label {
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.search input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #cacfd9;
+    font-family: inherit;
+    outline: none;
+}
+
+.search input:focus {
+    box-shadow: 0px 0px 0px 3px rgba(51, 132, 243, 0.15);
+    border-color: #3384f3;
+}
+
+.search__clear {
+    position: absolute;
+    top: 5.3rem;
+    right: 1rem;
+    cursor: pointer;
+    background: #e1e4ea;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    color: #91a1bb;
+    border: 0;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    outline: none;
+}
+
+.search__clear:focus, .search__clear:active {
+    outline: 0;
+}
+
+.search__clear:hover {
+    background: #cacfd9;
+    color: #597191;
+}
+
+.recent-search {
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.search-item {
+    font-size: 1.4rem;
+    display: inline-block;
+    padding: 0.5rem;
+    line-height: 1;
+    color: #3384f3;
+    border-radius: 5px;
+    background: rgba(51, 132, 243, 0.85);
+    cursor: pointer;
+    margin: 0 0.5rem 0.5rem 0;
+}
+
+.search-item:hover, .search-item:focus {
+    color: #2757b0;
+    background: rgba(51, 132, 243, 0.8);
+}
+
+.search-item__close {
+    opacity: 0.5;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.clear-btn {
+    font-family: inherit;
+    background: #91a1bb;
+    color: #ffffff;
+    border: 0;
+    cursor: pointer;
+    margin-right: 1rem;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    line-height: 1;
+}
+
+.clear-btn:hover {
+    background: #597191;
+}
+
+.clear-btn:focus, .clear-btn:active {
+    outline: 0;
+}
+
+.clear-btn:disabled {
+    background: #f6f7f9;
+    color: #91a1bb;
+    cursor: not-allowed;
+}
+
+
+</style>
+ <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title">
+                  <h2>Administrar Usuarios</h2>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="/">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager">Administracion</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Usuarios
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <div class="container">
+         <div class="form-group">
+            <button class="btn btn-success lg "><i class="lni lni-plus" data-toggle="modal" data-target="#new-user-modal"> add user</i></button>
+            <button class="btn btn-danger lg"><i class="lni lni-user" data-toggle="modal" data-target="#active-deactive-modal"> deactive user</i></button>
+          </div>
+        <div class="row">
+            <div class="search">
+                <div class="recent-search">
+                    <button class="clear-btn" disabled onclick="clearRecent()">No Recent Items</button>
+                    <div class="recent-search__list"></div>
+                </div>
+            </div>
+        </div>
+        <div id="list" class="list" data-searchable></div>
+    </div>
+
+<!-- Modal para desactivar y activar -->
+<div class="modal" id="active-deactive-modal">
+     
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 120%;">
+      <div class="modal-header">
+        <h4 class="modal-title">Desactivar o Activar Usuarios</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h6>Buscar y Modificar Usuarios</h6>
+        <label for="searchInput">Código o Nombre de Usuario:</label>
+        <input type="text" id="searchInput" placeholder="Escribe un código, nombre, apellido o usuario">
+        <button id="searchUserBtn">Buscar</button>
+        <div id="results">
+          <!-- Aquí mostrarás la información de los usuarios encontrados en una tabla -->
+          <table class="table" style="scale: 90%;">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Usuario</th>
+                <th>Activa/Desactivar</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <!-- Los resultados se agregarán aquí -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para crear nuevo usuario -->
+<div class="modal" id="new-user-modal">
+             <form action="/pmanager/crearusuario" method="POST" id="updateuserform">   
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Crear Nuevo Usuario</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h6>Ingresa los datos</h6>  
+  <!-- Información de Usuario -->
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="username">Nombre de Usuario *</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="example123">
+        </div>
+      </div>
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="example@example.com" >
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="name">Nombre *</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="tu nombre aqui..." >
+        </div>
+      </div>
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="userlastname">Apellido</label>
+          <input type="text" class="form-control" id="userlastname" name="lastname" placeholder="tu apellido aqui...">
+        </div>
+      </div>
+      </div>
+       
+     <br> <h6>Datos de seguridad</h6> <br>
+      
+      <div class="row">
+       <div class="col-md-6 pr-1">
+        <div class="form-group">
+            <label for="newPassword">Nueva Contraseña *</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Nueva Contraseña">
+          </div>
+      </div>
+           <div class="col-md-6 pr-1">
+          <div class="form-group">
+            <label for="confirmPassword">Confirmar Contraseña *</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Nueva Contraseña">
+          </div>
+        </div>
+       </div>
+       <div id="error-message"></div>
+    
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" disabled>Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const usernameInput = document.getElementById('username');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const submitButton = document.querySelector('button[type="submit"]');
+  const errorMensaje = document.getElementById('error-message');
+
+  // Función para validar el formato del correo electrónico
+  function validarFormatoEmail(email) {
+    const regexEmail = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    return regexEmail.test(email);
+  }
+
+  // Función para validar que el nombre de usuario solo contiene letras minúsculas y números
+  function validarNombreUsuario(username) {
+    const regexNombreUsuario = /^[a-z0-9]+$/;
+    return regexNombreUsuario.test(username);
+  }
+
+  // Función para habilitar o deshabilitar el botón "Guardar" y mostrar mensajes de error
+  function actualizarValidacion() {
+    const username = usernameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    const usernameValido = validarNombreUsuario(username);
+    const emailValido = validarFormatoEmail(email);
+    const contraseñasCoinciden = password === confirmPassword && password !== '';
+
+    if (usernameValido && emailValido && contraseñasCoinciden) {
+      submitButton.disabled = false;
+      errorMensaje.textContent = ''; // Borrar el mensaje de error
+      // Agregar la clase que indica campo válido y eliminar la clase de error
+      usernameInput.classList.add('campo-valido');
+      emailInput.classList.add('campo-valido');
+      passwordInput.classList.add('campo-valido');
+      confirmPasswordInput.classList.add('campo-valido');
+      usernameInput.classList.remove('campo-con-error');
+      emailInput.classList.remove('campo-con-error');
+      passwordInput.classList.remove('campo-con-error');
+      confirmPasswordInput.classList.remove('campo-con-error');
+    } else {
+      submitButton.disabled = true;
+      errorMensaje.textContent = 'Por favor, completa los campos correctamente.'; // Mostrar mensaje de error
+      // Agregar la clase de error y eliminar la clase de campo válido
+      usernameInput.classList.add('campo-con-error');
+      emailInput.classList.add('campo-con-error');
+      passwordInput.classList.add('campo-con-error');
+      confirmPasswordInput.classList.add('campo-con-error');
+      usernameInput.classList.remove('campo-valido');
+      emailInput.classList.remove('campo-valido');
+      passwordInput.classList.remove('campo-valido');
+      confirmPasswordInput.classList.remove('campo-valido');
+    }
+  }
+
+  // Escuchar eventos de entrada en los campos del formulario
+  usernameInput.addEventListener('input', actualizarValidacion);
+  emailInput.addEventListener('input', actualizarValidacion);
+  passwordInput.addEventListener('input', actualizarValidacion);
+  confirmPasswordInput.addEventListener('input', actualizarValidacion);
+});
+</script>
+
+
+<script>
+    //js
+const list = document.getElementById("list");
+
+// Render Users
+const template = listItem => {
+    return `
+            <a class="list-item" href="/pmanager/user?id=${listItem.id}">
+              <div class="list-item__avatar">
+                <img src="${listItem.profilePic}" />
+              </div>
+              <div class="list-item__content">
+                      <strong class="list-item__name">${listItem.name} ${listItem.lastname}</strong>
+                      <span class="list-item__info">@${listItem.username}  <br> ${listItem.email} </span>
+                    </div>
+            </a>
+  `;
+};
+
+// Realiza una solicitud GET al servidor para obtener los datos de usuario
+fetch('/pmanager/users-data', { method: 'GET' })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('La solicitud no fue exitosa', response);
+    }
+    return response.json(); // Parsea la respuesta JSON
+  })
+  .then(data => {
+    // Aquí 'data' contiene los datos de usuario recibidos del servidor
+    console.log(data); // Puedes hacer lo que necesites con los datos
+    // Por ejemplo, renderizar los usuarios en la página
+    renderUsers(data);
+  })
+  .catch(error => {
+    console.error('Ocurrió un error:', error.message);
+  });
+
+// Función para renderizar los usuarios (similar a tu función 'template')
+function renderUsers(users) {
+  const list = document.getElementById('list');
+  list.innerHTML = ''; // Limpia el contenido existente
+  users.forEach(user => {
+    list.innerHTML += template(user);
+  });
+}
+// Search
+const userSearch = document.querySelector("[data-search]");
+
+userSearch.addEventListener("keyup", filter);
+
+function filter() {
+    var term = document.querySelector("[data-search]").value.toLowerCase();
+    var tag = document.querySelectorAll("[data-searchable] .list-item");
+    for (i = 0; i < tag.length; i++) {
+        if (tag[i].innerHTML.indexOf(term) !== -1) {
+            tag[i].style.display = "flex";
+        } else {
+            tag[i].style.display = "none";
+        }
+    }
+}
+
+const recentSearch = document.querySelector(".recent-search");
+const recentSearchList = document.querySelector(".recent-search__list");
+const recentSearchTitle = document.querySelector(".recent-search__title");
+const recentSearchCount = recentSearchList.childNodes.length;
+const clearBtn = document.querySelector(".clear-btn");
+
+
+userSearch.addEventListener("keydown", event => {
+    const keyName = event.key;
+    if (event.key == "Enter") {
+        let inputText = userSearch.value.toLowerCase();
+        recentSearchList.insertAdjacentHTML(
+            "beforeend",
+            `<span class="search-item" onclick="labelSearch('${inputText}')">${inputText}<span class="search-item__close">×</span></span>`
+        );
+        if (recentSearchList.childNodes.length > 0) {
+            clearBtn.innerHTML = "Clear Items";
+            clearBtn.removeAttribute("disabled");
+            var btn = document.querySelectorAll(".search-item__close");
+
+            for (var i = 0; i < btn.length; i++) {
+                btn[i].addEventListener("click",function(e) {
+                        e.currentTarget.parentNode.remove();
+                    },false
+                );
+            }
+        }
+    } else {
+    }
+});
+
+function labelSearch(x) {
+    userSearch.value = x;
+    filter();
+}
+
+const clearRecent = () => {
+    recentSearchList.innerHTML = "";
+    clearBtn.setAttribute("disabled", true);
+    clearBtn.innerHTML = "No Recent Items";
+    userSearch.value = '';
+    filter();
+};
+</script>
+<script>
+ $(document).ready(function () {
+  const searchInput = document.getElementById('searchInput');
+  const searchUserBtn = document.getElementById('searchUserBtn');
+  const usersTableBody = document.getElementById('usersTableBody');
+
+  // Array para almacenar los IDs de los usuarios seleccionados
+  const selectedUserIds = [];
+
+  // Agrega un controlador de eventos al botón de búsqueda
+  searchUserBtn.addEventListener('click', () => {
+    const searchTerm = searchInput.value;
+
+    if (searchTerm === '') {
+      alert('Por favor, ingrese un término de búsqueda.');
+      return;
+    }
+
+    // Realiza una solicitud AJAX para buscar usuarios
+    fetch(`/pmanager/buscarUsuarios?term=${encodeURIComponent(searchTerm)}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Datos recibidos del servidor:', data);
+
+        // Limpia los resultados anteriores
+        usersTableBody.innerHTML = '';
+
+        if (data.length === 0) {
+          usersTableBody.innerHTML = 'No se encontraron usuarios.';
+        } else {
+          // Muestra los resultados en la tabla
+          data.forEach((usuario) => {
+            const userRow = document.createElement('tr');
+            userRow.innerHTML = `
+              <td>${usuario.name} ${usuario.lastname} </td>
+              <td>${usuario.role_name}</td>
+              <td>@${usuario.username}</td>
+              <td>
+                <select type="text" class="form-control" id="estadoinput" name="estado" data-user-id="${usuario.id}">
+                 <option value="1" ${ usuario.estado === 'Activo' ? 'selected' : ''} > Activo ${ usuario.estado === 'Activo' ? '(Actual)' : ''}  </option>
+                 <option value="0" ${ usuario.estado === 'Inactivo' ? 'selected' : ''} > Inactivo ${ usuario.estado === 'Inactivo' ? '(Actual)' : ''}  </option>
+              </td>
+              <td> <a class="btn lni lni-pencil-alt danger" href="/pmanager/user?id=${usuario.id}"></a>
+              <a class="btn lni lni-eraser danger" href="/pmanager/deleteUser?id=${usuario.id}"></a>
+              </td>
+            `;
+            usersTableBody.appendChild(userRow);
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+});
+
+// Agrega un controlador de eventos a los elementos de selección en la tabla
+usersTableBody.addEventListener('change', (event) => {
+  const selectElement = event.target;
+  const newState = selectElement.value;
+  const userId = selectElement.getAttribute('data-user-id'); // Obtiene el ID del usuario
+
+  // Realiza una solicitud AJAX para actualizar el estado del usuario
+  fetch(`/pmanager/update-user-state?userId=${userId}&newState=${newState}`, {
+    method: 'POST', // Puedes usar POST para enviar datos al servidor
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Respuesta del servidor:', data);
+
+      if (data.success) {
+        // Puedes realizar más acciones aquí, como actualizar la interfaz de usuario.
+      } else {
+        console.log('Error al actualizar el estado del usuario.');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
+
+  </script>

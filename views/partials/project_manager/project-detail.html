@@ -1,0 +1,722 @@
+ <!-- ========== title-wrapper start ========== -->
+<link href="../../../assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title">
+                  <h2> Projecto: <%= data.project.name %></h2>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="/">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager">Administracion</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager/projectsgrid">Projectos</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        <%= data.project.name %>
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+<div class="row">
+
+    <!-- Columna de información editable -->
+    <div class="col-md-12">
+      <div class="card card-user">
+<form action="/pmanager/project-update/<%= data.project.id %>" method="POST" id="updateprojectform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Informacion de Proyecto <%= data.project.name %></h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="projectname">Nombre de Proyecto</label>
+          <input type="text" class="form-control" id="projectname" name="name" placeholder="Nombre del proyecto" value=" <%= data.project.name %>">
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="email">ID de Projecto</label>
+          <input type="text" class="form-control" id="project_id" disabled value=" <%= data.project.id %>">
+        </div>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="select-style-1">
+          <label for="projectCategory">Categoria</label>
+          <div class="select-position" id="projectCategory">
+                      <select name="category">
+                        <% data.categories.forEach(function(category) { %>
+                        <option <%= data.project.cat_id == category.id ? 'selected' : ''  %> value="<%= category.id %>" > <%= category.id %> - <%= category.category_name %> <%= data.project.cat_id == category.id ? ' (actual)' : ''  %></option>
+                       <% }); %>
+                      </select>
+                    </div>
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="email">Fundador</label>
+          <input type="text" class="form-control" id="owner" readonly value="@<%= session.username %>">
+          <input type="text" class="form-control" id="founder" name="created_by" hidden value="<%= session.user_id %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 pr-1">
+        <div class="input-style-1">
+                    <label>Fecha de Apertura</label>
+                    <input name="start_date" type="date" value="<%= data.project.start_date %>" />
+                  </div>
+      </div>
+      <div class="col-md-3 pr-1">
+        
+        <div class="input-style-1">
+                    <label>Hora de Apertura</label>
+                    <input name="start_time" type="time" />
+                  </div>
+      </div>
+      <div class="col-md-3 pr-1">
+        <div class="input-style-1">
+                    <label>Fecha de Entrega</label>
+                    <input name="end_date" type="date" value="<%= data.project.end_date %>" />
+                  </div>
+      </div>
+      <div class="col-md-3 pr-1">
+        <div class="input-style-1">
+                    <label>Fecha de Entrega</label>
+                    <input name="end_time" type="time" />
+                  </div>
+      </div>
+     </div>
+<script>
+  // Obtén los elementos de entrada
+  const startDateInput = document.querySelector('input[name="start_date"]');
+  const startDateHourInput = document.querySelector('input[name="start_time"]');
+  const endDateInput = document.querySelector('input[name="end_date"]');
+  const endDateHourInput = document.querySelector('input[name="end_time"]');
+
+  // Obtén las fechas y horas del objeto data
+const startDate = new Date("<%= data.project.start_date %>"); // Ajusta el formato según sea necesario
+const endDate = new Date("<%= data.project.end_date %>"); // Ajusta el formato según sea necesario
+
+// Convierte las fechas y horas a la zona horaria del navegador
+const startDateLocal = startDate.toLocaleString();
+const endDateLocal = endDate.toLocaleString();
+
+// Llena los campos con los valores de fecha y hora
+startDateInput.valueAsDate = startDate;
+startDateHourInput.value = formatTimeForInput(startDate);
+endDateInput.valueAsDate = endDate;
+endDateHourInput.value = formatTimeForInput(endDate);
+
+  // Función para formatear una fecha como una cadena de tiempo (HH:mm)
+  function formatTimeForInput(date) {
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+</script>
+
+
+    <div class="row">
+      <div class="col-md-12 pr-1">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <textarea class="form-control" id="description" name="description"   rows="5"><%= data.project.description %></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón de Actualización -->
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserupdate" class="btn btn-primary">Actualizar</button>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+
+
+
+    
+<script>
+$(document).ready(function () {
+  // Manejar el evento de cambio en la lista desplegable
+  $('#projectMembers').on('change', 'select[name="projectrole"]', function () {
+    // Obtener los datos necesarios
+    const userId = $(this).closest('tr').find('td:first-child').text().trim(); // Id del usuario
+    const roleId = $(this).val(); // Nuevo id del rol seleccionado
+    const rowId = $(this).closest('tr').data('row-id'); // Id de la fila
+
+    // Realizar la solicitud AJAX para actualizar el rol
+    $.ajax({
+      type: 'POST',
+      url: '/pmanager/update-project-role', // Reemplaza con la ruta correcta
+      data: {
+        userId: userId,
+        roleId: roleId,
+        rowId: rowId
+      },
+      success: function (response) {
+        // Manejar la respuesta del servidor si es necesario
+        console.log('Actualización exitosa');
+      },
+      error: function (error) {
+        console.error('Error al actualizar:', error);
+      }
+    });
+  });
+
+  // Puedes agregar más scripts según sea necesario
+});
+</script>
+<!-- ######################################################## MODAL PARA USUARIOS DE UN PROYECTO #################################################### -->
+
+
+
+      
+    
+ <div class="tab-pannel tab-content">   
+ <!-- Botones de pestañas -->
+  <div id="tab-buttons">
+    <div class="tab-button" onclick="changeTab(1)">Integrantes</div>
+    <div class="tab-button" onclick="changeTab(2)">Cuentas</div>
+    <div class="tab-button" onclick="changeTab(3)">Tareas</div>
+    <div class="tab-button" onclick="changeTab(4)">Activos</div>
+  </div>
+   
+
+  <!-- Contenido de las pestañas -->
+  <div id="tab-content" >
+     <!--- ######################################################### TAB 1 ########################################################################## --->
+
+    <div id="tab1" class="tab active">
+
+<br>
+ <h6 class="tab-panel-title">Integrantes del Proyecto</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/user-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+      <div class="col-md-12">
+          <table class="table table-data">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Nombres</th>
+                <th>Rol Proyecto</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectMembers">
+          <% if (Array.isArray(data.members) && data.members.length > 0) { %>
+  <% data.members.forEach(function(member) { %>
+    <tr data-row-id="<%= member.id %>">
+      <td>@<%= member.username %><%= member.id %></td>
+      <td><%= member.name %> <%= member.lastname %> </td>
+      <td>
+        <div class="select-position" id="projectrole">
+          <select name="projectrole">
+            <% data.projectrole.forEach(function(role) { %>
+              <option <%= member.projects_role_id == role.id ? 'selected' : ''  %> value="<%= role.id %>">
+                <%= role.id %> - <%= role.role %> <%= member.projects_role_id == role.id ? '(actual)' : ''  %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+      </td>
+      <td><a href="/pmanager/delete-user-from-project?rwid=<%= member.id %>&pid=<%= data.project.id %>">Expulsar</a><a>Rendimiento</a> </td>
+    </tr>
+  <% }); %>
+<% } else { %>
+  <tr>
+    <td colspan="4">No hay datos para mostrar.</td>
+  </tr>
+<% } %>
+
+
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+
+    <!--- ######################################################### TAB 1 ########################################################################## --->
+
+    <!--- ######################################################### TAB 2 ########################################################################## --->
+
+    <div id="tab2" class="tab">
+     <br>
+ <h6 class="tab-panel-title">Cuentas Del Proyecto</h6>
+         
+          <table class="table table-search">
+            <thead>
+              <tr>
+                <th>Cuenta</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Tipo de Cuenta</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcounts">
+               <% if (Array.isArray(data.projectaccounts) && data.projectaccounts.length > 0) { %>
+               <% data.projectaccounts.forEach(function(account) { %>
+              <tr>
+               <td><%= account.account_number %></td>
+               <td><%= account.account_name %> </td>
+               <td><%= account.account_description %> </td>
+               <td><%= account.account_type %> </td>
+                 </tr>
+               <% }); %>
+               <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 2 ########################################################################## --->
+
+    <!--- ######################################################### TAB 3 ########################################################################## --->
+
+    <div id="tab3" class="tab">
+       <br>
+ <h6 class="tab-panel-title">Tareas del Proyecto</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/task-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th>Tarea</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Tipo</th>
+                <th>Asignado</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Entrega</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+               <% if (Array.isArray(data.tasks) && data.tasks.length > 0) { %>
+              <% data.tasks.forEach(function(task) { %>
+              <tr>
+               <td><%= task.name %> <%= task.id %></td>
+               <td><%= task.description %> </td>
+               <td><%= task.status %> </td>
+               <td><%= task.tag_name %> </td>
+               <td><%= task.user_assignee_name %> </td>
+               <td><%= task.start_date %> </td>
+               <td><%= task.due_date %> </td>
+               <td><a href="/pmanager/task-edit-proj-form?pid=<%= data.project.id %>&id=<%= task.id %>">Lista</a><a href="/pmanager/delete-task-from-project?rwid=<%= task.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 3 ########################################################################## --->
+
+    <!--- ######################################################### TAB 4 ########################################################################## --->
+
+    <div id="tab4" class="tab">
+      
+        <br>
+ <h6 class="tab-panel-title">Activos</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/asset-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Fecha de Compra</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+              <% if (Array.isArray(data.projectassets) && data.projectassets.length > 0) { %>
+              <% data.projectassets.forEach(function(asset) { %>
+              <tr>
+               <td><img style="width: 30px; aspect-ratio: initial;" src="<%= asset.asset_pic %>" alt="<%= asset.name %>"></td>
+               <td><%= asset.name %> <% if (asset.brand) { %>
+  <span class="highlight"><%= asset.brand %></span>
+<% } %></td>
+               <td><%= asset.description %> </td>
+               <td><%= asset.value %> </td>
+               <td><%= asset.purchase_date %> </td>
+               <td><%= asset.state %> </td>
+               <td><a href="asset-edit-proj-form?pid=<%= data.project.id %>&id=<%= asset.id %>">Editar</a><a href="/pmanager/delete-asset-from-project?rwid=<%= asset.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 4 ########################################################################## --->
+
+</div>
+
+
+
+
+ <script>
+    // Función para cambiar de pestaña
+    function changeTab(tabNumber) {
+      // Ocultar todas las pestañas
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+
+      // Mostrar la pestaña seleccionada
+      document.getElementById('tab' + tabNumber).classList.add('active');
+      document.querySelector('.tab-button:nth-child(' + tabNumber + ')').classList.add('active');
+    }
+  </script>
+    
+
+  <!-- Botón de Actualización -->
+</div>
+
+</form>
+
+
+
+<br>
+ <h6 class="tab-panel-title">Modulos</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/module-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Titulo</th>
+                <th>Descripcion(Corta)</th>
+                <th>Genero</th>
+                <th>Reparto</th>
+                <th>Fecha Salida</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+              <% if (Array.isArray(data.pmodules) && data.pmodules.length > 0) { %>
+              <% data.pmodules.forEach(function(pmodule) { %>
+              <tr>
+               <td><img style="width: 30px; aspect-ratio: initial;" src="<%= pmodule.module_pic %>" ></td>
+               <td><%= pmodule.name %> </td>
+               <td><%= pmodule.description %> </td>
+               <td><%= pmodule.module_status %> </td>
+               <td><%= pmodule.title %> </td>
+               <td><%= pmodule.long_description %></td>
+               <td><% if (pmodule.Genero) { %>
+  <span class="highlight"><%= pmodule.Genero %></span>
+<% } %> </td>
+               <td> Autor: <%= pmodule.author %> <% if (pmodule.performer) { %> Interprete: <%= pmodule.performer %> <% } %> </td>
+               <td><%= pmodule.launch_date %> </td></td>
+               <td><a href="module-edit-proj-form?pid=<%= data.project.id %>&id=<%= pmodule.id %>">Editar</a><a href="/pmanager/delete-module-from-project?rwid=<%= pmodule.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+
+
+<!---- modal maqueta ------>
+<div class="modal" id="modalid">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Administrar integrantes del Proyecto</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Subir Nueva Imagen de Fondo:</label>
+            <input type="file" class="form-control-file" id="backgroundImageUpload">
+          </div>
+          <button type="button" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+  <button type="button" class="btn btn-primary" id="cropImage">Recortar y Guardar</button>
+</form>
+</div>
+    </div>
+  </div>
+</div>
+<!---- modal maqueta ------>
+
+
+<!-- Modal para la imagen de fondo -->
+<div class="modal" id="backgroundImageModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cambiar Imagen de Fondo</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Subir Nueva Imagen de Fondo:</label>
+            <input type="file" class="form-control-file" id="backgroundImageUpload">
+          </div>
+          <button type="button" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para la imagen de perfil -->
+<div class="modal" id="profileImageModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Cambiar Imagen de Perfil</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+<div class="image-container">
+  <img src="<%= data.project.project_pic %>" alt="Foto de Perfil" id="profileImage">
+</div>
+        <!-- Agrega un formulario y un campo para cargar la imagen de perfil -->
+       <form>
+  <div class="form-group">
+    <label>Subir Nueva Imagen de Perfil:</label>
+    <input type="file" class="form-control-file" id="profileImageUpload">
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-primary" id="cropImage">Recortar y Guardar</button>
+</form>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+   // Obtén referencias a los elementos del formulario
+        const userupdateform = document.getElementById('updateuserform');
+        const lastname = document.getElementById('userlastname');
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const username = document.getElementById('username');
+        const dashboard_def = document.getElementById('dashboard_def');
+        const botonSubmit = document.getElementById('submituserupdate');
+
+        // Obtén el valor original de los campos de entrada cuando se carga la página
+        const originalNameValue = name.value;
+        const originalLastnameValue = lastname.value;
+        const originalEmailValue = email.value;
+        const originalUsernameValue = username.value;
+        const originalDashboardValue = dashboard_def.value;
+
+        // Variable para rastrear si se han realizado cambios
+        let cambiosRealizados = false;
+
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        name.addEventListener('input', () => {
+            cambiosRealizados = name.value !== originalNameValue;
+            actualizarEstadoBoton();
+        });
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        lastname.addEventListener('input', () => {
+            cambiosRealizados = lastname.value !== originalLastnameValue;
+            actualizarEstadoBoton();
+        });
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        email.addEventListener('input', () => {
+            cambiosRealizados = email.value !== originalEmailValue;
+            actualizarEstadoBoton();
+        });
+                // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        username.addEventListener('input', () => {
+            cambiosRealizados = username.value !== originalUsernameValue;
+            actualizarEstadoBoton();
+        });
+        // Agrega un controlador de eventos a los campos de entrada para rastrear cambios
+        dashboard_def.addEventListener('input', () => {
+            cambiosRealizados = dashboard_def !== originalDashboardValue;
+            actualizarEstadoBoton();
+
+        });
+
+        // Función para actualizar el estado del botón de envío
+        function actualizarEstadoBoton() {
+            if (cambiosRealizados) {
+                botonSubmit.removeAttribute('disabled');
+            } else {
+                botonSubmit.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        // Agrega un controlador de eventos al formulario para prevenir el envío si no se han realizado cambios
+        userupdateform.addEventListener('submit', (event) => {
+            if (!cambiosRealizados) {
+                event.preventDefault(); // Evita el envío del formulario
+                alert('No se han realizado cambios.');
+            }
+        });
+
+   // Obtener referencias a los campos del formulario
+var currentPassword = $('#currentPassword');
+var newPassword = $('#newPassword');
+var confirmPassword = $('#confirmPassword');
+var saveButton = $('#savePasswordChanges');
+
+// Función para validar los campos y habilitar/deshabilitar el botón "Guardar Cambios"
+function validarYActualizarBoton() {
+  var currentPasswordValue = currentPassword.val();
+  var newPasswordValue = newPassword.val();
+  var confirmPasswordValue = confirmPassword.val();
+
+  // Verificar que todos los campos estén llenos y que las contraseñas coincidan
+  if (
+    currentPasswordValue !== '' &&
+    newPasswordValue !== '' &&
+    confirmPasswordValue !== '' &&
+    newPasswordValue === confirmPasswordValue
+  ) {
+    // Habilitar el botón "Guardar Cambios"
+    saveButton.prop('disabled', false);
+  } else {
+    // Deshabilitar el botón "Guardar Cambios"
+    saveButton.prop('disabled', true);
+  }
+}
+
+// Agregar controladores de eventos "input" para rastrear cambios en los campos
+currentPassword.on('input', validarYActualizarBoton);
+newPassword.on('input', validarYActualizarBoton);
+confirmPassword.on('input', validarYActualizarBoton);
+
+// Llamar a la función de validación inicial
+validarYActualizarBoton();
+
+// Asociar la función de actualización al botón "Guardar Cambios" en el modal
+saveButton.click(function () {
+  // Aquí puedes llamar a la función updatePassword() si todas las validaciones son exitosas
+  //updatePassword();
+});
+
+const saverolebtn = document.getElementById('saverole');
+const roleinput = document.getElementById('roleinput');
+const originalrole = roleinput.value;
+
+  roleinput.addEventListener('input', () => {
+            cambios = roleinput.value !== originalrole;
+            rolebutton();
+        });
+
+// Función para actualizar el estado del botón de envío
+        function rolebutton() {
+            if (cambios) {
+                saverolebtn.removeAttribute('disabled');
+            } else {
+                saverolebtn.setAttribute('disabled', 'disabled');
+            }
+        }
+   
+</script>
+<script>
+ $(document).ready(function () {
+  const searchInput = document.getElementById('searchInput');
+  const searchUserBtn = document.getElementById('searchUserBtn');
+  const usersTableBody = document.getElementById('usersTableBody');
+
+  // Array para almacenar los IDs de los usuarios seleccionados
+  const selectedUserIds = [];
+
+  // Agrega un controlador de eventos al botón de búsqueda
+  searchUserBtn.addEventListener('click', () => {
+    const searchTerm = searchInput.value;
+
+    if (searchTerm === '') {
+      alert('Por favor, ingrese un término de búsqueda.');
+      return;
+    }
+
+    // Realiza una solicitud AJAX para buscar usuarios
+    fetch(`/pmanager/buscarUsuarios?term=${encodeURIComponent(searchTerm)}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Datos recibidos del servidor:', data);
+
+        // Limpia los resultados anteriores
+        usersTableBody.innerHTML = '';
+
+        if (data.length === 0) {
+          usersTableBody.innerHTML = 'No se encontraron usuarios.';
+        } else {
+          // Muestra los resultados en la tabla
+          data.forEach((usuario) => {
+            const userRow = document.createElement('tr');
+            userRow.innerHTML = `
+              <td>${usuario.name} ${usuario.lastname} </td>
+              <td>${usuario.role_name}</td>
+              <td>${usuario.estado}</td>
+              <td><button class="form-control">Agregar </button></td>
+            `;
+            usersTableBody.appendChild(userRow);
+          });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+});
+
+
+  </script>

@@ -1,0 +1,153 @@
+
+ <!-- ========== title-wrapper start ========== -->
+ <div class="content">
+
+
+         <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title">
+                  <h2>Administrar Projectos</h2>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="/">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager">Administracion</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Projectos
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <div class="container">
+         <div class="form-group">
+            <button class="btn btn-primary lni lni-plus" data-toggle="modal" data-target="#macro-projects">Macro Proyectos</button>
+            <a class="btn btn-primary lni lni-circle-plus" href="/pmanager/new-macro-project">Crear Macro Proyecto</a>
+          </div>
+
+           <div class="row">
+        <!-- Sección izquierda para el Macroproyecto -->
+        <div class="col-md-12">
+         <!-- Aquí mostrarás la información de los usuarios encontrados en una tabla -->
+       <div class="macroprojects-container" id="macroprojects-container"></div>
+     </div>
+   </div>
+
+
+
+
+<script>
+    let macroprojects;
+    let projects;
+// Realiza una solicitud GET al servidor para obtener los datos de usuario
+fetch('/pmanager/project-data', { method: 'GET' })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('La solicitud no fue exitosa', response);
+    }
+    return response.json(); // Parsea la respuesta JSON
+  })
+  .then(data => {
+    // Aquí 'data' contiene los datos de usuario recibidos del servidor
+    console.log(data); // Puedes hacer lo que necesites con los datos
+    // Por ejemplo, renderizar los usuarios en la página
+    
+    // Llama a la función para renderizar los proyectos
+    renderProjectsGroupedByMacroProject(data);
+
+  })
+  .catch(error => {
+    console.error('Ocurrió un error:', error.message);
+  });
+
+function renderProjectsGroupedByMacroProject(projects) {
+  const groupedProjects = {};
+  console.log(projects);
+
+  // Agrupa los proyectos por macroproyecto
+  projects.forEach((project) => {
+    const macroProject = project.macro_project || 'Sin Macroproyecto';
+
+    if (!groupedProjects[macroProject]) {
+      groupedProjects[macroProject] = [];
+    }
+
+    groupedProjects[macroProject].push(project);
+  });
+
+  // Renderiza los macroproyectos y sus proyectos en el contenedor
+  const macroprojectsContainer = document.getElementById('macroprojects-container');
+  macroprojectsContainer.innerHTML = ''; // Limpia el contenido existente
+
+  // Itera sobre los grupos y renderiza cada macroproyecto con sus proyectos
+  for (const [macroProject, projectsInMacroProject] of Object.entries(groupedProjects)) {
+    const macroprojectHTML = generateMacroprojectHTML(macroProject, projectsInMacroProject);
+    macroprojectsContainer.innerHTML += macroprojectHTML;
+  }
+}
+
+// Función para generar el HTML de un macroproyecto con sus proyectos
+const generateMacroprojectHTML = (macroProject, projectsInMacroProject) => {
+  const projectRowsHTML = projectsInMacroProject.map(generateProjectRow).join('');
+
+  return `
+    <div class="macroproyecto">      
+              <img src="${projectsInMacroProject[0].macro_project_bg_pic || '../assets/images/projects/default-project-bg.jpg'}" alt="Imagen de Fondo" class="imagen-fondo">
+                <div class="macroproyecto-contenido">
+                <h3 class="macrotitle">${macroProject}</h3>
+                    <p class="descripcion-corta">${projectsInMacroProject[0].macro_project_description || 'Estos proyectos no pertenecen a ningun macroproyecto'}</p>
+                </div>
+                <span class="titulo-contenedor-proyectos-principales">Proyectos Principales </span>
+      <div class="contenedor-proyectos">
+        ${projectRowsHTML}
+      </div>
+                  <span class="titulo-contenedor-proyectos-principales">Proyectos Secundarios</span>
+
+              <div class="contenedor-proyectos">
+                <button class="btn-macro-primary" data-toggle="modal" data-target="#edit-macro-project-modal">
+                    <a class="macro-btn-primary-content">Informacion de Macro-Proyecto
+                </a>
+              </button>
+                <a class="btn-macro" href="/pmanager/new-project?mpid=${projectsInMacroProject[0].macro_project_id}">
+                    Nuevo Proyecto
+              </a>
+
+
+            </div>
+    </div>
+  `;
+};
+
+// Función para generar el HTML de una fila de proyecto
+const generateProjectRow = (projectItem) => {
+  return `
+    <div class="proyecto">
+      <img src="${projectItem.project_pic}" alt="Imagen Proyecto" class="img-thumbnail">
+      <div class="project-content">
+        <p class="title">${projectItem.name}</p>
+        <p>${projectItem.name_category}</p>
+        <a class="lni lni-pencil-alt pad-edit" href="/pmanager/project?id=${projectItem.id}"></a>
+        <a class="lni lni-trash-can pad-delete" href="/pmanager/deleteproject?id=${projectItem.id}"></a>
+      </div>
+    </div>
+  `;
+};
+
+
+
+</script>

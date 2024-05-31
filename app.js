@@ -112,7 +112,7 @@ app.use((req, res, next) => {
     next(); // Si está autenticado, continuar con la siguiente ruta o middleware
   } else {
     // Si no está autenticado, redirigir a la página de inicio de sesión
-    if (req.url === '/login' || req.url === '/config-server') {
+    if (req.url === '/login' /*|| req.url === '/config-server'*/) {
       next();
     } else {
       res.redirect('/login'); // Corregir aquí

@@ -1,0 +1,171 @@
+ 
+
+
+
+  <style>
+    #autocomplete-container {
+      position: relative;
+      display: inline-block;
+    }
+
+
+    #suggestions-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    #suggestions-list li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #suggestions-list li:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+
+
+ <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper">
+            <div class="row align-content-center">
+              <div class="col-md-10">
+                <div class="title" style="padding: 25px;">
+                  <h2> Agregar tarea personalizada a Proyecto:<%= data.project.name %></h2>
+                </div>
+              </div>
+
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <!-- Columna de información editable -->
+    <div class="col-md-6" style="margin: auto; width: 50%;">
+      <div class="card card-user">
+<form action="/pmanager/add-task-to-project" method="POST" id="add-user-to-projectform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Información Basica</h5>
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos del Proyecto</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="projectname">Nombre de Proyecto</label>
+          <input type="text" class="form-control" id="projectname" name="name" readonly value="<%= data.project.name %>">
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="projectname">ID Proyecto</label>
+          <input type="text" class="form-control" id="projectid" name="pid" readonly value="<%= data.project.id %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <input type="text" class="form-control" id="description" name="description" readonly value="<%= data.project.description %>">
+        </div>
+      </div>
+    </div>
+
+        <!----- Cuerpo de mi modal ----->
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos de tarea</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="taskname">Nombre de Tarea</label>
+          <input type="text" class="form-control" id="taskname" name="taskname" placeholder="Nombre de la tarea" >
+        </div>
+      </div>
+            <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="tasktag">Tipo de tarea</label>
+          <br>
+          <select name="tag" class="form-control">
+            <% data.tags.forEach(function(tag) { %>
+              <option value="<%= tag.id %>">
+                <%= tag.name %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="start_date">Fecha Inicio</label>
+          <input type="date" class="form-control" id="start_date" name="start_date" >
+        </div>
+      </div>
+       <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="due_date">Fecha Entrega</label>
+          <input type="date" class="form-control" id="due_date" name="due_date" >
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="taskdescription">Descripcion</label>
+          <input type="text" class="form-control" id="taskdescription" name="taskdescription" placeholder="Describe la tarea">
+        </div>
+      </div>
+      <div class="col-md-4 pl-1">
+        <div class="form-group">
+          <label for="assigned">Asignada a:</label>
+          <br>
+          <select name="assigned" class="form-control">
+            <% data.members.forEach(function(member) { %>
+              <option value="<%= member.user_id %>">
+                (@ <%= member.username %>) - <%= member.name %> <%= member.lastname %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+        </div>
+    </div>
+
+    </div>
+        <!----- Cuerpo de mi modal ----->
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserrole" class="btn btn-primary">Guardar</button>
+        <a href="/pmanager/project?id=<%= data.project.id %>" id="submituserrole" class="btn btn-secondary">Atras</a>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+    </div>
+  </div>
+</div>
+
+
+

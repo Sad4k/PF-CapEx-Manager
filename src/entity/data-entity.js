@@ -295,6 +295,23 @@ const Categories = sequelize.define('Categories', {
   color: DataTypes.STRING(45),
 });
 
+// Función para crear la vista
+const userView = async () => {
+  await sequelize.query(`
+    CREATE VIEW UserRoles AS
+    SELECT Users.username, Users.email, Sys_roles.role_name
+    FROM Users
+    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+  `);
+
+  await sequelize.query(`
+    CREATE VIEW UserRoles AS
+    SELECT Users.username, Users.email, Sys_roles.role_name
+    FROM Users
+    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+  `);
+};
+
 // Define relaciones entre las tablas aquí
 
 module.exports = {
@@ -324,4 +341,5 @@ module.exports = {
   Projects_Modules,
   ProjectAccounts,
   Genres,
+  userView,
 };

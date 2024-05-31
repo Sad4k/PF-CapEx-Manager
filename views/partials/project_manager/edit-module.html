@@ -1,0 +1,564 @@
+ <!-- ========== title-wrapper start ========== -->
+<link href="../../../assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="../../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+          <div class="title-wrapper pt-30">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="title">
+                  <h2> Projecto: <%= data.project.name %></h2>
+                </div>
+              </div>
+              <!-- end col -->
+              <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a href="/">Dashboard</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager">Administracion</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="/pmanager/projectsgrid">Projectos</a>
+                      </li>
+                      <li class="breadcrumb-item" >
+                       <a href="/pmanager/project?id=<%= data.project.id %>"><%= data.project.name %></a>
+                        <li class="breadcrumb-item active" aria-current="page">
+                        <%= data.module.name %>
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <!-- Columna de información editable -->
+    <div class="col-md-12" >
+      <div class="card card-user">
+<form action="/pmanager/add-module-to-project" method="POST" id="add-module-to-projectform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Información Basica</h5>
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos del Proyecto</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="projectname">Nombre de Proyecto</label>
+          <input type="text" class="form-control" id="projectname" name="name" readonly value="<%= data.project.name %>">
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="projectname">ID Proyecto</label>
+          <input type="text" class="form-control" id="projectid" name="pid" readonly value="<%= data.project.id %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <input type="text" class="form-control" id="description" name="description" readonly value="<%= data.project.description %>">
+        </div>
+      </div>
+    </div>
+
+        <!----- Cuerpo de mi modal ----->
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="title"><strong>Datos de Modulo</strong></h6>
+         <div class="row">
+      <div class="col-md-2 pr-1">
+        <div class="form-group">
+          <label for="modulerwid" >Id</label>
+          <input type="text" class="form-control" id="modulerwid" name="modulerwid" readonly value="<%= data.module.id %>" >
+        </div>
+      </div>
+                  <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="modulename">Nombre del Modulo</label>
+          <input type="text" class="form-control" id="modulename" name="modulename" placeholder="Nombre del Modulo" value="<%= data.module.name %>" >
+        </div>
+      </div>
+            <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="moduledescription">Descripcion</label>
+          <input type="text" class="form-control" id="moduledescription" name="moduledescription" value="<%= data.module.description %>">
+        </div>
+      </div>
+
+        </div>
+      <div class="row">
+<div class="col-md-8 pr-5">
+    <div class="form-group">
+        <label for="modulegenre">Género</label>
+        <div class="select-position" id="modulegenre">
+            <select name="modulegenre" class="form-control">
+                <% var groupedGenres = {}; %>
+                <% data.genres.forEach(function(genre) { %>
+                    <% if (!groupedGenres[genre.ambito]) { %>
+                        <% groupedGenres[genre.ambito] = []; %>
+                    <% } %>
+                    <% groupedGenres[genre.ambito].push(genre); %>
+                <% }); %>
+                <% for (var ambito in groupedGenres) { %>
+                    <optgroup label="<%= ambito %>">
+                        <% groupedGenres[ambito].forEach(function(genre) { %>
+                            <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }); %>
+                    </optgroup>
+                <% } %>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+         <h6 class="title"><strong>Datos Creativos</strong></h6>
+         <div class="row">
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="title">Titulo</label>
+          <input type="text" class="form-control" id="title" name="title" value="<%= data.module.title %>" >
+        </div>
+      </div>
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="short_description">Descripcion Corta</label>
+          <input type="text" class="form-control" id="short_description" name="short_description" value="<%= data.module.short_description %>">
+        </div>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-md-12 pr-1">
+        <div class="form-group">
+          <label for="long_description">Descripcion Larga</label>
+          <textarea class="textarea form-control" rows="4" cols="15" id="long_description" name="long_description"><%= data.module.long_description %></textarea>
+        </div>
+      </div>      
+    </div>     
+         <h6 class="title"><strong>Creditos</strong></h6>
+         <div class="row">
+
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="performer">Interprete</label>
+          <input type="
+          text" class="form-control" id="performer" name="performer" value="<%= data.module.performer %>" >
+        </div>
+      </div>
+       <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="author">Autor</label>
+          <input type="text" class="form-control" id="author" name="author" value="<%= data.module.author %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="launch_date">Fecha de Lanzamiento</label>
+          <input type="date" class="form-control" id="launch_date" name="launch_date" value="<%= data.module.launch_date %>">
+        </div>
+      </div>
+            <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="status">Estado</label>
+          <div class="select-position" id="status">
+            <select name="status" class="form-control">
+              <option value="Detenido">Detenido</option>
+              <option value="En Proceso">En Proceso</option>
+              <option value="Concluido">Concluido</option>
+              <option value="Abandonado">Abandonado</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+        <!----- Cuerpo de mi modal ----->
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserrole" class="btn btn-primary">Guardar</button>
+        <a href="/pmanager/project?id=<%= data.project.id %>" id="submituserrole" class="btn btn-secondary">Atras</a>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+<!-- ######################################################## MODAL PARA USUARIOS DE UN PROYECTO #################################################### -->
+
+
+
+      
+    
+ <div class="tab-pannel tab-content">   
+ <!-- Botones de pestañas -->
+  <div id="tab-buttons">
+    <div class="tab-button" onclick="changeTab(1)">Diseños</div>
+    <div class="tab-button" onclick="changeTab(2)">Grabaciones</div>
+    <div class="tab-button" onclick="changeTab(3)">Arreglos</div>
+    <div class="tab-button" onclick="changeTab(4)">Promocion</div>
+    <div class="tab-button" onclick="changeTab(5)">Distribucion</div>
+    <div class="tab-button" onclick="changeTab(6)">Documentacion</div>
+    <div class="tab-button" onclick="changeTab(7)">Analitica</div>
+  </div>
+   
+
+  <!-- Contenido de las pestañas -->
+  <div id="tab-content" >
+     <!--- ######################################################### TAB 1 ########################################################################## --->
+
+    <div id="tab1" class="tab active">
+
+<br>
+ <h6 class="tab-panel-title">Integrantes del Proyecto</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/user-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+      <div class="col-md-12">
+          <table class="table table-data">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Nombres</th>
+                <th>Rol Proyecto</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectMembers">
+          <% if (Array.isArray(data.members) && data.members.length > 0) { %>
+  <% data.members.forEach(function(member) { %>
+    <tr data-row-id="<%= member.id %>">
+      <td>@<%= member.username %><%= member.id %></td>
+      <td><%= member.name %> <%= member.lastname %> </td>
+      <td>
+        <div class="select-position" id="projectrole">
+          <select name="projectrole">
+            <% data.projectrole.forEach(function(role) { %>
+              <option <%= member.projects_role_id == role.id ? 'selected' : ''  %> value="<%= role.id %>">
+                <%= role.id %> - <%= role.role %> <%= member.projects_role_id == role.id ? '(actual)' : ''  %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+      </td>
+      <td><a href="/pmanager/delete-user-from-project?rwid=<%= member.id %>&pid=<%= data.project.id %>">Expulsar</a><a>Rendimiento</a> </td>
+    </tr>
+  <% }); %>
+<% } else { %>
+  <tr>
+    <td colspan="4">No hay datos para mostrar.</td>
+  </tr>
+<% } %>
+
+
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+
+    <!--- ######################################################### TAB 1 ########################################################################## --->
+
+    <!--- ######################################################### TAB 2 ########################################################################## --->
+
+    <div id="tab2" class="tab">
+     <br>
+ <h6 class="tab-panel-title">Cuentas Del Proyecto</h6>
+         
+          <table class="table table-search">
+            <thead>
+              <tr>
+                <th>Cuenta</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Tipo de Cuenta</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcounts">
+               <% if (Array.isArray(data.projectaccounts) && data.projectaccounts.length > 0) { %>
+               <% data.projectaccounts.forEach(function(account) { %>
+              <tr>
+               <td><%= account.account_number %></td>
+               <td><%= account.account_name %> </td>
+               <td><%= account.account_description %> </td>
+               <td><%= account.account_type %> </td>
+                 </tr>
+               <% }); %>
+               <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 2 ########################################################################## --->
+
+    <!--- ######################################################### TAB 3 ########################################################################## --->
+
+    <div id="tab3" class="tab">
+       <br>
+ <h6 class="tab-panel-title">Tareas del Proyecto</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/task-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th>Tarea</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Tipo</th>
+                <th>Asignado</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Entrega</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+               <% if (Array.isArray(data.tasks) && data.tasks.length > 0) { %>
+              <% data.tasks.forEach(function(task) { %>
+              <tr>
+               <td><%= task.name %> <%= task.id %></td>
+               <td><%= task.description %> </td>
+               <td><%= task.status %> </td>
+               <td><%= task.tag_name %> </td>
+               <td><%= task.user_assignee_name %> </td>
+               <td><%= task.start_date %> </td>
+               <td><%= task.due_date %> </td>
+               <td><a href="/pmanager/task-edit-proj-form?pid=<%= data.project.id %>&id=<%= task.id %>">Lista</a><a href="/pmanager/delete-task-from-project?rwid=<%= task.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 3 ########################################################################## --->
+
+    <!--- ######################################################### TAB 4 ########################################################################## --->
+
+    <div id="tab4" class="tab">
+      
+        <br>
+ <h6 class="tab-panel-title">Activos</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/asset-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Fecha de Compra</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+              <% if (Array.isArray(data.projectassets) && data.projectassets.length > 0) { %>
+              <% data.projectassets.forEach(function(asset) { %>
+              <tr>
+               <td><img style="width: 30px; aspect-ratio: initial;" src="<%= asset.asset_pic %>" alt="<%= asset.name %>"></td>
+               <td><%= asset.name %> <% if (asset.brand) { %>
+  <span class="highlight"><%= asset.brand %></span>
+<% } %></td>
+               <td><%= asset.description %> </td>
+               <td><%= asset.value %> </td>
+               <td><%= asset.purchase_date %> </td>
+               <td><%= asset.state %> </td>
+               <td><a href="asset-edit-proj-form?pid=<%= data.project.id %>&id=<%= asset.id %>">Editar</a><a href="/pmanager/delete-asset-from-project?rwid=<%= asset.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 4 ########################################################################## --->
+    <!--- ######################################################### TAB 5 ########################################################################## --->
+
+    <div id="tab5" class="tab">
+      
+        <br>
+ <h6 class="tab-panel-title">Activos</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/asset-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Fecha de Compra</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+              <% if (Array.isArray(data.projectassets) && data.projectassets.length > 0) { %>
+              <% data.projectassets.forEach(function(asset) { %>
+              <tr>
+               <td><img style="width: 30px; aspect-ratio: initial;" src="<%= asset.asset_pic %>" alt="<%= asset.name %>"></td>
+               <td><%= asset.name %> <% if (asset.brand) { %>
+  <span class="highlight"><%= asset.brand %></span>
+<% } %></td>
+               <td><%= asset.description %> </td>
+               <td><%= asset.value %> </td>
+               <td><%= asset.purchase_date %> </td>
+               <td><%= asset.state %> </td>
+               <td><a href="asset-edit-proj-form?pid=<%= data.project.id %>&id=<%= asset.id %>">Editar</a><a href="/pmanager/delete-asset-from-project?rwid=<%= asset.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 5 ########################################################################## --->
+
+        <!--- ######################################################### TAB 6 ########################################################################## --->
+
+    <div id="tab6" class="tab">
+      
+        <br>
+ <h6 class="tab-panel-title">Activos</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/asset-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Fecha de Compra</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+              <% if (Array.isArray(data.projectassets) && data.projectassets.length > 0) { %>
+              <% data.projectassets.forEach(function(asset) { %>
+              <tr>
+               <td><img style="width: 30px; aspect-ratio: initial;" src="<%= asset.asset_pic %>" alt="<%= asset.name %>"></td>
+               <td><%= asset.name %> <% if (asset.brand) { %>
+  <span class="highlight"><%= asset.brand %></span>
+<% } %></td>
+               <td><%= asset.description %> </td>
+               <td><%= asset.value %> </td>
+               <td><%= asset.purchase_date %> </td>
+               <td><%= asset.state %> </td>
+               <td><a href="asset-edit-proj-form?pid=<%= data.project.id %>&id=<%= asset.id %>">Editar</a><a href="/pmanager/delete-asset-from-project?rwid=<%= asset.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 6 ########################################################################## --->
+        <!--- ######################################################### TAB 7 ########################################################################## --->
+
+    <div id="tab7" class="tab">
+      
+        <br>
+ <h6 class="tab-panel-title">Activos</h6>
+ <a class="btn btn-primary" style="padding: 10px 15px; margin: 10px;" href="/pmanager/asset-to-proj-form?id=<%= data.project.id %>">+ agregar</a>
+           <table class="table table-search" >
+            <thead>
+              <tr>
+                <th></th>
+                <th>Activo</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Fecha de Compra</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="projectAcountsTableBody" >
+              <% if (Array.isArray(data.projectassets) && data.projectassets.length > 0) { %>
+              <% data.projectassets.forEach(function(asset) { %>
+              <tr>
+               <td><img style="width: 30px; aspect-ratio: initial;" src="<%= asset.asset_pic %>" alt="<%= asset.name %>"></td>
+               <td><%= asset.name %> <% if (asset.brand) { %>
+  <span class="highlight"><%= asset.brand %></span>
+<% } %></td>
+               <td><%= asset.description %> </td>
+               <td><%= asset.value %> </td>
+               <td><%= asset.purchase_date %> </td>
+               <td><%= asset.state %> </td>
+               <td><a href="asset-edit-proj-form?pid=<%= data.project.id %>&id=<%= asset.id %>">Editar</a><a href="/pmanager/delete-asset-from-project?rwid=<%= asset.id %>&pid=<%= data.project.id %>">Eliminar</a></td>
+                 </tr>
+               <% }); %>
+                <% } else { %>
+               <tr>
+               <td colspan="4">No hay datos para mostrar.</td>
+               </tr>
+               <% } %>
+            </tbody>
+          </table>
+        </div>
+
+    <!--- ######################################################### TAB 7 ########################################################################## --->
+
+</div>
+
+
+
+
+ <script>
+    // Función para cambiar de pestaña
+    function changeTab(tabNumber) {
+      // Ocultar todas las pestañas
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+
+      // Mostrar la pestaña seleccionada
+      document.getElementById('tab' + tabNumber).classList.add('active');
+      document.querySelector('.tab-button:nth-child(' + tabNumber + ')').classList.add('active');
+    }
+  </script>
+  
+
+    </div>
+  </div>
+</div>
+
+
+

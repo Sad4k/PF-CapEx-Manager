@@ -1,0 +1,179 @@
+ 
+
+
+
+  <style>
+    #autocomplete-container {
+      position: relative;
+      display: inline-block;
+    }
+
+
+    #suggestions-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+
+    #suggestions-list li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #suggestions-list li:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+
+
+ <!-- ========== title-wrapper start ========== -->
+          <div class="title-wrapper">
+            <div class="row align-content-center">
+              <div class="col-md-10">
+                <div class="title" style="padding: 25px;">
+                  <h2> Agregar Activo a Proyecto:<%= data.project.name %></h2>
+                </div>
+              </div>
+
+            </div>
+            <!-- end row -->
+          </div>
+          <!-- ========== title-wrapper end ========== -->
+
+    <!-- Columna de información editable -->
+    <div class="col-md-6" style="margin: auto; width: 50%;">
+      <div class="card card-user">
+<form action="/pmanager/add-asset-to-project" method="POST" id="add-user-to-projectform">     
+  <!-- Información de Usuario -->
+  <div class="card-header">
+    <h5 class="card-title">Información Basica</h5>
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos del Proyecto</strong></h6>
+         <div class="row">
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="projectname">Nombre de Proyecto</label>
+          <input type="text" class="form-control" id="projectname" name="name" readonly value="<%= data.project.name %>">
+        </div>
+      </div>
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="projectname">ID Proyecto</label>
+          <input type="text" class="form-control" id="projectid" name="pid" readonly value="<%= data.project.id %>">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="description">Descripcion</label>
+          <input type="text" class="form-control" id="description" name="description" readonly value="<%= data.project.description %>">
+        </div>
+      </div>
+    </div>
+
+        <!----- Cuerpo de mi modal ----->
+  </div>
+  <div class="card-body">
+
+        <!----- Cuerpo de mi modal ----->
+         <h6 class="modal-title"><strong>Datos de Activo</strong></h6>
+         <div class="row">
+      <div class="col-md-2 pr-1">
+        <div class="form-group">
+          <label for="assetrwid" >Id</label>
+          <input type="text" class="form-control" id="assetrwid" name="assetrwid" disabled value="*Automatico*" >
+        </div>
+      </div>
+      <div class="col-md-2 pr-1">
+        <div class="form-group">
+          <label for="assetcodeid">Codigo</label>
+          <input type="text" class="form-control" id="assetcodeic" name="assetcodeid" placeholder="Codigo del activo" >
+        </div>
+      </div> 
+            <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="assetname">Nombre de Activo</label>
+          <input type="text" class="form-control" id="assetname" name="assetname" placeholder="Nombre del activo" >
+        </div>
+      </div>
+      <div class="col-md-4 pl-1">
+                  <div class="form-group">
+          <label for="assetstate">Estado</label>
+          <div class="select-position" id="assetstate">
+                      <select name="assetstate" class="form-control">
+                        <option value="Nuevo" >Nuevo</option>
+                        <option value="Buena Condicion" >Buena Condicion</option>
+                        <option value="Usado" >Usado</option>
+                        <option value="Funcional" >Funcional</option>
+                        <option value="Con Fallos" >Con Fallos</option>
+                        <option value="No Funcional" >No Funcional</option>
+                      </select>
+                    </div>
+                  </div>
+                  </div>
+        </div>
+         <div class="row">
+      <div class="col-md-4 pr-1">
+        <div class="form-group">
+          <label for="brand">Marca</label>
+          <input type="text" class="form-control" id="brand" name="brand" placeholder="Marca del activo" >
+        </div>
+      </div>
+      <div class="col-md-8 pr-1">
+        <div class="form-group">
+          <label for="assetdescription">Descripcion</label>
+          <input type="text" class="form-control" id="assetdescription" name="assetdescription" placeholder="Descripcion del activo" >
+        </div>
+      </div>      
+    </div>
+    <div class="row">
+
+      <div class="col-md-6 pr-1">
+        <div class="form-group">
+          <label for="assetvalue">Valor</label>
+          <input type="number" class="form-control" step="0.01" min="0" max="1000000" id="assetvalue" name="assetvalue" >
+        </div>
+      </div>
+       <div class="col-md-6 pl-1">
+        <div class="form-group">
+          <label for="purchase_date">Fecha Compra</label>
+          <input type="date" class="form-control" id="purchase_date" name="purchase_date" >
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+        <!----- Cuerpo de mi modal ----->
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-md-6 pr-1">
+        <button type="submit" id="submituserrole" class="btn btn-primary">Guardar</button>
+        <a href="/pmanager/project?id=<%= data.project.id %>" id="submituserrole" class="btn btn-secondary">Atras</a>
+      </div>
+      <div class="col-md-6 pl-1">          
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+    </div>
+  </div>
+</div>
+
+
+

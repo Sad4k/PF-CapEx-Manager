@@ -15,7 +15,7 @@ if (!serverConfig) {
 }
 
 const { sequelize, connectdb, disconnectdb } = require(db_controller_path);
-const { Log, Users, Sys_role, Files, FileTypes, FileCategory, Accounts, Dashboards, Projects, Tasks, Assets, Tags, Objectives, TaskTags, Categories, Analysis, Arragements, Designs, Documentations, Promotions, Recordings, Macro_Projects, ProjectsRole, Projects_Modules, ProjectAccounts, Genres } = require('../../src/entity/data-entity.js'); // Asegúrate de ajustar la ruta
+const { Log, Users, Sys_role, Files, FileTypes, FileCategory, Accounts, Dashboards, Projects, Tasks, Assets, Tags, Objectives, TaskTags, Categories, Analysis, Arragements, Designs, Documentations, Promotions, Recordings, Macro_Projects, ProjectsRole, Projects_Modules, ProjectAccounts, Genres, userView } = require('../../src/entity/data-entity.js'); // Asegúrate de ajustar la ruta
 
 const syncModels = async () => {
   try {
@@ -23,8 +23,7 @@ const syncModels = async () => {
     await sequelize.sync({ force: true }); // Esto eliminará y recreará todas las tablas, úsalas con cuidado en producción
     console.log('Todas las tablas fueron creadas.');
 
-    // Insertar datos de ejemplo aquí si es necesario
-      // Insertar datos de ejemplo en la tabla Users
+    // Insertar datos iniciales
       await Users.create({
         username: 'sad4k',
         profilePic: '',
@@ -42,6 +41,9 @@ const syncModels = async () => {
         name: 'app-selector',
         path: './views/app-selector',
       });
+      
+      userView();
+
   
 
   } catch (error) {

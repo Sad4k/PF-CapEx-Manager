@@ -107,7 +107,7 @@ const users = {
   obtenerusuario: async function (id) {
     try {
       const query =
-        'SELECT * FROM projectFlow_db.Users_sysview1 WHERE id = ' + id + '';
+        'SELECT * FROM  Users_sysview1 WHERE id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -148,7 +148,7 @@ const users = {
   buscarUsuariosPorTerminos: async function (termino) {
     try {
       const query = `
-      SELECT * FROM projectFlow_db.Users_sysview1
+      SELECT * FROM  Users_sysview1
       WHERE 
         id = :termino
         OR username LIKE :termino
@@ -363,7 +363,7 @@ const macroprojects = {
   //Funcion personalizada para obtener usuario desde vista
   obtenerRegistros: async function () {
     try {
-      const query = 'SELECT * FROM projectFlow_db.MacroProjects_sysview1 ';
+      const query = 'SELECT * FROM MacroProjects_sysview1 ';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -387,7 +387,7 @@ const macroprojects = {
   obtenerRegistrosPorIdSysview: async function (id) {
     try {
       const query =
-        'SELECT * FROM projectFlow_db.MacroProjects_sysview2 WHERE Macro_project_id = ' +
+        'SELECT * FROM MacroProjects_sysview2 WHERE Macro_project_id = ' +
         id +
         '';
       const result = await sequelize.query(query, {
@@ -443,7 +443,7 @@ const macroprojects = {
   obtenerObjetivosSysview1: async function (id) {
     try {
       const query =
-        'SELECT * FROM projectFlow_db.MacroProjects_objectives_sysview1';
+        'SELECT * FROM  MacroProjects_objectives_sysview1';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -468,7 +468,7 @@ const projects = {
   obtenerproyecto: async function (id) {
     try {
       const query =
-        'SELECT * FROM projectFlow_db.Projects_sysview1 WHERE id = ' + id + '';
+        'SELECT * FROM  Projects_sysview1 WHERE id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -596,7 +596,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM projectFlow_db.Projects_assets WHERE project_id = ' +
+        'SELECT * FROM  Projects_assets WHERE project_id = ' +
         id +
         '';
       const result = await sequelize.query(query, {
@@ -620,7 +620,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM projectFlow_db.Projects_assets WHERE id = ' + id + '';
+        'SELECT * FROM  Projects_assets WHERE id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -641,7 +641,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM projectFlow_db.Projects_modules WHERE project_id = ' +
+        'SELECT * FROM  Projects_modules WHERE project_id = ' +
         id +
         '';
       const result = await sequelize.query(query, {
@@ -664,7 +664,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM projectFlow_db.Projects_modules WHERE id = ' + id + '';
+        'SELECT * FROM  Projects_modules WHERE id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -685,7 +685,7 @@ const projects = {
   obtenerModulos: async function () {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
-      const query = 'SELECT * FROM projectFlow_db.Projects_modules';
+      const query = 'SELECT * FROM  Projects_modules';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -734,7 +734,7 @@ const projects = {
   buscarProyectoPorTerminos: async function (termino) {
     try {
       const query = `
-      SELECT * FROM projectFlow_db.Users_sysview1
+      SELECT * FROM  Users_sysview1
       WHERE 
         id = :termino
         OR username LIKE :termino
@@ -1221,7 +1221,7 @@ const projects = {
   obtenerRegistros: async function () {
     try {
       //connectdb();
-      const query = 'SELECT * FROM projectFlow_db.Projects_sysview1';
+      const query = 'SELECT * FROM  Projects_sysview1';
       const proyectos = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });

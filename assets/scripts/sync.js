@@ -42,7 +42,7 @@ const syncModels = async () => {
         path: './views/app-selector',
       });
       
-      userView();
+      await userView();
 
   
 

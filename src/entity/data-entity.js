@@ -305,11 +305,11 @@ const userView = async () => {
   `);
 
   await sequelize.query(`
-    CREATE VIEW MacroProjects_sysview1 AS
-    SELECT Users.username, Users.email, Sys_roles.role_name
-    FROM Users
-    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+    CREATE VIEW MacroProjects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
   `);
+  await sequelize.query(`
+  CREATE VIEW Projects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+`);
 };
 
 // Define relaciones entre las tablas aquí

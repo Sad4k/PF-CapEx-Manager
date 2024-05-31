@@ -6,12 +6,11 @@ const fs = require('fs');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+//Configuracion
+const config = require('./config/config.js');
 
 //Controladores de archivos
 const Fileman_controller = require('./src/controllers/filemanager.js');
-
-//Configuracion
-const config = require('./config/config.js');
 
 //Controladores de la app
 const PjAutomate_controller = require('./src/controllers/project-automate-controller.js');
@@ -35,7 +34,7 @@ app.post('/saveConfig', (req, res) => {
     return res.status(400).send('Faltan datos del cliente o configuración.');
   }
 
-  Fileman_controller.configure.saveConfig(newSystemConfig, (err, message) => {
+  config.configure.saveConfig(newSystemConfig, (err, message) => {
     if (err) {
       console.error('Error al guardar la configuración:', err);
       res.status(500).send('Error al guardar la configuración.');
@@ -48,7 +47,7 @@ app.post('/saveConfig', (req, res) => {
 // Ruta para leer la configuración del cliente
 app.get('/getConfig', (req, res) => {
   
-    Fileman_controller.configure.readConfig((err, config) => {
+  config.configure.readConfig((err, config) => {
       if (err) {
         console.error('Error al leer la configuración:', err);
         res.status(500).send(err.message);
@@ -61,7 +60,7 @@ app.get('/getConfig', (req, res) => {
 // Nueva ruta para aplicar la configuración del cliente
 app.post('/applyConfig', (req, res) => {
 
-  configure.applyConfig((err, message) => {
+  config.configure.applyConfig((err, message) => {
     if (err) {
       console.error('Error al aplicar la configuración:', err);
       res.status(500).send(err.message);

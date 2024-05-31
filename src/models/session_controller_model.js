@@ -1,5 +1,6 @@
-const serverConfig = require('../../config/config.js');
+const config = require('../../config/config.js');
 let db_controller_path;
+const serverConfig = config.configure.getConfigServer();
 
 if (!serverConfig) {
   console.error('serverConfig no está definido');

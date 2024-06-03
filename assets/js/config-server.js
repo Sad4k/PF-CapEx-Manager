@@ -71,7 +71,7 @@ function generateSystemConfigHTML(config) {
                         <td>Idioma</td>
                         <td><select class="form-control" id="language" name="language" onchange="updateSystemPartial()" >
                         <option selected value="ES-US">Español US</option>
-                        </select>
+                    </select>
                     </tr>
                 </tbody>
             </table>
@@ -100,7 +100,7 @@ function generateSystemConfigHTML(config) {
             <div class="modal-inside-title">Configuracion del Sistema</div>
             <table class="report-control" class="overflow-horizontal" id="relatedProjectsFromMacroProjectsTable">
                 <tbody>
-                    <tr>
+<tr>
                         <td>Tema del Sistema <span class="fa fa-info"></span></td>
                         <td><select class="form-control" id="theme" name="theme" onchange="themeSelector()" value="${config.theme}">
                         <optgroup label="Basic Themes">
@@ -176,13 +176,13 @@ function generateHostConfigHTML(hostConfig) {
 function generateDbConfigHTML(systemConfig) {
     switch (systemConfig.sysMode) {
         case 'demo-local':
-
+           
             break;
         case 'demo-online':
             handleDemoOnline();
             break;
         case 'master-local-sqlite':
-            return `
+             return `
         <div class="page" name="System-config">
             <div class="card-inside-title">Base de Datos local</div>
             <table class="report-control" class="overflow-horizontal" id="">
@@ -301,7 +301,7 @@ function generateDbConfigHTML(systemConfig) {
         default:
             console.warn('Modo no reconocido:', sysMode);
     }
-
+    
 };
 
 // Función para manejar el cambio del select de funcionamiento
@@ -312,7 +312,7 @@ function handleSelectChange() {
 function changePage(pageName) {
     const pagePanel = document.getElementById("configTabPanel");
 
-    // Ocultar todas las páginas primero
+// Ocultar todas las páginas primero
     if (systemConfigPage) systemConfigPage.style.display = 'none';
     if (hostConfigPage) hostConfigPage.style.display = 'none';
     if (dbConfigPage) dbConfigPage.style.display = 'none';
@@ -322,7 +322,7 @@ function changePage(pageName) {
         if (!systemConfigPage) {
             systemConfigPage = document.createElement('div');
             systemConfigPage.innerHTML = generateSystemConfigHTML(systemConfig);
-            pagePanel.appendChild(systemConfigPage);
+pagePanel.appendChild(systemConfigPage);
         }
         systemConfigPage.style.display = 'block';
     } else if (pageName === 'Host-config') {
@@ -330,7 +330,7 @@ function changePage(pageName) {
             hostConfigPage = document.createElement('div');
             hostConfigPage.innerHTML = generateHostConfigHTML(systemConfig);
             pagePanel.appendChild(hostConfigPage);
-        }
+}
         hostConfigPage.style.display = 'block';
     } else if (pageName === 'db-config') {
         if (!dbConfigPage || dbConfigOutdated) {
@@ -339,7 +339,7 @@ function changePage(pageName) {
             }
             dbConfigPage = document.createElement('div');
             dbConfigPage.innerHTML = generateDbConfigHTML(systemConfig);
-            pagePanel.appendChild(dbConfigPage);
+pagePanel.appendChild(dbConfigPage);
             dbConfigOutdated = false; // Resetear el estado de desactualizado
         }
         dbConfigPage.style.display = 'block';
@@ -348,59 +348,59 @@ function changePage(pageName) {
     }
 }
 
-function databaseMode() {
-    updateSystemPartial();
+ function databaseMode() {
+updateSystemPartial();
     handleSelectChange();
-    const sysMode = document.getElementById('sysMode').value;
-    systemConfig.sysMode = sysMode;
+            const sysMode = document.getElementById('sysMode').value;
+            systemConfig.sysMode = sysMode;
 
-    switch (sysMode) {
-        case 'demo-local':
-            handleDemoLocal();
-            break;
-        case 'demo-online':
-            handleDemoOnline();
-            break;
-        case 'master-local-sqlite':
-            handleMasterLocal();
-            break;
-        case 'slave-local-sqlite':
-            handleSlaveLocal();
-            break;
-        case 'online-Mysql':
-            handleOnlineMysql();
-            break;
-        default:
-            console.warn('Modo no reconocido:', sysMode);
-    }
-};
+            switch (sysMode) {
+                case 'demo-local':
+                    handleDemoLocal();
+                    break;
+                case 'demo-online':
+                    handleDemoOnline();
+                    break;
+                case 'master-local-sqlite':
+                    handleMasterLocal();
+                    break;
+                case 'slave-local-sqlite':
+                    handleSlaveLocal();
+                    break;
+                case 'online-Mysql':
+                    handleOnlineMysql();
+                    break;
+                default:
+                    console.warn('Modo no reconocido:', sysMode);
+            }
+        };
 
-function handleDemoLocal() {
-    document.getElementById('db-config-pannel').style.display = 'none';
-    console.log('Modo Demostrativo (Local) seleccionado');
-    // Agrega aquí la lógica específica para el modo demostrativo local
-};
+        function handleDemoLocal() {
+            document.getElementById('db-config-pannel').style.display = 'none';
+            console.log('Modo Demostrativo (Local) seleccionado');
+            // Agrega aquí la lógica específica para el modo demostrativo local
+        };
 
-function handleDemoOnline() {
-    document.getElementById('db-config-pannel').style.display = 'none';
-    console.log('Modo Demostrativo (With Server) seleccionado');
-    // Agrega aquí la lógica específica para el modo demostrativo con servidor
-};
+        function handleDemoOnline() {
+            document.getElementById('db-config-pannel').style.display = 'none';
+            console.log('Modo Demostrativo (With Server) seleccionado');
+            // Agrega aquí la lógica específica para el modo demostrativo con servidor
+        };
 
-function handleMasterLocal() {
-    document.getElementById('db-config-pannel').style.display = 'block';
-    console.log('Modo Master Local seleccionado');
+        function handleMasterLocal() {
+            document.getElementById('db-config-pannel').style.display = 'block';
+            console.log('Modo Master Local seleccionado');
 
-};
+        };
 
-function handleSlaveLocal() {
-    document.getElementById('sysMode').value = "master-local-sqlite";
-    alert('Actualmente No disponible');
-}
+        function handleSlaveLocal() {
+            document.getElementById('sysMode').value = "master-local-sqlite"; 
+            alert('Actualmente No disponible');
+        }
 
-function handleOnlineMysql() {
-    document.getElementById('db-config-pannel').style.display = 'block';
-    console.log('Modo Mysql seleccionado');
+        function handleOnlineMysql() {
+            document.getElementById('db-config-pannel').style.display = 'block';
+console.log('Modo Mysql seleccionado');
 
 };
 
@@ -495,4 +495,4 @@ function fade(element) {
     element.style.animation = 'fade 0.5s forwards';
     element.addEventListener('animationend', function() {
     });
-}
+        }

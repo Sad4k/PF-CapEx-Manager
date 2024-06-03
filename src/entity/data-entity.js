@@ -90,6 +90,14 @@ const Files = sequelize.define('Files', {
   },
 });
 
+const Projects_modules = sequelize.define('Projects_modules', {
+  path: DataTypes.STRING(45),
+  fileName: {
+    type: DataTypes.STRING(45),
+    allowNull: false,
+  },
+});
+
 const FileTypes = sequelize.define('FileTypes', {
   extension: DataTypes.STRING(45),
   extensionName: DataTypes.STRING(45),
@@ -306,6 +314,9 @@ const userView = async () => {
   `);
   await sequelize.query(`
   CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+`);
+  await sequelize.query(`
+  CREATE VIEW IF NOT EXISTS MacroProjects_objectives_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
 `);
 };
 

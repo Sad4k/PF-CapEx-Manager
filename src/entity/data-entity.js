@@ -314,7 +314,7 @@ const createView = async (viewName, query) => {
 
 const sysViews = async () => {
   // vista de Macro Proyectos
-  await createView('MacroProjects_sysview1', 'CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT  `id`, `name`, `description` FROM Macro_Projects;');
+  await createView('MacroProjects_sysview1', 'CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT  `id` as id, `name` as name, `description` as description FROM Macro_Projects;');
 
   // vista de Proyectos
   await createView('Projects_sysview1', `

@@ -364,7 +364,7 @@ const macroprojects = {
   //Funcion personalizada para obtener usuario desde vista
   obtenerRegistros: async function () {
     try {
-      const query = 'SELECT `id`, `name`, `description` FROM Macro_Projects';
+      const query = 'SELECT `id`, `name`, `description` FROM MacroProjects_sysview1';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });

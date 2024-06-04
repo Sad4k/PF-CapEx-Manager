@@ -674,7 +674,7 @@ const projects = {
       }
 
       // Si no se encontró ninguna categoría, devuelve un valor por defecto o maneja el caso según tus necesidades
-      return 'No hay activos para mostrar';
+      return 'No hay Modulos para mostrar';
     } catch (error) {
       console.error('Error al obtener los activos:', error);
       throw error;

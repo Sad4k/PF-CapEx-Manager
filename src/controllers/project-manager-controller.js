@@ -573,7 +573,7 @@ router.post('/update-project-password/:id', async (req, res) => {
 
 router.get('/module-data/:id', async (req, res) => {
   try {
-    console.log('uppdate hecho', req.params);
+    console.log('update hecho', req.params);
     const id = req.params.id;
 
     const data = await pj_manager.projects.obtenerModulosPorId(id);

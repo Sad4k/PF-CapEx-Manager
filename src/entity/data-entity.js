@@ -314,18 +314,16 @@ const createView = async (viewName, query) => {
 
 const sysViews = async () => {
   // vista de Macro Proyectos
-  await createView('MacroProjects_sysview1', `
-    CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT * FROM Macro_Projects;
-  `);
+  await createView('MacroProjects_sysview1', 'CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT  `id`, `name`, `description` FROM Macro_Projects;');
 
   // vista de Proyectos
   await createView('Projects_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * FROM Projects;
+    CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id , name FROM Projects;
   `);
 
   // vista de módulos
   await createView('Projects_modules_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_modules_sysview1 AS SELECT * FROM Projects_modules;
+    CREATE VIEW IF NOT EXISTS Projects_modules_sysview1 AS SELECT id , name FROM Projects_modules;
   `);
 
   // vista de UserRoles

@@ -307,24 +307,21 @@ const Categories = sequelize.define('Categories', {
 const userView = async () => {
   //vista de Macro Proyectos
   await sequelize.query(`
-    CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT * from Macro_Projects;
+    CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT * FROM Macro_Projects;
   `);
   //vista de Proyectos
     await sequelize.query(`
-  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT Projects
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * FROM Projects;
   `);
   //vista de modulos
   await sequelize.query(`
-  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT Projects_modules
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * From Projects_modules;
   `);
 
   await sequelize.query(`
     CREATE VIEW IF NOT EXISTS UserRoles AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
   `);
 
-  await sequelize.query(`
-    CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
-  `);
   await sequelize.query(`
   CREATE VIEW IF NOT EXISTS MacroProjects_objectives_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
 `);

@@ -1,7 +1,7 @@
 {
   "zone": "República Dominicana",
   "language": "ES-US",
-  "sysMode": "demo-local",
+  "sysMode": "master-local-sqlite",
   "autoCalc": "1",
   "projectPath": "./Psoejs/sddd",
   "db_local_path": "../../databases/db.sqlite",

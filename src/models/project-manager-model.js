@@ -369,7 +369,7 @@ const macroprojects = {
       });
       return result;
     } catch (error) {
-      console.error('Error al obtener usuario:', error);
+      console.error('Error al obtener MacroProyecto:', error);
       throw error;
     }
   },

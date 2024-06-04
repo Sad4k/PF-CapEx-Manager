@@ -346,6 +346,7 @@ const macroprojects = {
   // Función para crear un nuevo registro
   crear: async function (nuevoRegistro) {
     try {
+      console.log("Creando El MP", nuevoRegistro);
       // Guarda el nuevo registro en la base de datos
       const macroproyectoCreado = await entities.Macro_Projects.create({
         name: nuevoRegistro.name,
@@ -353,7 +354,7 @@ const macroprojects = {
         macro_p_pic: nuevoRegistro.macro_p_pic,
         macro_p_bg: nuevoRegistro.macro_p_bg,
       });
-
+      console.log("Creado El MP id:", macroproyectoCreado.id);
       return macroproyectoCreado.id;
     } catch (error) {
       console.error('Error al crear el Macro Proyecto:', error);
@@ -363,10 +364,13 @@ const macroprojects = {
   //Funcion personalizada para obtener usuario desde vista
   obtenerRegistros: async function () {
     try {
-      const query = 'SELECT * FROM MacroProjects_sysview1 ';
+      const query = 'SELECT id FROM MacroProjects_sysview1 ';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
+      const test = await entities.Projects.findAll();
+      console.log("Prueba Projectos:" , test);
+
       return result;
     } catch (error) {
       console.error('Error al obtener MacroProyecto:', error);

@@ -303,28 +303,46 @@ const Categories = sequelize.define('Categories', {
   color: DataTypes.STRING(45),
 });
 
-// Función para crear la vista
-const userView = async () => {
-  //vista de Macro Proyectos
-  await sequelize.query(`
+const createView = async (viewName, query) => {
+  try {
+    await sequelize.query(query);
+    console.log(`La vista ${viewName} se ha creado correctamente.`);
+  } catch (error) {
+    console.error(`Error al crear la vista ${viewName}:`, error);
+  }
+};
+
+const sysViews = async () => {
+  // vista de Macro Proyectos
+  await createView('MacroProjects_sysview1', `
     CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT * FROM Macro_Projects;
   `);
-  //vista de Proyectos
-    await sequelize.query(`
-  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * FROM Projects;
-  `);
-  //vista de modulos
-  await sequelize.query(`
-  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * From Projects_modules;
+
+  // vista de Proyectos
+  await createView('Projects_sysview1', `
+    CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * FROM Projects;
   `);
 
-  await sequelize.query(`
-    CREATE VIEW IF NOT EXISTS UserRoles AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+  // vista de módulos
+  await createView('Projects_modules_sysview1', `
+    CREATE VIEW IF NOT EXISTS Projects_modules_sysview1 AS SELECT * FROM Projects_modules;
   `);
 
-  await sequelize.query(`
-  CREATE VIEW IF NOT EXISTS MacroProjects_objectives_sysview1 AS SELECT Users.username, Users.email, Sys_roles.role_name FROM Users JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
-`);
+  // vista de UserRoles
+  await createView('UserRoles', `
+    CREATE VIEW IF NOT EXISTS UserRoles AS 
+    SELECT Users.username, Users.email, Sys_roles.role_name 
+    FROM Users 
+    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+  `);
+
+  // vista de MacroProjects_objectives_sysview1
+  await createView('MacroProjects_objectives_sysview1', `
+    CREATE VIEW IF NOT EXISTS MacroProjects_objectives_sysview1 AS 
+    SELECT Users.username, Users.email, Sys_roles.role_name 
+    FROM Users 
+    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+  `);
 };
 
 // Define relaciones entre las tablas aquí
@@ -356,5 +374,5 @@ module.exports = {
   Projects_Modules,
   ProjectAccounts,
   Genres,
-  userView,
+  sysViews,
 };

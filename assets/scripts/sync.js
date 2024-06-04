@@ -15,7 +15,7 @@ if (!serverConfig) {
 }
 
 const { sequelize, connectdb, disconnectdb } = require(db_controller_path);
-const { Log, Users, Sys_role, Files, FileTypes, FileCategory, Accounts, Dashboards, Projects, Tasks, Assets, Tags, Objectives, TaskTags, Categories, Analysis, Arragements, Designs, Documentations, Promotions, Recordings, Macro_Projects, ProjectsRole, Projects_Modules, ProjectAccounts, Genres, userView } = require('../../src/entity/data-entity.js'); // Asegúrate de ajustar la ruta
+const { Log, Users, Sys_role, Files, FileTypes, FileCategory, Accounts, Dashboards, Projects, Tasks, Assets, Tags, Objectives, TaskTags, Categories, Analysis, Arragements, Designs, Documentations, Promotions, Recordings, Macro_Projects, ProjectsRole, Projects_Modules, ProjectAccounts, Genres, sysViews } = require('../../src/entity/data-entity.js'); // Asegúrate de ajustar la ruta
 
 const syncModels = async () => {
   try {
@@ -42,14 +42,14 @@ const syncModels = async () => {
         path: './views/app-selector',
       });
       
-      await userView();
+      await sysViews();
 
   
 
   } catch (error) {
     console.error('Error al sincronizar las tablas:', error);
   } finally {
-    await disconnectdb();
+    //await disconnectdb();
   }
 };
 

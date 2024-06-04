@@ -1,7 +1,7 @@
 {
   "zone": "República Dominicana",
   "language": "ES-US",
-  "sysMode": "master-local-sqlite",
+  "sysMode": "demo-local",
   "autoCalc": "1",
   "projectPath": "./Psoejs/sddd",
   "db_local_path": "../../databases/db.sqlite",
@@ -12,7 +12,7 @@
   "db_mysql_port": "3306",
   "db_mysql_script": "Mysql script",
   "db_mysql_backup": "./demo-myswl-bacup",
-  "theme": "dark-theme",
+  "theme": "light-theme",
   "hostName": "Device1",
   "hostId": "0254DE",
   "hostMac": "DA:06:SD:F3:12:16",

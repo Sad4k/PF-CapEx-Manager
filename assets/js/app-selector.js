@@ -1,3 +1,4 @@
+const body = document.body;
 function slideIn(element) {
     element.style.animation = 'slideIn 1s forwards';
 }

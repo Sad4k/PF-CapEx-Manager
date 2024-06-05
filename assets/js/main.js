@@ -1053,15 +1053,28 @@ $(document).ready(function() {
 
 
 /* modals    -------++--+-+-+-+-+-+-+--+-++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-*/
-
 $(document).ready(function() {
-  $('.dropdown').hover(function() {
-    $(this).find('.dropdown-content').stop(true, true).slideDown(200);
-  }, function() {
-    $(this).find('.dropdown-content').stop(true, true).slideUp(200);
+    // Mostrar/Ocultar el contenido del dropdown al hacer clic
+    $('.dropdown').on('click', function(event) {
+      event.stopPropagation(); // Prevenir que el evento se propague al documento
+      var $dropdownContent = $(this).find('.dropdown-content');
+      // Ocultar otros dropdowns abiertos
+      $('.dropdown-content').not($dropdownContent).slideUp(200);
+      // Alternar el contenido del dropdown actual
+      $dropdownContent.stop(true, true).slideToggle(200);
+    });
+  
+    // Ocultar el contenido del dropdown al hacer clic fuera del dropdown
+    $(document).on('click', function() {
+      $('.dropdown-content').slideUp(200);
+    });
+  
+    // Evitar que el clic dentro del dropdown-content cierre el menú
+    $('.dropdown-content').on('click', function(event) {
+      event.stopPropagation();
+    });
   });
-});
-
+  
 
 // Obtener el div por su ID
 const modulecontainer = document.getElementById('moduleContainer');

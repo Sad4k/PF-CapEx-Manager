@@ -139,7 +139,7 @@ const Macro_Projects = sequelize.define('Macro_Projects', {
   macro_p_bg: DataTypes.STRING(125),
   // Define otros campos para Projects
 });
-const Projects_Modules = sequelize.define('Project_Modules', {
+const Project_Modules = sequelize.define('Project_Modules', {
   name: {
     type: DataTypes.STRING(45),
     allowNull: false,
@@ -326,7 +326,7 @@ const sysViews = async () => {
 
   // vista de módulos
   await createView('Projects_Modules_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_Modules_sysview1 AS SELECT * FROM Projects_Modules;
+    CREATE VIEW IF NOT EXISTS Project_Modules_sysview1 AS SELECT * FROM Projects_Modules;
   `);
 
   // vista de UserRoles
@@ -370,7 +370,7 @@ module.exports = {
   Recordings,
   Macro_Projects,
   ProjectsRole,
-  Projects_Modules,
+  Project_Modules,
   ProjectAccounts,
   Genres,
   sysViews,

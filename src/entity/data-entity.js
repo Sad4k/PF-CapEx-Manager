@@ -302,17 +302,8 @@ const Categories = sequelize.define('Categories', {
   },
   color: DataTypes.STRING(45),
 });
-
+// creador de Vistas de Funcionamientos
 const createView = async (viewName, query) => {
-  try {
-    await sequelize.query(query);
-    console.log(`La vista ${viewName} se ha creado correctamente.`);
-  } catch (error) {
-    console.error(`Error al crear la vista ${viewName}:`, error);
-  }
-};
-
-const dropView = async (viewName, query) => {
   try {
     await sequelize.query(`DROP VIEW IF EXISTS ${viewName}`);
     await sequelize.query(query);
@@ -322,9 +313,11 @@ const dropView = async (viewName, query) => {
   }
 };
 
+//vistas de Funcionamiento
 const sysViews = async () => {
   // vista de Macro Proyectos
-  await createView('MacroProjects_sysview1', 'CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT  `id` as id, `name` as name, `description` as description FROM Macro_Projects;');
+  await createView('MacroProjects_sysview1', 'CREATE VIEW MacroProjects_sysview1 AS SELECT  `id` as id, `name` as name, `description` as description FROM Macro_Projects;');
+  await createView('MacroProjects_sysview2', 'CREATE VIEW MacroProjects_sysview2 AS SELECT p.id AS project_id, p.name AS project_name, p.description AS project_description, mp.id AS macro_project_id, mp.name AS macro_project_name, mp.description AS macro_project_description FROM Projects p JOIN Macro_Projects mp ON p.macro_project_id = mp.id;');
 
   // vista de Proyectos
   await createView('Projects_sysview1', `

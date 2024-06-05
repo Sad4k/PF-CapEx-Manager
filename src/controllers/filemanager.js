@@ -3,7 +3,7 @@ const fs = require('fs');
 //const fs = require('fs').promises;
 const path = require('path');
 const multer = require('multer');
-const rootProjectsPath = '/media/sad4k/PROYECTOS';
+const rootProjectsPath = './PROYECTOS';
 // ###################################### Subida de Archivos Con Multer ################################################//
 
 // Configura la ubicación y el nombre del archivo

@@ -200,6 +200,11 @@ function openEditMacroProjectModal(macroProjectId) {
             console.log(data);
             // Crear una nueva fila con el mensaje de no se encontraron proyectos relacionados
             var noDataMessage = "<tr><td colspan='5'>No se encontraron proyectos relacionados.</td></tr>";
+            $("#editMPModalTitle").text(`MacroProject - #${data.macroProjects.name}`);
+            $("#editmacroprojectform #id").val(data.macroProjects.id);
+            $("#editmacroprojectform #name").val(data.macroProjects.name);
+            $("#editmacroprojectform #description").text(data.macroProjects.description);
+            $("#editmacroprojectform #image").attr("src", data.macroProjects.macro_p_pic);
 
             // Verificar si hay datos para mostrar
             if (!data.relatedProjects) {
@@ -208,19 +213,8 @@ function openEditMacroProjectModal(macroProjectId) {
                 // Agregar el mensaje de no se encontraron proyectos
                 $("#relatedProjectsFromMacroProjectsTable tbody").append(noDataMessage);
 
-                $("#editMPModalTitle").text(`MacroProject - #${data.macroProjects.name}`);
-                $("#editmacroprojectform #id").val(data.macroProjects.id);
-                $("#editmacroprojectform #name").val(data.macroProjects.name);
-                $("#editmacroprojectform #description").text(data.macroProjects.description);
-                $("#editmacroprojectform #image").attr("src", data.macroProjects.macro_p_pic);
-
+               
             } else {
-                $("#editMPModalTitle").text(`MacroProject - #${data.macroProjects.name}`);
-                $("#editmacroprojectform #id").val(data.macroProjects.id);
-                $("#editmacroprojectform #name").val(data.macroProjects.name);
-                $("#editmacroprojectform #description").text(data.macroProjects.description);
-                $("#editmacroprojectform #image").attr("src", data.macroProjects.macro_p_pic);
-
                 // Si hay datos, limpiar la tabla antes de agregar nuevas filas
                 $("#relatedProjectsFromMacroProjectsTable tbody").empty();
                 // Agregar cada fila como lo estabas haciendo

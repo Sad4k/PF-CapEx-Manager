@@ -12,7 +12,7 @@
   "db_mysql_port": "3306",
   "db_mysql_script": "Mysql script",
   "db_mysql_backup": "./demo-myswl-bacup",
-  "theme": "light-theme",
+  "theme": "dark-theme",
   "hostName": "Device1",
   "hostId": "0254DE",
   "hostMac": "DA:06:SD:F3:12:16",

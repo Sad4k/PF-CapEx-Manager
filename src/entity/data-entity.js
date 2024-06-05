@@ -325,8 +325,8 @@ const sysViews = async () => {
   `);
 
   // vista de módulos
-  await createView('Projects_modules_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_modules_sysview1 AS SELECT * FROM Projects_modules;
+  await createView('Projects_Modules_sysview1', `
+    CREATE VIEW IF NOT EXISTS Projects_Modules_sysview1 AS SELECT * FROM Projects_Modules;
   `);
 
   // vista de UserRoles
@@ -340,9 +340,7 @@ const sysViews = async () => {
   // vista de MacroProjects_objectives_sysview1
   await createView('MacroProjects_objectives_sysview1', `
     CREATE VIEW IF NOT EXISTS MacroProjects_objectives_sysview1 AS 
-    SELECT Users.username, Users.email, Sys_roles.role_name 
-    FROM Users 
-    JOIN Sys_roles ON Users.sys_role_id = Sys_roles.id;
+    SELECT * FROM  MacroProjects_sysview1;
   `);
 };
 

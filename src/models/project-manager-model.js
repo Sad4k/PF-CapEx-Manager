@@ -645,7 +645,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM  Projects_modules WHERE project_id = ' +
+        'SELECT * FROM  Projects_Modules WHERE project_id = ' +
         id +
         '';
       const result = await sequelize.query(query, {
@@ -668,7 +668,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM  Projects_modules WHERE id = ' + id + '';
+        'SELECT * FROM  Projects_Modules WHERE id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -689,7 +689,7 @@ const projects = {
   obtenerModulos: async function () {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
-      const query = 'SELECT * FROM  Projects_modules';
+      const query = 'SELECT * FROM  Projects_Modules';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });

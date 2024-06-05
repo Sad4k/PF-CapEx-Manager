@@ -742,6 +742,22 @@ function applyTheme(themeName) {
 }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/getConfig')
+        .then(response => response.json())
+        .then(config => {
+            systemConfig = config;
+            newSystemConfig = systemConfig;
+
+            //aplicando el tema guardado
+            applyTheme(systemConfig.theme);
+            console.log(systemConfig.theme);
+        })
+        .catch(error => console.error('Error al obtener la configuración:', error));
+});
+
+
+
 
 
 function openTab(tabName) {

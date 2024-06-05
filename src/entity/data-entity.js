@@ -312,18 +312,28 @@ const createView = async (viewName, query) => {
   }
 };
 
+const dropView = async (viewName, query) => {
+  try {
+    await sequelize.query(`DROP VIEW IF EXISTS ${viewName}`);
+    await sequelize.query(query);
+    console.log(`La vista ${viewName} se ha creado correctamente.`);
+  } catch (error) {
+    console.error(`Error al crear la vista ${viewName}:`, error);
+  }
+};
+
 const sysViews = async () => {
   // vista de Macro Proyectos
   await createView('MacroProjects_sysview1', 'CREATE VIEW IF NOT EXISTS MacroProjects_sysview1 AS SELECT  `id` as id, `name` as name, `description` as description FROM Macro_Projects;');
 
   // vista de Proyectos
   await createView('Projects_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id , name FROM Projects;
+    CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * FROM Projects;
   `);
 
   // vista de módulos
   await createView('Projects_modules_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_modules_sysview1 AS SELECT id , name FROM Projects_modules;
+    CREATE VIEW IF NOT EXISTS Projects_modules_sysview1 AS SELECT * FROM Projects_modules;
   `);
 
   // vista de UserRoles

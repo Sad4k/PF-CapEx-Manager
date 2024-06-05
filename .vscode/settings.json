@@ -1,3 +1,12 @@
 {
-    "sqliteViewer.maxFileSize": 0
+    "sqliteViewer.maxFileSize": 0,
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "projectFlow_db",
+            "database": "database/projectFlow_db.sqlite"
+        }
+    ]
 }

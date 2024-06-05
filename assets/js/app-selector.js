@@ -1,6 +1,7 @@
 const body = document.body;
+
 function slideIn(element) {
-    element.style.animation = 'slideIn 1s forwards';
+    element.style.animation = 'slideIn 2s forwards';
 }
 
 function fade(element) {

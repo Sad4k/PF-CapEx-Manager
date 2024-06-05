@@ -523,7 +523,7 @@ const projects = {
   obtenerMiembrosProyecto: async function (id) {
     try {
       const query =
-        'SELECT * FROM Projects_members WHERE project_id = ' + id + '';
+        'SELECT * FROM Project_members WHERE project_id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -645,7 +645,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM  Projects_Modules WHERE project_id = ' +
+        'SELECT * FROM  Project_Modules WHERE project_id = ' +
         id +
         '';
       const result = await sequelize.query(query, {
@@ -668,7 +668,7 @@ const projects = {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
       const query =
-        'SELECT * FROM  Projects_Modules WHERE id = ' + id + '';
+        'SELECT * FROM  Project_Modules WHERE id = ' + id + '';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -689,7 +689,7 @@ const projects = {
   obtenerModulos: async function () {
     try {
       // Realiza una consulta a la base de datos para obtener la categoría según la extensión
-      const query = 'SELECT * FROM  Projects_Modules';
+      const query = 'SELECT * FROM  Project_Modules';
       const result = await sequelize.query(query, {
         type: sequelize.QueryTypes.SELECT,
       });
@@ -1013,7 +1013,7 @@ const projects = {
   crearModulo: async function (nuevoRegistro) {
     try {
       console.log(nuevoRegistro);
-      const nuevoModulo = await entities.Projects_Modules.create({
+      const nuevoModulo = await entities.Project_Modules.create({
         name: nuevoRegistro.modulename,
         project_id: nuevoRegistro.pid,
         description: nuevoRegistro.moduledescription,
@@ -1039,7 +1039,7 @@ const projects = {
   editarModulo: async function (idModulo, nuevoRegistro) {
     try {
       // Buscar el activo a editar
-      const pModule = await entities.Projects_Modules.findByPk(idModulo);
+      const pModule = await entities.Project_Modules.findByPk(idModulo);
 
       if (!pModule) {
         throw new Error('Modulo no encontrado');
@@ -1074,7 +1074,7 @@ const projects = {
   eliminarModulo: async function (id) {
     try {
       console.log(id);
-      const deletedRowCount = await entities.Projects_Modules.destroy({
+      const deletedRowCount = await entities.Project_Modules.destroy({
         where: { id: id },
       });
 

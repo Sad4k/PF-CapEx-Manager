@@ -27,7 +27,7 @@ const upload = multer({ storage: storage });
 // Configurar almacenamiento para el primer tipo de archivo
 const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/var/www/projectflow_nodejs/assets/images/projects');
+    cb(null, './assets/images/projects');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);

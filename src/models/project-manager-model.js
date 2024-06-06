@@ -1357,7 +1357,7 @@ const projects = {
 
       for (let i = 0; i < cuentas.length; i++) {
         const cuenta = cuentas[i];
-        await entities.ProjectAccounts.create({
+        await entities.Project_Accounts.create({
           project_id: datosProyecto.id,
           account: `02${idp_formato}${cuenta.number}`,
         });

@@ -49,7 +49,7 @@ const Accounts = sequelize.define('Accounts', {
   account_description: DataTypes.STRING(255),
   account_type: DataTypes.INTEGER,
 });
-const ProjectAccounts = sequelize.define('ProjectAccounts', {
+const Project_Accounts = sequelize.define('Project_Accounts', {
   project_id: DataTypes.INTEGER,
   account: DataTypes.STRING(45),
 });
@@ -83,14 +83,6 @@ const Users = sequelize.define('Users', {
 });
 
 const Files = sequelize.define('Files', {
-  path: DataTypes.STRING(45),
-  fileName: {
-    type: DataTypes.STRING(45),
-    allowNull: false,
-  },
-});
-
-const Projects_modules = sequelize.define('Projects_modules', {
   path: DataTypes.STRING(45),
   fileName: {
     type: DataTypes.STRING(45),
@@ -318,11 +310,28 @@ const sysViews = async () => {
   // vista de Macro Proyectos
   await createView('MacroProjects_sysview1', 'CREATE VIEW MacroProjects_sysview1 AS SELECT  `id` as id, `name` as name, `description` as description FROM Macro_Projects;');
   await createView('MacroProjects_sysview2', 'CREATE VIEW MacroProjects_sysview2 AS SELECT p.id AS project_id, p.name AS project_name, p.description AS project_description, mp.id AS macro_project_id, mp.name AS macro_project_name, mp.description AS macro_project_description FROM Projects p JOIN Macro_Projects mp ON p.macro_project_id = mp.id;');
-
-  // vista de Proyectos
+ 
+  if (!serverConfig) {
+    console.error('serverConfig no está definido creacion de vistas');
+  } else {
+    if (serverConfig.sysMode === "master-local-sqlite") {
+       // vista de Proyectos sqlite
   await createView('Projects_sysview1', `
-    CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT * FROM Projects;
-  `);
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id as id, name as name, macro_project_id as mpid, project_pic as project_pic, category as category, start_date as start_date, end_date as end_date,  julianday(end_date) - julianday(start_date) AS days_lefts ,created_by as created_by FROM Projects;
+`);
+
+  
+    } else if (serverConfig.sysMode === "online-Mysql") {
+       // vista de Proyectos mysql
+  await createView('Projects_sysview1', `
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id as id, name as name, macro_project_id as mpid, project_pic as project_pic, category as category, start_date as start_date, end_date as end_date,  DATEDIFF(end_date, start_date) AS days_lefts ,created_by as created_by FROM Projects;
+`);
+
+    }
+  }
+ 
+
+
 
   // vista de módulos
   await createView('Projects_Modules_sysview1', `
@@ -371,7 +380,7 @@ module.exports = {
   Macro_Projects,
   ProjectsRole,
   Project_Modules,
-  ProjectAccounts,
+  Project_Accounts,
   Genres,
   sysViews,
 };

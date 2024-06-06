@@ -426,8 +426,7 @@
 
         <div class="form-group">
           <label for="macroprojectId">Macro Projecto</label>
-          <select class="form-control" name="category">
-            <option value="">---Selecciona una categoria---</option>
+          <select class="form-control" name="category" required>
             <% Object.keys(data.categories).forEach(function(group) { %>
               <optgroup label="<%= group %>">
                 <% data.categories[group].forEach(function(category) { %>
@@ -938,8 +937,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="projectCategory">Categoria</label>
-                    <select class="form-control" name="category">
-                      <option value="">---Selecciona una categoria---</option>
+                    <select class="form-control" name="category" required>
                       <% Object.keys(data.categories).forEach(function(group) { %>
                         <optgroup label="<%= group %>">
                           <% data.categories[group].forEach(function(category) { %>
@@ -1079,8 +1077,7 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="projectCategory">Categoria</label>
-                    <select class="form-control" id="projectCategory" name="category">
-                      <option value="">---Selecciona una categoria---</option>
+                    <select class="form-control" id="projectCategory" name="category" required>
                       <% Object.keys(data.categories).forEach(function(group) { %>
                         <optgroup label="<%= group %>">
                           <% data.categories[group].forEach(function(category) { %>

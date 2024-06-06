@@ -441,7 +441,8 @@ async function sendConfig() {
         newSystemConfig.db_local_script =  removeNewlines(newSystemConfig.db_local_script);
 
         const categories = [
-            { category_name: 'Sports', category_group: 'Leisure', color: 'Blue' },
+            { category_name: 'Sistema General', category_group: 'Sistemas Informaticos', color: '#006500' },
+            { category_name: 'Sistema Dedicado', category_group: 'Sistemas Informaticos', color: '#006500' },
             { category_name: 'Technology', category_group: 'Education', color: 'Red' },
             { category_name: 'Health', category_group: 'Lifestyle', color: 'Green' },
             // agrega más categorías según sea necesario

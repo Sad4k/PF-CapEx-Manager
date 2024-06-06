@@ -98,6 +98,28 @@ function openEditProjectModal(ProjectId) {
             console.log(data);
             // Crear una nueva fila con el mensaje de no se encontraron proyectos relacionados
             var noDataMessage = "<tr><td colspan='5'>No se encontraron proyectos relacionados.</td></tr>";
+            
+            
+            const startDate = data.projects.start_date.split(' ');
+            const endDate = data.projects.end_date.split(' ');
+
+            console.log(endDate , formatearFecha(endDate[0]));
+
+
+            $("#editPModalTitle").text(`Project - #${data.projects.name}`);
+            $("#editprojectform #editpModalprojectId").val(data.projects.id);
+            $("#editprojectform #editpModalmacroprojectId").val(data.projects.macro_project_id);
+            $("#editprojectform #projectName").val(data.projects.name);
+            $("#editprojectform #name").val(data.projects.name);
+            $("#editprojectform #projectCategory").val(data.projects.category);
+            $("#editprojectform #description").text(data.projects.description);
+            $("#editprojectform #indefinidoCheck").val(data.projects.undefined_time);
+
+            $("#editprojectform #start_date").val(formatearFecha(startDate[0]));
+            $("#editprojectform #start_time").val(formatearHora(data.projects.start_date));
+            $("#editprojectform #end_date").val(formatearFecha(endDate[0]));
+            $("#editprojectform #end_time").val(formatearHora(data.projects.end_date));
+            $("#editprojectform #editProjectImage").attr("src", data.projects.project_pic);
 
             // Verificar si hay datos para mostrar
             if (!data.relatedModules) {
@@ -106,49 +128,8 @@ function openEditProjectModal(ProjectId) {
                 // Agregar el mensaje de no se encontraron proyectos
                 $("#relatedProjectsFromMacroProjectsTable tbody").append(noDataMessage);
 
-                const startDate = data.projects.start_date.split(' ');
-                const endDate = data.projects.end_date.split(' ');
-
-                console.log(endDate , formatearFecha(endDate[0]));
-
-
-                $("#editPModalTitle").text(`Project - #${data.projects.name}`);
-                $("#editprojectform #editpModalprojectId").val(data.projects.id);
-                $("#editprojectform #editpModalmacroprojectId").val(data.projects.macro_project_id);
-                $("#editprojectform #projectName").val(data.projects.name);
-                $("#editprojectform #name").val(data.projects.name);
-                $("#editprojectform #projectCategory").val(data.projects.category);
-                $("#editprojectform #description").text(data.projects.description);
-                $("#editprojectform #indefinidoCheck").val(data.projects.undefined_time);
-
-                $("#editprojectform #start_date").val(formatearFecha(startDate[0]));
-                $("#editprojectform #start_time").val(formatearHora(data.projects.start_date));
-                $("#editprojectform #end_date").val(formatearFecha(endDate[0]));
-                $("#editprojectform #end_time").val(formatearHora(data.projects.end_date));
-                $("#editprojectform #editProjectImage").attr("src", data.projects.project_pic);
 
             } else {
-
-                const startDate = data.projects.start_date.split(' ');
-                const endDate = data.projects.end_date.split(' ');
-
-                console.log(endDate , formatearFecha(endDate[0]));
-
-
-                $("#editPModalTitle").text(`Project - #${data.projects.name}`);
-                $("#editprojectform #editpModalprojectId").val(data.projects.id);
-                $("#editprojectform #editpModalmacroprojectId").val(data.projects.macro_project_id);
-                $("#editprojectform #projectName").val(data.projects.name);
-                $("#editprojectform #name").val(data.projects.name);
-                $("#editprojectform #projectCategory").val(data.projects.category);
-                $("#editprojectform #description").text(data.projects.description);
-                $("#editprojectform #indefinidoCheck").val(data.projects.undefined_time);
-
-                $("#editprojectform #start_date").val(formatearFecha(startDate[0]));
-                $("#editprojectform #start_time").val(formatearHora(data.projects.start_date));
-                $("#editprojectform #end_date").val(formatearFecha(endDate[0]));
-                $("#editprojectform #end_time").val(formatearHora(data.projects.end_date));
-                $("#editprojectform #editProjectImage").attr("src", data.projects.project_pic);
 
                 // Si hay datos, limpiar la tabla antes de agregar nuevas filas
                 $("#relatedProjectsFromMacroProjectsTable tbody").empty();

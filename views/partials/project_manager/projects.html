@@ -427,11 +427,15 @@
         <div class="form-group">
           <label for="macroprojectId">Macro Projecto</label>
           <select class="form-control" name="category">
-                        <option value="">---Selecciona una categoria---</option>
-                        <% data.categories.forEach(function(category) { %>
-                        <option value="<%= category.id %>"><%=  category.id %> - <%= category.category_name %></option>
-                        <% }); %>
-                      </select>
+            <option value="">---Selecciona una categoria---</option>
+            <% Object.keys(data.categories).forEach(function(group) { %>
+              <optgroup label="<%= group %>">
+                <% data.categories[group].forEach(function(category) { %>
+                  <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
+                <% }); %>
+              </optgroup>
+            <% }); %>
+          </select>
          <span class="fa fa-ruler icon"></span>
       </div>  
       </div>  
@@ -863,8 +867,7 @@
 
           <div class="form-group">
            <label for="macroprojectId">Macro Projecto</label>
-           <select class="form-control" id="macroprojectId" name="mpid">
-                        <option value="">---Selecciona una categoria---</option>
+           <select class="form-control" id="macroprojectId" name="mpid" required>
                          <% data.macroproject.forEach(function(mproject) { %>
                         <option value="<%= mproject.id %>"><%= mproject.id %> - <%= mproject.name %></option>
                       <%  }); %>
@@ -935,12 +938,16 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="projectCategory">Categoria</label>
-                                <select class="form-control" name="category">
-                                  <option value="">---Selecciona una categoria---</option>
-                                   <% data.categories.forEach(function(category) { %>
-                                  <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
-                                 <% }); %>
-                                </select>
+                    <select class="form-control" name="category">
+                      <option value="">---Selecciona una categoria---</option>
+                      <% Object.keys(data.categories).forEach(function(group) { %>
+                        <optgroup label="<%= group %>">
+                          <% data.categories[group].forEach(function(category) { %>
+                            <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
+                          <% }); %>
+                        </optgroup>
+                      <% }); %>
+                    </select>
                   </div>
                   </div>
                   </div>
@@ -1072,12 +1079,16 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="projectCategory">Categoria</label>
-                                <select class="form-control" id="projectCategory" name="category">
-                                  <option value="">---Selecciona una categoria---</option>
-                                   <% data.categories.forEach(function(category) { %>
-                                  <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
-                                 <% }); %>
-                                </select>
+                    <select class="form-control" id="projectCategory" name="category">
+                      <option value="">---Selecciona una categoria---</option>
+                      <% Object.keys(data.categories).forEach(function(group) { %>
+                        <optgroup label="<%= group %>">
+                          <% data.categories[group].forEach(function(category) { %>
+                            <option value="<%= category.id %>"><%= category.id %> - <%= category.category_name %></option>
+                          <% }); %>
+                        </optgroup>
+                      <% }); %>
+                    </select>
                   </div>
                   </div>
                   </div>

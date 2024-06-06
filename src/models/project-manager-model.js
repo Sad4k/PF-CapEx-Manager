@@ -47,6 +47,28 @@ const system = {
       throw error;
     }
   },
+  // Función para listar las categorías del sistema y agruparlas por category_group
+listarcategoriasagrupadas: async function () {
+  try {
+    const categorias = await entities.Categories.findAll();
+    
+    // Agrupa las categorías por category_group
+    const groupedCategories = categorias.reduce((groups, category) => {
+      const group = category.category_group || 'Otros'; // Categorías sin grupo se agrupan en 'Otros'
+      if (!groups[group]) {
+        groups[group] = [];
+      }
+      groups[group].push(category);
+      return groups;
+    }, {});
+
+    console.log("Categorias agrupadas:",groupedCategories);
+    return groupedCategories;
+  } catch (error) {
+    console.error('error al obtener las categorias', error);
+    throw error;
+  }
+},
   //Funcion para listar los roles del proyecto
   listarrolesproyecto: async function () {
     try {

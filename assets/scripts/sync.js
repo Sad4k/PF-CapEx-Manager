@@ -41,6 +41,12 @@ const syncModels = async () => {
         name: 'app-selector',
         path: './views/app-selector',
       });
+
+     console.log('Datos iniciales de Funcionamiento inyectados', serverConfig.categoryList);
+
+     await Categories.bulkCreate(serverConfig.categoryList);
+
+     console.log('Datos secundarios de Funcionamiento inyectados');
       
       await sysViews();
 

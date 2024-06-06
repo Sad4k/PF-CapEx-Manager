@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
   const rolproyecto = await pj_manager.system.listarrolesproyecto();
   const projects = await pj_manager.projects.obtenerRegistros();
-  const categories = await pj_manager.system.listarcategorias();
+  const categories = await pj_manager.system.listarcategoriasagrupadas();
   const roles = await pj_manager.system.listarroles();
   const dashboards = await pj_manager.system.listardashboards();
   const mprojects = await pj_manager.macroprojects.obtenerRegistros();
@@ -1012,8 +1012,7 @@ router.post('/newmacroproject', async (req, res) => {
 router.get('/new-macro-project', async (req, res) => {
   try {
     // Realiza la consulta a la base de datos de forma asincrónica
-    const categories = await pj_manager.system.listarcategorias();
-
+    const categories = await pj_manager.system.listarcategoriasagrupadas();
     // Renderiza la vista EJS y pasa los datos a la vista
     body = '../views/partials/project_manager/new-macro-project.html';
     title = 'Editar Macro Proyecto';

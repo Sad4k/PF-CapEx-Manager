@@ -292,6 +292,7 @@ const Categories = sequelize.define('Categories', {
     type: DataTypes.STRING(45),
     allowNull: false,
   },
+  category_group: DataTypes.STRING(45),
   color: DataTypes.STRING(45),
 });
 // creador de Vistas de Funcionamientos

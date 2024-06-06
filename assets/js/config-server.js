@@ -440,6 +440,15 @@ async function sendConfig() {
         newSystemConfig.db_mysql_script =  removeNewlines(newSystemConfig.db_mysql_script);
         newSystemConfig.db_local_script =  removeNewlines(newSystemConfig.db_local_script);
 
+        const categories = [
+            { category_name: 'Sports', category_group: 'Leisure', color: 'Blue' },
+            { category_name: 'Technology', category_group: 'Education', color: 'Red' },
+            { category_name: 'Health', category_group: 'Lifestyle', color: 'Green' },
+            // agrega más categorías según sea necesario
+          ];
+
+        newSystemConfig.categoryList = categories;
+
         const response = await fetch('/saveConfig', {
             method: 'POST',
             headers: {

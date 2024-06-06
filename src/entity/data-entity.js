@@ -317,14 +317,14 @@ const sysViews = async () => {
     if (serverConfig.sysMode === "master-local-sqlite") {
        // vista de Proyectos sqlite
   await createView('Projects_sysview1', `
-  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id as id, name as name, macro_project_id as mpid, project_pic as project_pic, category as category, start_date as start_date, end_date as end_date,  julianday(end_date) - julianday(start_date) AS days_lefts ,created_by as created_by FROM Projects;
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id as id, name as name, macro_project_id as macro_project_id, project_pic as project_pic, category as category, start_date as start_date, end_date as end_date,  julianday(end_date) - julianday(start_date) AS days_left ,created_by as created_by FROM Projects;
 `);
 
   
     } else if (serverConfig.sysMode === "online-Mysql") {
        // vista de Proyectos mysql
   await createView('Projects_sysview1', `
-  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id as id, name as name, macro_project_id as mpid, project_pic as project_pic, category as category, start_date as start_date, end_date as end_date,  DATEDIFF(end_date, start_date) AS days_lefts ,created_by as created_by FROM Projects;
+  CREATE VIEW IF NOT EXISTS Projects_sysview1 AS SELECT id as id, name as name, macro_project_id as mpid, project_pic as project_pic, category as category, start_date as start_date, end_date as end_date,  DATEDIFF(end_date, start_date) AS days_left ,created_by as created_by FROM Projects;
 `);
 
     }

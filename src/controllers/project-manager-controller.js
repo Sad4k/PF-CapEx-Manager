@@ -1044,8 +1044,7 @@ router.get('/new-macro-project', async (req, res) => {
 
 router.post('/macro-project-update', async (req, res) => {
   try {
-    console.log(req.body.id);
-    const registroId = req.body.id; // Obtén el ID del registro a actualizar
+    const registroId = req.body.mpid; // Obtén el ID del registro a actualizar
     const datosActualizados = req.body; // Los nuevos datos para actualizar
     console.log('Se ha ejecutado el update', registroId, datosActualizados);
 

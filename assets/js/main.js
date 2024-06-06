@@ -201,7 +201,7 @@ function openEditMacroProjectModal(macroProjectId) {
             // Crear una nueva fila con el mensaje de no se encontraron proyectos relacionados
             var noDataMessage = "<tr><td colspan='5'>No se encontraron proyectos relacionados.</td></tr>";
             $("#editMPModalTitle").text(`MacroProject - #${data.macroProjects.name}`);
-            $("#editmacroprojectform #id").val(data.macroProjects.id);
+            $("#editmacroprojectform #mpId").val(data.macroProjects.id);
             $("#editmacroprojectform #name").val(data.macroProjects.name);
             $("#editmacroprojectform #description").text(data.macroProjects.description);
             $("#editmacroprojectform #image").attr("src", data.macroProjects.macro_p_pic);

@@ -3,7 +3,28 @@ const fs = require('fs');
 //const fs = require('fs').promises;
 const path = require('path');
 const multer = require('multer');
-const rootProjectsPath = './PROYECTOS';
+//Gestion de Direcciones Locales
+
+
+const rootProjectsPath = './PROYECTOS'; //carpeta de Projectos
+const projectsImagePath = './assets/images/projects'; //imagenes de logo de projectos
+const estructuraCarpetas = [
+  'Audio',
+  'Video',
+  'Imagenes',
+  'Documentos',
+  'Diseños',
+  'Promocion/material_promocional',
+  'Promocion/contenido_social_media',
+  'Produccion/grabaciones',
+  'Produccion/sesiones',
+  'Produccion/otros',
+  'Distribucion/versiones',
+  'Distribucion/materiales_promocionales',
+  'Producciones_terminadas',
+];
+
+
 // ###################################### Subida de Archivos Con Multer ################################################//
 
 // Configura la ubicación y el nombre del archivo
@@ -27,7 +48,7 @@ const upload = multer({ storage: storage });
 // Configurar almacenamiento para el primer tipo de archivo
 const storage1 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './assets/images/projects');
+    cb(null, projectsImagePath);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -193,22 +214,7 @@ const projectFilemanager = {
     try {
       await fs.promises.mkdir(rutaProyecto);
 
-      const estructuraCarpetas = [
-        'Audio',
-        'Video',
-        'Imagenes',
-        'Documentos',
-        'Diseños',
-        'Promocion/material_promocional',
-        'Promocion/contenido_social_media',
-        'Produccion/grabaciones',
-        'Produccion/sesiones',
-        'Produccion/otros',
-        'Distribucion/versiones',
-        'Distribucion/materiales_promocionales',
-        'Producciones_terminadas',
-      ];
-
+      
       await Promise.all(
         estructuraCarpetas.map(async (carpeta) => {
           const carpetaCompleta = path.join(rutaProyecto, carpeta);

@@ -149,7 +149,7 @@ app.post('/login', async (req, res) => {
       req.session.profilePic = uservalid.profilePic;
       req.session.def_dashboard_id = uservalid.def_dashboard_id;
 
-      res.redirect('/app-selector');
+      res.redirect('/Welcome');
     } else {
       let msg =
         uservalid === null || uservalid.state === 0
@@ -179,6 +179,26 @@ app.get('/app-selector', async (req, res) => {
     body = dashboard.path;
     title = 'App Selector';
     res.render('app-selector', {
+      session: req.session,
+      title: title,
+      body: body,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('Error al obtener el app selector');
+  }
+});
+
+//dashboard
+app.get('/welcome', async (req, res) => {
+  try {
+    const dashboard = await pj_manager.system.obtenerdashboard(
+      req.session.def_dashboard_id
+    );
+    console.log(dashboard, req.session.def_dashboard_id);
+    body = dashboard.path;
+    title = 'Welcome';
+    res.render('app-welcome', {
       session: req.session,
       title: title,
       body: body,

@@ -1,5 +1,14 @@
 const body = document.body;
 
+function slideIn(element) {
+    element.style.animation = 'slideIn 2s forwards';
+}
+
+function fade(element) {
+    element.style.animation = 'fade 0.5s forwards';
+    element.addEventListener('animationend', function() {
+    });
+}
 
 // Función para aplicar el tema seleccionado cambiando la clase del body
 function applyTheme(themeName) {
